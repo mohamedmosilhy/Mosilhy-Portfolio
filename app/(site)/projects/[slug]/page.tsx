@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 
+import { PageEntrance } from "@/components/motion/page-entrance";
 import { ProjectCaseStudy } from "@/features/projects/project-case-study";
 import { getProjectSlugs } from "@/lib/content/projects";
 import { getProjectPageModel } from "@/lib/content/site-content";
@@ -27,11 +28,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <ProjectCaseStudy
-      project={model.project}
-      previousProject={model.previousProject}
-      nextProject={model.nextProject}
-      allProjectsHref="/#projects"
-    />
+    <PageEntrance>
+      <ProjectCaseStudy
+        project={model.project}
+        previousProject={model.previousProject}
+        nextProject={model.nextProject}
+        allProjectsHref="/#projects"
+      />
+    </PageEntrance>
   );
 }

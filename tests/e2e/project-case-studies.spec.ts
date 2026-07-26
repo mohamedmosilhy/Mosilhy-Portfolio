@@ -184,3 +184,32 @@ test("keeps case-study content available without JavaScript", async ({
 
   await context.close();
 });
+
+test("removes the project-page translation for reduced motion", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({
+    reducedMotion: "reduce",
+    viewport: { width: 320, height: 720 },
+  });
+  const page = await context.newPage();
+
+  await page.goto("/projects/wheres-waldo");
+
+  const entrance = page.locator('[data-motion="page-entrance"]');
+
+  await expect(entrance).toHaveAttribute("data-motion-state", "reduced");
+  await expect(
+    page.getByRole("heading", { level: 1, name: "Where’s Waldo" }),
+  ).toBeVisible();
+  await expect
+    .poll(() =>
+      entrance.evaluate((element) => ({
+        opacity: getComputedStyle(element).opacity,
+        transform: getComputedStyle(element).transform,
+      })),
+    )
+    .toEqual({ opacity: "1", transform: "none" });
+
+  await context.close();
+});
