@@ -33,9 +33,14 @@ export function ProjectsSection({ projects, heading }: ProjectsSectionProps) {
           className="mt-space-16 grid gap-space-16 lg:mt-space-20 lg:gap-space-20"
           variant="default"
         >
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <StaggerItem key={project.slug}>
-              <ProjectCard project={project} variant="featured" />
+              <ProjectCard
+                project={project}
+                variant="featured"
+                ordinal={index + 1}
+                mediaPosition={index % 2 === 0 ? "start" : "end"}
+              />
             </StaggerItem>
           ))}
         </Stagger>

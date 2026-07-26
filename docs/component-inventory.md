@@ -312,7 +312,7 @@ It does not implement exit animation or delay route navigation.
 | -------------- | ------------------------------------------------------------------------- |
 | Responsibility | Present a project's image, purpose, technologies, and actions             |
 | Variants       | `featured`, `standard`; media position `start`, `end` at wide breakpoints |
-| Props          | `project`, `priority?`, `mediaPosition?`, `headingLevel?`                 |
+| Props          | `project`, `priority?`, `mediaPosition?`, `headingLevel?`, `ordinal?`     |
 | Used by        | Projects section and future project index                                 |
 | Rendering      | Server Component with CSS hover behavior                                  |
 
@@ -335,7 +335,7 @@ elements.
 | Field          | Definition                                         |
 | -------------- | -------------------------------------------------- |
 | Responsibility | Render one category heading and its ordered skills |
-| Variants       | `list`, `tags`; initial release uses `list`        |
+| Variants       | `list`, `tags`; home presentation uses `tags`      |
 | Props          | `group`, `headingLevel?`                           |
 | Used by        | Skills section                                     |
 | Rendering      | Server Component                                   |

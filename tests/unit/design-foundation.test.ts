@@ -66,6 +66,10 @@ function contrastRatio(foreground: string, background: string) {
 const properties = readCustomProperties(globalsSource);
 
 describe("design system foundation", () => {
+  it("opts Next.js route transitions into the documented smooth-scroll override", () => {
+    expect(layoutSource).toContain('data-scroll-behavior="smooth"');
+  });
+
   it("encodes the documented primitive and semantic colors", () => {
     expect(Object.fromEntries(properties)).toMatchObject({
       "--neutral-950": "#080a0f",

@@ -39,8 +39,8 @@ export const profile = {
     kind: "image",
     src: "/images/profile/mohamed-mosilhy.jpg",
     alt: "Portrait of Mohamed Mosilhy",
-    width: 320,
-    height: 320,
+    width: 1536,
+    height: 2048,
   },
   email: "mailto:mmosilhyofficial@gmail.com",
   primaryCta: {

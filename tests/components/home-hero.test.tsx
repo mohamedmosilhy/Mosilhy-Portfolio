@@ -33,6 +33,8 @@ describe("HeroSection", () => {
     expect(hero).toHaveTextContent(validProfile.greeting);
     expect(hero).toHaveTextContent(validProfile.role);
     expect(hero).toHaveTextContent(validProfile.introduction);
+    expect(hero).toHaveTextContent(validProfile.location);
+    expect(hero).toHaveTextContent(validProfile.availability);
     expect(
       within(hero).getByRole("link", {
         name: validProfile.primaryCta.label,

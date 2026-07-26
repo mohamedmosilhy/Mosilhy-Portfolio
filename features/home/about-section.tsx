@@ -21,7 +21,7 @@ export function AboutSection({ profile }: AboutSectionProps) {
     >
       <Container size="wide">
         <Reveal className="grid gap-space-12 lg:grid-cols-12 lg:gap-space-8">
-          <div className="lg:col-span-4">
+          <div className="lg:sticky lg:top-space-24 lg:col-span-4 lg:self-start">
             <div id={aboutHeadingId}>
               <SectionHeading title="About" />
             </div>
@@ -31,21 +31,36 @@ export function AboutSection({ profile }: AboutSectionProps) {
               </p>
             ) : null}
             {profile.portrait ? (
-              <div className="mt-space-8 max-w-narrow">
-                <MediaFrame
-                  asset={profile.portrait}
-                  sizes="(min-width: 1024px) 28vw, 100vw"
-                  variant="surface"
-                  radius="xl"
+              <div className="relative mt-space-8 max-w-narrow">
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 translate-x-space-3 translate-y-space-3 rounded-xl border border-accent/30 bg-accent-subtle/30"
                 />
+                <div className="relative">
+                  <MediaFrame
+                    asset={profile.portrait}
+                    sizes="(min-width: 1024px) 28vw, 100vw"
+                    variant="surface"
+                    radius="xl"
+                  />
+                </div>
               </div>
             ) : null}
           </div>
 
           <div className="lg:col-span-7 lg:col-start-6">
-            <div className="space-y-space-6 text-body-lg text-pretty text-text-secondary">
-              {profile.biography.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+            <div className="space-y-space-8 text-pretty">
+              {profile.biography.map((paragraph, index) => (
+                <p
+                  key={paragraph}
+                  className={
+                    index === 0
+                      ? "font-display text-heading-md font-medium text-text"
+                      : "max-w-prose text-body-lg text-text-secondary"
+                  }
+                >
+                  {paragraph}
+                </p>
               ))}
             </div>
 
@@ -81,7 +96,7 @@ export function AboutSection({ profile }: AboutSectionProps) {
                   {profile.interests.map((interest) => (
                     <li
                       key={interest.id}
-                      className="border-t border-border pt-space-5"
+                      className="rounded-lg border border-border bg-surface p-space-5"
                     >
                       <h4 className="font-semibold text-text">
                         {interest.label}

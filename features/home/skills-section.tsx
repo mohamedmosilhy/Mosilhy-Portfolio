@@ -30,12 +30,12 @@ export function SkillsSection({ groups, heading }: SkillsSectionProps) {
         </Reveal>
 
         <Stagger
-          className="mt-space-16 grid gap-space-12 md:grid-cols-2 lg:mt-space-20 lg:gap-x-space-16"
+          className="mt-space-16 grid gap-space-6 md:grid-cols-2 lg:mt-space-20 lg:gap-space-8"
           variant="default"
         >
           {groups.map((group) => (
             <StaggerItem key={group.id}>
-              <SkillGroup group={group} />
+              <SkillGroup group={group} variant="tags" />
             </StaggerItem>
           ))}
         </Stagger>

@@ -30,6 +30,11 @@ describe("skills", () => {
       "data-motion-item-count",
       String(validSkillGroups.length),
     );
+    expect(
+      [...section.querySelectorAll('[data-slot="skill-group"]')].every(
+        (group) => group.getAttribute("data-variant") === "tags",
+      ),
+    ).toBe(true);
 
     for (const group of validSkillGroups) {
       expect(

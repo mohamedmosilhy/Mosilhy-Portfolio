@@ -71,7 +71,7 @@ describe("ProjectCard", () => {
     expect(liveDemo.closest("a")?.querySelectorAll("a")).toHaveLength(0);
   });
 
-  it("keeps media and content in DOM order for each position variant", () => {
+  it("keeps a stable mobile reading order and applies alternation at wide breakpoints", () => {
     const { rerender } = render(
       <ProjectCard project={projectSummary} mediaPosition="start" />,
     );
@@ -88,9 +88,11 @@ describe("ProjectCard", () => {
       .getByRole("article", { name: projectSummary.title })
       .querySelector(".grid")!;
 
-    expect(layout.lastElementChild).toContainElement(
+    expect(layout.firstElementChild).toContainElement(
       screen.getByRole("img", { name: projectSummary.cover.alt }),
     );
+    expect(layout.firstElementChild).toHaveClass("lg:order-2");
+    expect(layout.lastElementChild).toHaveClass("lg:order-1");
   });
 });
 
@@ -121,6 +123,11 @@ describe("ProjectsSection", () => {
       "project-second-project-heading",
       `project-${projectSummary.slug}-heading`,
     ]);
+    expect(
+      cards.map((card) => card.getAttribute("data-media-position")),
+    ).toEqual(["start", "end"]);
+    expect(cards[0]).toHaveTextContent("01");
+    expect(cards[1]).toHaveTextContent("02");
     expect(collection).toHaveAttribute("data-motion-item-count", "2");
     expect(
       collection?.querySelectorAll(':scope > [data-motion="stagger-item"]'),
