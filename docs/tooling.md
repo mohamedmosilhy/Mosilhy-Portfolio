@@ -40,10 +40,11 @@ versions without overrides.
 | `pnpm build`            | Produce the optimized Next.js build                         |
 | `pnpm check`            | Run formatting, types, lint, content, and test gates        |
 
-The test and content-validation commands allow an empty suite during the
-tooling milestone. That allowance does not weaken later milestones: once a
-feature introduces behavior or runtime content schemas, its relevant tests are
-required.
+The empty-suite allowance applied only during the tooling milestone.
+`validate:content` now runs the schema-boundary and cross-record validation
+tests introduced with the content model. Feature and end-to-end suites must
+likewise become non-empty when their corresponding milestones introduce
+behavior.
 
 Playwright browser binaries are installed when the first end-to-end test is
 introduced. The runner and project configuration are already present.

@@ -16,7 +16,7 @@
     "audit:prod": "pnpm audit --prod",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "validate:content": "vitest run tests/content --passWithNoTests",
+    "validate:content": "vitest run tests/unit/content-schemas.test.ts tests/unit/content-validation.test.ts",
     "test": "pnpm test:unit && pnpm test:e2e",
     "test:unit": "vitest run --passWithNoTests",
     "test:unit:watch": "vitest",

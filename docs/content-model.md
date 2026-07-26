@@ -243,6 +243,49 @@ interface SeoFields {
 `noIndex` is permitted for drafts/previews only. Published public projects
 cannot opt out of indexing without an explicit product decision.
 
+## Conventional page content
+
+Future content-led routes use a conventional page record instead of adding
+page-specific fields to React components:
+
+```ts
+type PageStatus = "draft" | "published";
+
+interface PageFrontmatter {
+  readonly id: Slug;
+  readonly path: InternalHref;
+  readonly title: string;
+  readonly summary: string;
+  readonly status: PageStatus;
+  readonly pageOrder?: number;
+  readonly publishedAt?: ISODate;
+  readonly updatedAt: ISODate;
+  readonly seo: SeoFields;
+}
+```
+
+The stable `id` is independent from the routable `path`, allowing a page to
+move without changing references. A page body is authored separately as
+constrained MDX and rendered through the standard prose surface. Content does
+not select a React component, template name, Tailwind class, color, or motion
+behavior.
+
+This contract supports conventional pages such as Uses, Writing, Colophon, or
+legal information without adding a one-off schema. A future page that requires
+new application behavior is a product feature and still requires an explicit
+architecture decision; arbitrary executable behavior is not modeled as
+content.
+
+Rules:
+
+- IDs, paths, and authored `pageOrder` values are unique.
+- Paths are root-relative canonical routes without query strings, fragments,
+  or a trailing slash (except `/`).
+- Published pages require `publishedAt` and cannot set `noIndex: true`.
+- `updatedAt` is not earlier than `publishedAt`.
+- `seo.canonicalPath`, when present, matches `path`.
+- The record ID matches the source filename.
+
 ## Project content
 
 ```ts
@@ -427,11 +470,17 @@ type ProjectFrontmatter = z.infer<typeof projectFrontmatterSchema>;
 The omitted referenced schemas follow the interfaces in this document. The
 example is a contract, not implementation code.
 
+`PageFrontmatter` follows the same strict-object, bounded-text, ISO-date, SEO,
+and lifecycle validation conventions. Runtime objects reject unknown fields so
+schema changes remain deliberate and versionable.
+
 ## Cross-record validation
 
 Individual schema success is insufficient. The catalog validator also checks:
 
 - all IDs, slugs, project orders, and relevant featured orders are unique;
+- all conventional page IDs, paths, and authored page orders are unique;
+- conventional page IDs match their source filenames;
 - project frontmatter slug equals its filename;
 - every project technology resolves to one skill;
 - every testimonial project reference resolves;

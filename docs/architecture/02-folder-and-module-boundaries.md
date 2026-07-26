@@ -52,6 +52,8 @@ imports through the existing `@/*` alias.
 │       ├── skip-link.tsx
 │       └── tag.tsx
 ├── content/
+│   ├── pages/
+│   │   └── <id>.mdx
 │   ├── projects/
 │   │   ├── messaging-app.mdx
 │   │   ├── restaurant.mdx
@@ -89,6 +91,7 @@ imports through the existing `@/*` alias.
 │   ├── content/
 │   │   ├── content-schemas.ts
 │   │   ├── content-validation.ts
+│   │   ├── page-schema.ts
 │   │   ├── project-schema.ts
 │   │   ├── projects.ts
 │   │   └── site-content.ts

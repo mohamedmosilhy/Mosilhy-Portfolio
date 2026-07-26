@@ -17,6 +17,12 @@ The split is based on content shape, not convenience. Writing multi-section
 case studies as large TypeScript string fields would be hard to edit, while
 putting small skill arrays in MDX would weaken type safety.
 
+Future conventional content pages may reuse the validated frontmatter plus MDX
+pattern under `content/pages`. They expose stable IDs, canonical paths,
+lifecycle dates, and SEO fields, but do not choose templates or arbitrary
+components. This keeps additions such as a Uses or Colophon page data-driven
+without turning content into executable UI configuration.
+
 Short-form modules have focused contracts:
 
 - `profile.ts` is the canonical source for name, greeting, role statement,
