@@ -19,6 +19,7 @@ imports through the existing `@/*` alias.
 │   │           └── not-found.tsx
 │   ├── api/
 │   │   └── contact/route.ts                # reserved; add only with a contact form
+│   ├── fonts/                              # self-hosted, licensed webfont subsets
 │   ├── globals.css
 │   ├── layout.tsx
 │   ├── not-found.tsx
@@ -33,6 +34,7 @@ imports through the existing `@/*` alias.
 │   │   ├── section.tsx
 │   │   └── site-header.tsx
 │   ├── motion/
+│   │   ├── motion-tokens.ts
 │   │   ├── motion-provider.tsx
 │   │   ├── page-entrance.tsx
 │   │   ├── reveal.tsx
