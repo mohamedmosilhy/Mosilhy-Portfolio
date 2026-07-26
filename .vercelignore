@@ -1,0 +1,17 @@
+# Local source repositories and installed dependencies
+PortfolioProjects/
+node_modules/
+
+# Local framework, audit, and test output
+.next/
+.lighthouseci/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+
+# Development and repository-only material
+.git/
+.env*
+docs/
+tests/

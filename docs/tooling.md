@@ -26,19 +26,22 @@ versions without overrides.
 
 ## Quality commands
 
-| Command                 | Responsibility                                              |
-| ----------------------- | ----------------------------------------------------------- |
-| `pnpm format`           | Format supported repository files and sort Tailwind classes |
-| `pnpm format:check`     | Check formatting without writing                            |
-| `pnpm typecheck`        | Run strict TypeScript checking without emitting files       |
-| `pnpm lint`             | Run the Next.js ESLint configuration                        |
-| `pnpm audit:prod`       | Check production packages against published advisories      |
-| `pnpm validate:content` | Run the content-validation test target                      |
-| `pnpm test:unit`        | Run Vitest unit and integration tests                       |
-| `pnpm test:e2e`         | Run Playwright end-to-end tests                             |
-| `pnpm test:coverage`    | Run Vitest with V8 coverage                                 |
-| `pnpm build`            | Produce the optimized Next.js build                         |
-| `pnpm check`            | Run formatting, types, lint, content, and test gates        |
+| Command                     | Responsibility                                                |
+| --------------------------- | ------------------------------------------------------------- |
+| `pnpm format`               | Format supported repository files and sort Tailwind classes   |
+| `pnpm format:check`         | Check formatting without writing                              |
+| `pnpm typecheck`            | Run strict TypeScript checking without emitting files         |
+| `pnpm lint`                 | Run the Next.js ESLint configuration                          |
+| `pnpm audit:prod`           | Check production packages against published advisories        |
+| `pnpm check:links`          | Check local documentation links and public asset references   |
+| `pnpm check:links:external` | Check authored public HTTP destinations for 404/410 responses |
+| `pnpm validate:content`     | Run the content-validation test target                        |
+| `pnpm test:unit`            | Run Vitest unit and integration tests                         |
+| `pnpm test:e2e`             | Run Playwright end-to-end tests                               |
+| `pnpm test:release`         | Run release link, media, discovery, and protocol journeys     |
+| `pnpm test:coverage`        | Run Vitest with V8 coverage                                   |
+| `pnpm build`                | Produce the optimized Next.js build                           |
+| `pnpm check`                | Run formatting, types, lint, content, and test gates          |
 
 The empty-suite allowance applied only during the tooling milestone.
 `validate:content` now runs the schema-boundary and cross-record validation
@@ -48,6 +51,11 @@ behavior.
 
 Playwright browser binaries are installed when the first end-to-end test is
 introduced. The runner and project configuration are already present.
+
+The external link check is a release preflight rather than part of `pnpm check`
+because third-party availability is outside the repository's control. A
+timeout or remote outage must be investigated, but it does not invalidate the
+local content schema or application build.
 
 ## shadcn/ui foundation
 

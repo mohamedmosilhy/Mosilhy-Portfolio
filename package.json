@@ -17,6 +17,8 @@
     "audit:lighthouse": "node scripts/run-lighthouse.mjs",
     "analyze:bundle": "next experimental-analyze --output",
     "check:bundle": "node scripts/check-client-bundles.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "check:links:external": "node scripts/check-links.mjs --external",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "validate:content": "vitest run tests/unit/content-schemas.test.ts tests/unit/content-validation.test.ts tests/unit/project-source.test.ts tests/unit/project-selectors.test.ts tests/content/repository-content.test.ts",
@@ -25,10 +27,11 @@
     "test:unit:watch": "vitest",
     "test:coverage": "vitest run --coverage --passWithNoTests",
     "test:e2e": "playwright test --pass-with-no-tests",
+    "test:release": "playwright test tests/e2e/release-verification.spec.ts",
     "test:a11y": "playwright test tests/e2e/accessibility.spec.ts",
     "test:e2e:ui": "playwright test --ui",
     "ui:check": "shadcn info",
-    "check": "pnpm format:check && pnpm typecheck && pnpm lint && pnpm validate:content && pnpm test"
+    "check": "pnpm format:check && pnpm typecheck && pnpm lint && pnpm validate:content && pnpm check:links && pnpm test"
   },
   "dependencies": {
     "@mdx-js/mdx": "^3.1.1",
