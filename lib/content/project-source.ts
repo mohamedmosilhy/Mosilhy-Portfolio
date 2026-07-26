@@ -27,24 +27,144 @@ const requiredSequence = [
   { type: "block", name: "ProjectActions" },
 ] as const;
 
-const allowedBlocks: ReadonlySet<string> = new Set(
+const projectBoundBlocks: ReadonlySet<string> = new Set(
   requiredSequence
     .filter((entry) => entry.type === "block")
     .map((entry) => entry.name),
 );
+const optionalRichBlocks: ReadonlySet<string> = new Set(["Callout", "Metric"]);
+const allowedBlocks: ReadonlySet<string> = new Set([
+  ...projectBoundBlocks,
+  ...optionalRichBlocks,
+]);
 const allowedHeadings: ReadonlySet<string> = new Set(
   requiredSequence
     .filter((entry) => entry.type === "heading")
     .map((entry) => entry.name),
 );
 
+interface SyntaxAttribute {
+  readonly type: string;
+  readonly name?: string;
+  readonly value?: string | null | object;
+}
+
 interface SyntaxNode {
   readonly type: string;
   readonly depth?: number;
   readonly name?: string | null;
   readonly value?: string;
-  readonly attributes?: readonly unknown[];
+  readonly attributes?: readonly SyntaxAttribute[];
   readonly children?: readonly SyntaxNode[];
+}
+
+function staticAttributes(
+  node: SyntaxNode,
+  source: string,
+  issues: ContentIssue[],
+) {
+  const attributes = new Map<string, string>();
+
+  for (const attribute of node.attributes ?? []) {
+    if (
+      attribute.type !== "mdxJsxAttribute" ||
+      typeof attribute.name !== "string" ||
+      typeof attribute.value !== "string"
+    ) {
+      issues.push(
+        issue(
+          source,
+          `optional block "${node.name ?? "<unknown>"}" accepts static string props only`,
+          "quoted string attributes without expressions or shorthand values",
+          "dynamic or malformed MDX attribute",
+        ),
+      );
+      continue;
+    }
+
+    if (attributes.has(attribute.name)) {
+      issues.push(
+        issue(
+          source,
+          `optional block "${node.name ?? "<unknown>"}" repeats prop "${attribute.name}"`,
+          "each documented prop at most once",
+          "duplicate MDX attribute",
+        ),
+      );
+      continue;
+    }
+
+    attributes.set(attribute.name, attribute.value);
+  }
+
+  return attributes;
+}
+
+function validateOptionalRichBlock(
+  node: SyntaxNode,
+  source: string,
+  issues: ContentIssue[],
+) {
+  const name = node.name ?? "";
+  const attributes = staticAttributes(node, source, issues);
+  const allowedAttributes =
+    name === "Callout"
+      ? new Set(["title", "variant"])
+      : new Set(["value", "label", "detail"]);
+
+  for (const attributeName of attributes.keys()) {
+    if (!allowedAttributes.has(attributeName)) {
+      issues.push(
+        issue(
+          source,
+          `optional block "${name}" does not accept prop "${attributeName}"`,
+          `only: ${[...allowedAttributes].join(", ")}`,
+          "unknown MDX attribute",
+        ),
+      );
+    }
+  }
+
+  if (
+    name === "Callout" &&
+    attributes.has("variant") &&
+    !["note", "decision", "warning"].includes(attributes.get("variant")!)
+  ) {
+    issues.push(
+      issue(
+        source,
+        `Callout variant "${attributes.get("variant")}" is not supported`,
+        "note, decision, or warning",
+        "unknown Callout variant",
+      ),
+    );
+  }
+
+  if (name === "Metric") {
+    for (const requiredAttribute of ["value", "label"]) {
+      if (!attributes.has(requiredAttribute)) {
+        issues.push(
+          issue(
+            source,
+            `Metric is missing required prop "${requiredAttribute}"`,
+            'quoted "value" and "label" props',
+            "incomplete Metric",
+          ),
+        );
+      }
+    }
+
+    if ((node.children?.length ?? 0) > 0) {
+      issues.push(
+        issue(
+          source,
+          "Metric must be self-closing",
+          '<Metric value="…" label="…" />',
+          "Metric with children",
+        ),
+      );
+    }
+  }
 }
 
 export interface ParsedProjectSource extends SourcedProjectRecord {
@@ -135,7 +255,11 @@ export function validateProjectMdxStructure(body: string, source: string) {
       }
     }
 
-    if (child.type === "mdxJsxFlowElement" && child.name !== null) {
+    if (
+      child.type === "mdxJsxFlowElement" &&
+      child.name !== null &&
+      projectBoundBlocks.has(child.name ?? "")
+    ) {
       actualSequence.push({ type: "block", name: child.name ?? "" });
     }
   }
@@ -176,11 +300,12 @@ export function validateProjectMdxStructure(body: string, source: string) {
 
     const name = node.name ?? "";
 
-    if (
-      node.type !== "mdxJsxFlowElement" ||
-      !allowedBlocks.has(name) ||
-      parent?.type !== "root"
-    ) {
+    const isAllowedTopLevelBlock =
+      node.type === "mdxJsxFlowElement" &&
+      allowedBlocks.has(name) &&
+      parent?.type === "root";
+
+    if (!isAllowedTopLevelBlock) {
       issues.push(
         issue(
           source,
@@ -192,26 +317,30 @@ export function validateProjectMdxStructure(body: string, source: string) {
       return;
     }
 
-    if ((node.attributes?.length ?? 0) > 0) {
-      issues.push(
-        issue(
-          source,
-          `project block "${name}" must not receive authored props`,
-          `<${name} /> with no props`,
-          "MDX block with props",
-        ),
-      );
-    }
+    if (projectBoundBlocks.has(name)) {
+      if ((node.attributes?.length ?? 0) > 0) {
+        issues.push(
+          issue(
+            source,
+            `project block "${name}" must not receive authored props`,
+            `<${name} /> with no props`,
+            "MDX block with props",
+          ),
+        );
+      }
 
-    if ((node.children?.length ?? 0) > 0) {
-      issues.push(
-        issue(
-          source,
-          `project block "${name}" must be self-closing`,
-          `<${name} />`,
-          "MDX block with children",
-        ),
-      );
+      if ((node.children?.length ?? 0) > 0) {
+        issues.push(
+          issue(
+            source,
+            `project block "${name}" must be self-closing`,
+            `<${name} />`,
+            "MDX block with children",
+          ),
+        );
+      }
+    } else {
+      validateOptionalRichBlock(node, source, issues);
     }
   });
 

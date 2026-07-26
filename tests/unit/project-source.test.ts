@@ -45,6 +45,31 @@ describe("project source validation", () => {
     ).not.toThrow();
   });
 
+  it("accepts documented Callout and Metric blocks with static props", () => {
+    const bodyWithRichBlocks = validBody
+      .replace(
+        "Project overview.",
+        `<Callout title="Constraint" variant="decision">
+
+Project overview.
+
+</Callout>`,
+      )
+      .replace(
+        "Documented lessons.",
+        `Documented lessons.
+
+<Metric value="4" label="Published projects" detail="Validated in the repository" />`,
+      );
+
+    expect(() =>
+      validateProjectMdxStructure(
+        bodyWithRichBlocks,
+        "content/projects/rich-project.mdx",
+      ),
+    ).not.toThrow();
+  });
+
   it("rejects imports and reports the project source and body field", () => {
     let error: ContentValidationError | undefined;
 
@@ -76,6 +101,31 @@ describe("project source validation", () => {
       validateProjectMdxStructure(
         invalidBody,
         "content/projects/invalid-template.mdx",
+      ),
+    ).toThrowError(
+      expect.objectContaining({
+        name: "ContentValidationError",
+        issues: expect.arrayContaining([
+          expect.objectContaining({ code: "invalid-mdx", path: ["body"] }),
+        ]),
+      }),
+    );
+  });
+
+  it("rejects dynamic or undocumented optional-block props", () => {
+    const invalidBody = validBody.replace(
+      "Project overview.",
+      `<Callout variant={runtimeValue} color="purple">
+
+Project overview.
+
+</Callout>`,
+    );
+
+    expect(() =>
+      validateProjectMdxStructure(
+        invalidBody,
+        "content/projects/dynamic-rich-block.mdx",
       ),
     ).toThrowError(
       expect.objectContaining({
