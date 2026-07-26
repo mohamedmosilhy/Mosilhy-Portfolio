@@ -16,18 +16,6 @@ test("renders landmarks and root-qualified desktop navigation", async ({
     name: "Projects",
   });
 
-  await page.evaluate(() => {
-    const spacer = document.createElement("div");
-    const target = document.createElement("section");
-    const main = document.querySelector("main")!;
-
-    spacer.style.height = "100vh";
-    target.id = "projects";
-    target.className = "scroll-mt-space-20";
-    target.style.height = "100vh";
-    main.append(spacer, target);
-  });
-
   await expect(projectsLink).toHaveAttribute("href", "/#projects");
   await projectsLink.click();
   await expect(page).toHaveURL(/#projects$/);
