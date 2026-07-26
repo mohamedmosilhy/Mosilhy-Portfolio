@@ -115,11 +115,16 @@ describe("ProjectsSection", () => {
       name: "Selected projects",
     });
     const cards = within(section).getAllByRole("article");
+    const collection = section.querySelector('[data-motion="stagger"]');
 
     expect(cards.map((card) => card.getAttribute("aria-labelledby"))).toEqual([
       "project-second-project-heading",
       `project-${projectSummary.slug}-heading`,
     ]);
+    expect(collection).toHaveAttribute("data-motion-item-count", "2");
+    expect(
+      collection?.querySelectorAll(':scope > [data-motion="stagger-item"]'),
+    ).toHaveLength(2);
   });
 });
 

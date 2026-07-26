@@ -215,6 +215,8 @@ describe("site navigation", () => {
     const navigation = screen.getByRole("navigation", {
       name: "Portfolio mobile",
     });
+    expect(navigation.parentElement).not.toHaveAttribute("inert");
+    expect(navigation.parentElement).toHaveAttribute("aria-hidden", "false");
     const projectsLink = within(navigation).getByRole("link", {
       name: "Projects",
     });
@@ -227,7 +229,9 @@ describe("site navigation", () => {
       screen.getByRole("button", { name: "Open navigation menu" }),
     ).toHaveFocus();
     expect(trigger).toHaveAttribute("aria-expanded", "false");
-    expect(navigation.parentElement).toHaveAttribute("hidden");
+    expect(navigation.parentElement).toHaveAttribute("inert");
+    expect(navigation.parentElement).toHaveAttribute("aria-hidden", "true");
+    expect(navigation.parentElement).toHaveAttribute("data-state", "closing");
   });
 
   it("closes the disclosure when a navigation link is activated", async () => {

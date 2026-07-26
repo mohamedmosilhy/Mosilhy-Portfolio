@@ -96,8 +96,11 @@ export function ProjectCard({
       <div className="mt-space-8 flex flex-wrap items-center gap-x-space-5 gap-y-space-2">
         <Button
           href={projectPath(project.slug)}
-          trailingIcon={<ArrowRight />}
+          trailingIcon={
+            <ArrowRight className="transition-transform duration-[var(--motion-fast)] ease-[var(--ease-standard)] motion-safe:group-hover/case-study:translate-x-[3px] motion-safe:group-focus-visible/case-study:translate-x-[3px] motion-reduce:transition-none" />
+          }
           aria-label={`View ${project.title} case study`}
+          className="group/case-study"
         >
           View case study
         </Button>
@@ -129,7 +132,7 @@ export function ProjectCard({
       data-slot="project-card"
       data-variant={variant}
       data-media-position={mediaPosition}
-      className="group rounded-lg border border-border bg-surface p-space-6 transition-[transform,background-color,border-color,box-shadow] duration-[var(--motion-fast)] ease-[var(--ease-standard)] focus-within:border-border-strong focus-within:bg-surface-raised hover:border-border-strong hover:bg-surface-raised hover:shadow-md motion-safe:hover:translate-y-[var(--lift-hover)] motion-reduce:transform-none motion-reduce:transition-[background-color,border-color] lg:p-space-8"
+      className="group rounded-lg border border-border bg-surface p-space-6 transition-[translate,background-color,border-color,box-shadow] duration-[var(--motion-fast)] ease-[var(--ease-standard)] focus-within:border-border-strong focus-within:bg-surface-raised hover:border-border-strong hover:bg-surface-raised hover:shadow-md motion-safe:hover:translate-y-[var(--lift-hover)] motion-reduce:translate-none motion-reduce:transition-[background-color,border-color] lg:p-space-8"
     >
       <div className={cn("grid gap-space-8", cardVariants[variant])}>
         {mediaPosition === "start" ? (

@@ -22,7 +22,7 @@ export function SiteHeader({ brand, items, currentPath }: SiteHeaderProps) {
         id={siteHeaderId}
         data-slot="site-header"
         data-scrolled="false"
-        className="sticky top-0 z-[var(--layer-sticky)] border-b border-transparent bg-transparent data-[scrolled=true]:border-border data-[scrolled=true]:bg-canvas data-[scrolled=true]:shadow-sm"
+        className="sticky top-0 z-[var(--layer-sticky)] border-b border-transparent bg-transparent transition-[background-color,border-color,box-shadow] duration-[var(--motion-fast)] ease-[var(--ease-standard)] data-[scrolled=true]:border-border data-[scrolled=true]:bg-canvas data-[scrolled=true]:shadow-sm motion-reduce:transition-none"
       >
         <Container
           size="wide"

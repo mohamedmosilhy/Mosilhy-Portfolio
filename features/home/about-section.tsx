@@ -1,5 +1,6 @@
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
+import { Reveal } from "@/components/motion/reveal";
 import { MediaFrame } from "@/components/ui/media-frame";
 import { SectionHeading } from "@/components/ui/section-heading";
 import type { Profile } from "@/types/content";
@@ -19,7 +20,7 @@ export function AboutSection({ profile }: AboutSectionProps) {
       surface="canvas"
     >
       <Container size="wide">
-        <div className="grid gap-space-12 lg:grid-cols-12 lg:gap-space-8">
+        <Reveal className="grid gap-space-12 lg:grid-cols-12 lg:gap-space-8">
           <div className="lg:col-span-4">
             <div id={aboutHeadingId}>
               <SectionHeading title="About" />
@@ -96,7 +97,7 @@ export function AboutSection({ profile }: AboutSectionProps) {
               </div>
             ) : null}
           </div>
-        </div>
+        </Reveal>
       </Container>
     </Section>
   );

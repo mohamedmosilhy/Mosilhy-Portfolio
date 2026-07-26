@@ -1,5 +1,8 @@
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
+import { Reveal } from "@/components/motion/reveal";
+import { Stagger } from "@/components/motion/stagger";
+import { StaggerItem } from "@/components/motion/stagger-item";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { ProjectCard } from "@/features/projects/components/project-card";
 import type { ProjectSummary } from "@/types/content";
@@ -20,19 +23,22 @@ export function ProjectsSection({ projects, heading }: ProjectsSectionProps) {
       surface="canvas"
     >
       <Container size="wide">
-        <div id={projectsHeadingId}>
-          <SectionHeading title={heading} />
-        </div>
+        <Reveal>
+          <div id={projectsHeadingId}>
+            <SectionHeading title={heading} />
+          </div>
+        </Reveal>
 
-        <div className="mt-space-16 grid gap-space-16 lg:mt-space-20 lg:gap-space-20">
+        <Stagger
+          className="mt-space-16 grid gap-space-16 lg:mt-space-20 lg:gap-space-20"
+          variant="default"
+        >
           {projects.map((project) => (
-            <ProjectCard
-              key={project.slug}
-              project={project}
-              variant="featured"
-            />
+            <StaggerItem key={project.slug}>
+              <ProjectCard project={project} variant="featured" />
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </Container>
     </Section>
   );

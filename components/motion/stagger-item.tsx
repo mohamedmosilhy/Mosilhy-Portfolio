@@ -12,16 +12,19 @@ export interface StaggerItemProps {
   readonly children: ReactNode;
   readonly variant?: "fade" | "rise";
   readonly as?: MotionElementName;
+  readonly className?: string;
 }
 
 export function StaggerItem({
   children,
   variant = "rise",
   as = "div",
+  className,
 }: StaggerItemProps) {
   return (
     <MotionElement
       as={as}
+      className={className}
       initial={false}
       variants={createStaggerItemVariants(variant)}
       motionName="stagger-item"

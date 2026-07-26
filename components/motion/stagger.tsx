@@ -18,12 +18,14 @@ export interface StaggerProps {
   readonly children: ReactNode;
   readonly variant?: "fast" | "default";
   readonly as?: MotionElementName;
+  readonly className?: string;
 }
 
 export function Stagger({
   children,
   variant = "default",
   as = "div",
+  className,
 }: StaggerProps) {
   const itemCount = Children.count(children);
   const { elementRef, state } = useViewportMotion({ once: true });
@@ -35,6 +37,7 @@ export function Stagger({
       <MotionElement
         elementRef={elementRef}
         as={as}
+        className={className}
         initial={false}
         animate={state}
         variants={createStaggerVariants(variant, itemCount)}

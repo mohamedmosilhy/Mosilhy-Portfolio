@@ -24,6 +24,12 @@ describe("skills", () => {
     render(<SkillsSection groups={validSkillGroups} heading="Skills" />);
 
     const section = screen.getByRole("region", { name: "Skills" });
+    const collection = section.querySelector('[data-motion="stagger"]');
+
+    expect(collection).toHaveAttribute(
+      "data-motion-item-count",
+      String(validSkillGroups.length),
+    );
 
     for (const group of validSkillGroups) {
       expect(
@@ -113,6 +119,7 @@ describe("about and contact", () => {
     expect(
       within(about).getByRole("img", { name: validProfile.portrait.alt }),
     ).toHaveAttribute("width", String(validProfile.portrait.width));
+    expect(about.querySelector('[data-motion="reveal"]')).toBeInTheDocument();
   });
 
   it("provides direct email and model-provided social destinations", () => {
@@ -142,6 +149,7 @@ describe("about and contact", () => {
         name: "LinkedIn (opens in a new tab)",
       }),
     ).toHaveAttribute("href", validSocialLinks[2].href);
+    expect(contact.querySelector('[data-motion="reveal"]')).toBeInTheDocument();
   });
 });
 

@@ -8,6 +8,7 @@ export const staggerIntervals = {
   fast: 50,
   default: 70,
 } as const;
+export type RevealDistance = "subtle" | "small";
 
 function seconds(milliseconds: number) {
   return milliseconds / 1000;
@@ -33,11 +34,12 @@ const immediateVisible = {
 export function createRevealVariants(
   variant: "fade" | "rise" | "slide-inline",
   delay: number,
+  distance: RevealDistance = "small",
 ): Variants {
   const hidden = {
     opacity: 0,
-    x: variant === "slide-inline" ? motionTokens.distance.subtle : 0,
-    y: variant === "rise" ? motionTokens.distance.small : 0,
+    x: variant === "slide-inline" ? motionTokens.distance[distance] : 0,
+    y: variant === "rise" ? motionTokens.distance[distance] : 0,
   };
 
   return {

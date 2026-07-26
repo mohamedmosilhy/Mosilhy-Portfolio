@@ -20,17 +20,20 @@ export function useViewportMotion({
   once,
 }: ViewportMotionOptions) {
   const elementRef = useRef<HTMLElement>(null);
+  const inactiveRef = useRef<HTMLElement>(null);
+  const canObserve = typeof IntersectionObserver !== "undefined";
   const shouldReduceMotion = useReducedMotionPreference();
-  const isInView = useInView(elementRef, {
+  const isInView = useInView(canObserve ? elementRef : inactiveRef, {
     amount,
     margin,
     once,
   });
-  const state = shouldReduceMotion
-    ? "reduced"
-    : isInView
-      ? "visible"
-      : "hidden";
+  const state =
+    shouldReduceMotion || !canObserve
+      ? "reduced"
+      : isInView
+        ? "visible"
+        : "hidden";
 
   return {
     elementRef,

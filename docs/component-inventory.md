@@ -231,13 +231,13 @@ provider.
 
 ### `Reveal`
 
-| Field          | Definition                                                  |
-| -------------- | ----------------------------------------------------------- |
-| Responsibility | Reveal one region on initial render or first viewport entry |
-| Variants       | `fade`, `rise`, `slide-inline`; distance `subtle`, `small`  |
-| Props          | `children`, `variant?`, `delay?`, `as?`, `once?`            |
-| Used by        | Hero groups, section headings, selected content groups      |
-| Rendering      | Client Component accepting server-rendered children         |
+| Field          | Definition                                                                  |
+| -------------- | --------------------------------------------------------------------------- |
+| Responsibility | Reveal one region on initial render or first viewport entry                 |
+| Variants       | `fade`, `rise`, `slide-inline`; distance `subtle`, `small`                  |
+| Props          | `children`, `variant?`, `distance?`, `delay?`, `as?`, `once?`, `className?` |
+| Used by        | Hero groups, section headings, selected content groups                      |
+| Rendering      | Client Component accepting server-rendered children                         |
 
 Delay is capped by the animation guidelines. It does not accept arbitrary
 duration or easing values.
@@ -248,7 +248,7 @@ duration or easing values.
 | -------------- | ----------------------------------------------- |
 | Responsibility | Coordinate the entrance of a short related list |
 | Variants       | `fast`, `default`                               |
-| Props          | `children`, `variant?`, `as?`                   |
+| Props          | `children`, `variant?`, `as?`, `className?`     |
 | Used by        | Project grid, skill groups, social links        |
 | Rendering      | Client Component                                |
 
@@ -258,7 +258,7 @@ duration or easing values.
 | -------------- | ------------------------------------------- |
 | Responsibility | Participate in the nearest stagger sequence |
 | Variants       | `fade`, `rise`                              |
-| Props          | `children`, `variant?`, `as?`               |
+| Props          | `children`, `variant?`, `as?`, `className?` |
 | Used by        | Direct children of `Stagger`                |
 | Rendering      | Client Component                            |
 

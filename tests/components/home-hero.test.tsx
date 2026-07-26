@@ -65,6 +65,27 @@ describe("HeroSection", () => {
     await user.tab();
     expect(contactAction).toHaveFocus();
   });
+
+  it("groups the introduction into the documented four-step sequence", () => {
+    render(
+      <HeroSection profile={validProfile} socialLinks={validSocialLinks} />,
+    );
+
+    const hero = screen.getByRole("region", {
+      name: validProfile.name,
+    });
+    const groups = [
+      ...hero.querySelectorAll<HTMLElement>('[data-motion="reveal"]'),
+    ];
+
+    expect(groups).toHaveLength(4);
+    expect(groups[0]).toHaveTextContent(validProfile.greeting);
+    expect(groups[1]).toHaveTextContent(validProfile.name);
+    expect(groups[1]).toHaveTextContent(validProfile.role);
+    expect(groups[2]).toHaveTextContent(validProfile.introduction);
+    expect(groups[3]).toHaveTextContent(validProfile.primaryCta.label);
+    expect(groups[3]).toHaveTextContent(validSocialLinks[0].label);
+  });
 });
 
 describe("SocialLinks", () => {

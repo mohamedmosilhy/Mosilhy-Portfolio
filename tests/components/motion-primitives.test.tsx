@@ -212,8 +212,14 @@ describe("motion primitives", () => {
 describe("motion specifications", () => {
   it("uses only the documented reveal values and caps authored delay", () => {
     const variants = createRevealVariants("rise", 10_000);
+    const subtleVariants = createRevealVariants("rise", 0, "subtle");
 
     expect(variants.hidden).toMatchObject({ opacity: 0, x: 0, y: 16 });
+    expect(subtleVariants.hidden).toMatchObject({
+      opacity: 0,
+      x: 0,
+      y: 8,
+    });
     expect(variants.visible).toMatchObject({
       opacity: 1,
       x: 0,
@@ -274,6 +280,14 @@ describe("motion architecture guardrails", () => {
       resolve(root, "app/(site)/projects/[slug]/page.tsx"),
       "utf8",
     );
+    const choreographedFeatures = [
+      "features/home/about-section.tsx",
+      "features/home/contact-section.tsx",
+      "features/home/hero-section.tsx",
+      "features/home/skills-section.tsx",
+      "features/home/testimonials-section.tsx",
+      "features/projects/projects-section.tsx",
+    ].map((file) => readFileSync(resolve(root, file), "utf8"));
     const motionSources = [
       "motion-boundary.tsx",
       "motion-element.tsx",
@@ -288,6 +302,11 @@ describe("motion architecture guardrails", () => {
     );
 
     expect(projectRoute).not.toContain("framer-motion");
+
+    for (const source of choreographedFeatures) {
+      expect(source).not.toContain("framer-motion");
+      expect(source).not.toMatch(/^["']use client["'];?/m);
+    }
 
     for (const source of motionSources) {
       expect(source).toMatch(/^["']use client["'];/);

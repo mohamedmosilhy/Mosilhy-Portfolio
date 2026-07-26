@@ -33,6 +33,7 @@ interface MotionElementProps {
   readonly animate?: string;
   readonly as?: MotionElementName;
   readonly children: ReactNode;
+  readonly className?: string;
   readonly elementRef?: Ref<HTMLElement>;
   readonly initial?: false | string;
   readonly itemCount?: number;
@@ -46,6 +47,7 @@ export function MotionElement({
   animate,
   as = "div",
   children,
+  className,
   elementRef,
   initial,
   itemCount,
@@ -57,6 +59,7 @@ export function MotionElement({
   const Component = elements[as] as ComponentType<{
     readonly animate?: string;
     readonly children: ReactNode;
+    readonly className?: string;
     readonly initial?: false | string;
     readonly ref?: Ref<HTMLElement>;
     readonly variants: Variants;
@@ -69,6 +72,7 @@ export function MotionElement({
   return (
     <Component
       ref={elementRef}
+      className={className}
       initial={initial}
       animate={animate}
       variants={variants}

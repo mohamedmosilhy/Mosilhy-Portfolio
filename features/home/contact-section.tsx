@@ -1,5 +1,6 @@
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
+import { Reveal } from "@/components/motion/reveal";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SocialLinks } from "@/features/home/social-links";
@@ -47,7 +48,7 @@ export function ContactSection({
       surface="subtle"
     >
       <Container size="wide">
-        <div className="grid gap-space-10 lg:grid-cols-12 lg:items-end lg:gap-space-8">
+        <Reveal className="grid gap-space-10 lg:grid-cols-12 lg:items-end lg:gap-space-8">
           <div className="min-w-0 lg:col-span-7">
             <div id={contactHeadingId}>
               <SectionHeading title={heading} />
@@ -69,7 +70,7 @@ export function ContactSection({
               </div>
             ) : null}
           </div>
-        </div>
+        </Reveal>
       </Container>
     </Section>
   );
