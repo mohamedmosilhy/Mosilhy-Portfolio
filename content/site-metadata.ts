@@ -8,7 +8,7 @@ export const siteMetadata = {
   defaultTitle: "Mohamed Mosilhy — Full-stack Developer",
   description:
     "The portfolio of Mohamed Mosilhy, a full-stack developer working across web applications, interactive graphics, and scientific computing.",
-  siteUrl: "https://mohamedmosilhy.github.io",
+  siteUrl: "https://portfolio-omega-six-23.vercel.app",
   locale: "en",
   authorName: "Mohamed Mosilhy",
   keywords: [
@@ -23,8 +23,8 @@ export const siteMetadata = {
     kind: "image",
     src: "/images/profile/mohamed-mosilhy.jpg",
     alt: "Portrait of Mohamed Mosilhy",
-    width: 320,
-    height: 320,
+    width: 1536,
+    height: 2048,
   },
   socialLinks,
 } as const satisfies SiteMetadata;
