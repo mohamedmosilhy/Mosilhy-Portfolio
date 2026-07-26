@@ -208,6 +208,18 @@ decorative and must not replace a focus ring.
   permits; do not approximate brand marks with Lucide.
 - Do not mix filled, duotone, and outline interface icon families.
 
+## Interface layers
+
+| Token             | Value | Usage                                      |
+| ----------------- | ----- | ------------------------------------------ |
+| `layer-base`      | `0`   | normal document content                    |
+| `layer-sticky`    | `20`  | sticky site chrome                         |
+| `layer-overlay`   | `40`  | menus, dialogs, and gallery overlays       |
+| `layer-skip-link` | `60`  | visible-on-focus skip navigation above all |
+
+Components use these semantic layers rather than introducing local z-index
+values. A new layer requires a documented stacking relationship.
+
 ## Motion principles
 
 Motion tokens are shared with

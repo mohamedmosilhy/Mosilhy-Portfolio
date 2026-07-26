@@ -170,6 +170,10 @@ describe("design system foundation", () => {
       "--breakpoint-lg": "64rem",
       "--breakpoint-xl": "80rem",
       "--breakpoint-2xl": "96rem",
+      "--layer-base": "0",
+      "--layer-sticky": "20",
+      "--layer-overlay": "40",
+      "--layer-skip-link": "60",
     });
   });
 

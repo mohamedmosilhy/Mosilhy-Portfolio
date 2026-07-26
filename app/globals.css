@@ -84,6 +84,12 @@
   --scale-hover: 1.02;
   --lift-hover: -4px;
   --lift-button: -1px;
+
+  /* Interface layers */
+  --layer-base: 0;
+  --layer-sticky: 20;
+  --layer-overlay: 40;
+  --layer-skip-link: 60;
 }
 
 @theme inline {
