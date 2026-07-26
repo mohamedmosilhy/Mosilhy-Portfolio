@@ -197,7 +197,15 @@ export interface ProjectSummary {
   readonly projectOrder: number;
 }
 
-export interface ProjectDetail<TBody> extends ProjectSummary {
+/**
+ * Opaque server-only result produced after a project's constrained MDX body
+ * passes structure validation and compilation.
+ */
+export interface CompiledMdx {
+  readonly code: string;
+}
+
+export interface ProjectDetail<TBody = CompiledMdx> extends ProjectSummary {
   readonly timeline: ProjectTimeline;
   readonly gallery: ProjectGallery;
   readonly seo: SeoFields;

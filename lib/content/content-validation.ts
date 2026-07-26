@@ -23,6 +23,9 @@ import type { NavigationItem } from "@/types/navigation";
 
 export type ContentIssueCode =
   | "invalid-record"
+  | "invalid-mdx"
+  | "missing-asset"
+  | "asset-kind-mismatch"
   | "duplicate-value"
   | "unresolved-reference"
   | "source-mismatch"

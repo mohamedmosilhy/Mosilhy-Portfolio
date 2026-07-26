@@ -1,0 +1,83 @@
+---
+slug: "nova-ecommerce"
+title: "Nova E-commerce Platform"
+summary: "An Arabic-first commerce platform with a customer storefront, operations dashboard, content tooling, themes, and integration infrastructure."
+role: "Full-stack developer"
+status: "published"
+featured: true
+featuredOrder: 1
+projectOrder: 1
+timeline:
+  startedAt: "2026-05-02"
+  updatedAt: "2026-07-24"
+technologies:
+  - "next-js"
+  - "react"
+  - "typescript"
+  - "tailwind-css"
+  - "zustand"
+  - "tanstack-query"
+  - "prisma"
+  - "auth-js"
+  - "postgresql"
+  - "zod"
+  - "vitest"
+  - "playwright"
+links:
+  github: "https://github.com/mohamedmosilhy/e-commerce-app"
+  live: "https://kenzkids.com/"
+cover:
+  kind: "image"
+  src: "/images/projects/nova-ecommerce/storefront.png"
+  alt: "Arabic Nova storefront home page with product collections"
+  width: 1440
+  height: 900
+gallery:
+  layout: "stack"
+  items:
+    - kind: "image"
+      src: "/images/projects/nova-ecommerce/checkout.png"
+      alt: "Arabic checkout with delivery and payment choices"
+      width: 1440
+      height: 900
+    - kind: "image"
+      src: "/images/projects/nova-ecommerce/admin-dashboard.png"
+      alt: "Nova administration dashboard with sales metrics and charts"
+      width: 1440
+      height: 900
+seo:
+  title: "Nova E-commerce Platform Case Study"
+  description: "A case study of an Arabic-first Next.js commerce platform with modular features, PostgreSQL data modeling, role-based administration, and tests."
+  canonicalPath: "/projects/nova-ecommerce"
+---
+
+## Overview
+
+Nova is an Arabic-first commerce platform for physical and digital products. It combines a configurable customer storefront with administration workflows for catalog, inventory, orders, payments, shipping, content, analytics, themes, landing pages, and integrations.
+
+<ProjectGallery />
+
+## Features
+
+- Physical and digital products with variants, attributes, inventory, brands, categories, and reviews.
+- Quantity offers, customer-configurable bundles, cross-sells, cart, checkout, and country- and city-aware shipping.
+- Cash on Delivery and administrator-defined proof-based payment methods.
+- Independent order and payment lifecycles with transaction snapshots.
+- Administration for analytics, catalog, orders, payments, moderation, settings, content, and themes.
+- Landing pages, SEO fields, tracking pixels, and WhatsApp and n8n integration configuration.
+
+## Architecture
+
+The Next.js App Router application is a feature-based modular monolith. Route handlers and server-rendered routes delegate to feature services, validation schemas, repositories and queries, and shared infrastructure. Prisma maps the PostgreSQL domains and migrations. Auth.js credentials and JWT sessions protect administration roles, while Zustand and TanStack Query have separate client-state and server-state responsibilities.
+
+<ProjectTechnologies />
+
+## Challenges
+
+The repository and completed audit do not document implementation challenges as a retrospective.
+
+## Lessons learned
+
+The repository and completed audit do not document lessons learned.
+
+<ProjectActions />

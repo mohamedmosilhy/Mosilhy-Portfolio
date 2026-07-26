@@ -1,0 +1,78 @@
+---
+slug: "wheres-waldo"
+title: "Where’s Waldo"
+summary: "A full-stack visual search game with server-validated coordinates, timed sessions, scene-specific leaderboards, and a calibration tool."
+role: "Full-stack developer"
+status: "published"
+featured: true
+featuredOrder: 2
+projectOrder: 2
+timeline:
+  startedAt: "2026-06-02"
+  updatedAt: "2026-07-24"
+technologies:
+  - "next-js"
+  - "react"
+  - "typescript"
+  - "tailwind-css"
+  - "zustand"
+  - "next-js-server-actions"
+  - "prisma"
+  - "postgresql"
+links:
+  github: "https://github.com/mohamedmosilhy/where-s-waldo"
+  live: "https://where-s-waldo-pj64.vercel.app/"
+cover:
+  kind: "image"
+  src: "/images/projects/wheres-waldo/home.png"
+  alt: "Where’s Waldo home page with an illustrated scene and start control"
+  width: 2560
+  height: 1376
+gallery:
+  layout: "stack"
+  items:
+    - kind: "image"
+      src: "/images/projects/wheres-waldo/gameplay.png"
+      alt: "Where’s Waldo gameplay with a character selection target over the scene"
+      width: 2560
+      height: 1376
+    - kind: "image"
+      src: "/images/projects/wheres-waldo/leaderboard.png"
+      alt: "Scene-specific Where’s Waldo leaderboard"
+      width: 2560
+      height: 1376
+seo:
+  title: "Where’s Waldo Full-stack Case Study"
+  description: "A case study of a Next.js visual search game with responsive coordinate normalization, server-side validation, PostgreSQL, and scene leaderboards."
+  canonicalPath: "/projects/wheres-waldo"
+---
+
+## Overview
+
+Where’s Waldo is a visual search game where players select hidden characters in responsive scenes. The application validates guesses on the server, records completed runs, and displays a separate leaderboard for each scene.
+
+<ProjectGallery />
+
+## Features
+
+- Scene selection and responsive gameplay.
+- Click targeting followed by character selection.
+- Server-side hit validation without sending stored answer coordinates to the client.
+- Completion timing, player-name submission, and scene-specific leaderboards.
+- A calibration interface for authoring normalized target centers and radii.
+
+## Architecture
+
+The Next.js App Router application uses feature modules for game, scene, leaderboard, and player concerns. Server Actions fetch scene data, validate guesses, and submit scores. Prisma maps the PostgreSQL models for scenes, characters, target geometry, and scores. Zustand owns cross-component application state while local interaction state remains in React components.
+
+<ProjectTechnologies />
+
+## Challenges
+
+The repository identifies responsive target validation as a primary implementation challenge. Target centers and radii are stored as normalized values so the server can evaluate the same hit area at different rendered image sizes.
+
+## Lessons learned
+
+The documented architectural lesson was to separate local UI state from shared application state and to keep sensitive validation data and logic on the server.
+
+<ProjectActions />
