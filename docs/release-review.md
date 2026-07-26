@@ -88,4 +88,7 @@ during the release check.
 The Vercel source boundary excludes the local `PortfolioProjects` audit
 repositories, installed dependencies, generated reports, documentation, and
 tests. Those files remain local or in Git as appropriate and are not part of
-the production upload.
+the production upload. The Vercel project enables Corepack in Development,
+Preview, and Production so remote installs use the pnpm release pinned by
+`packageManager`; the application itself requires no runtime environment
+variables or secrets.

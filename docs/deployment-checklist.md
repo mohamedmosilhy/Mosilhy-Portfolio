@@ -27,10 +27,13 @@ for every production deployment.
 - [ ] Confirm the project uses the supported Node.js major version.
 - [ ] Confirm the framework preset is Next.js and the package manager is
       derived from `packageManager`.
-- [ ] Confirm no environment variables are required by the static content
-      release.
+- [ ] Confirm no application secrets or runtime environment variables are
+      required by the static content release.
+- [ ] Confirm `ENABLE_EXPERIMENTAL_COREPACK=1` exists for Development, Preview,
+      and Production so Vercel honors `packageManager: pnpm@11.17.0`.
 - [ ] Confirm `.vercelignore` excludes local audit repositories, dependencies,
       generated reports, documentation, and tests from the deployment payload.
+
 - [ ] Deploy the verified committed source with `vercel --prod`.
 
 ## Production smoke test
