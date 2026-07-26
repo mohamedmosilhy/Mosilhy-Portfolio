@@ -61,11 +61,7 @@ testimonial photos are informative by default.
 ## Social links
 
 ```ts
-type SocialPlatform =
-  | "github"
-  | "linkedin"
-  | "email"
-  | "website";
+type SocialPlatform = "github" | "linkedin" | "email" | "website";
 
 interface SocialLink {
   readonly id: Slug;
@@ -89,11 +85,7 @@ Rules:
 ## Navigation
 
 ```ts
-type NavigationSectionId =
-  | "projects"
-  | "skills"
-  | "about"
-  | "contact";
+type NavigationSectionId = "projects" | "skills" | "about" | "contact";
 
 interface NavigationItem {
   readonly id: Slug;
@@ -117,11 +109,7 @@ Rules:
 ## Skills
 
 ```ts
-type SkillCategory =
-  | "frontend"
-  | "backend"
-  | "database"
-  | "tools";
+type SkillCategory = "frontend" | "backend" | "database" | "tools";
 
 type SkillId = Slug;
 
@@ -395,26 +383,26 @@ The actual Zod implementation should use schema inference as the source for
 runtime-authored types:
 
 ```ts
-const slugSchema = z
-  .string()
-  .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
+const slugSchema = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 
 const absoluteUrlSchema = z
   .string()
   .url()
   .refine((value) => value.startsWith("https://"));
 
-const imageAssetSchema = z.object({
-  kind: z.literal("image"),
-  src: z.string().startsWith("/"),
-  alt: z.string(),
-  width: z.number().int().positive(),
-  height: z.number().int().positive(),
-  caption: z.string().trim().min(1).optional(),
-  decorative: z.boolean().optional(),
-}).superRefine((asset, context) => {
-  // Require empty alt only for decorative images and non-empty alt otherwise.
-});
+const imageAssetSchema = z
+  .object({
+    kind: z.literal("image"),
+    src: z.string().startsWith("/"),
+    alt: z.string(),
+    width: z.number().int().positive(),
+    height: z.number().int().positive(),
+    caption: z.string().trim().min(1).optional(),
+    decorative: z.boolean().optional(),
+  })
+  .superRefine((asset, context) => {
+    // Require empty alt only for decorative images and non-empty alt otherwise.
+  });
 
 const projectFrontmatterSchema = z.object({
   slug: slugSchema,

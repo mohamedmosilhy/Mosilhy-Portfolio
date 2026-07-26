@@ -4,13 +4,13 @@
 
 Components are divided by what they know:
 
-| Layer | Knows about | Examples |
-| --- | --- | --- |
-| UI primitive | semantics and visual variants | `Button`, `ExternalLink`, `Prose` |
-| Layout | site chrome and spatial composition | `Header`, `Container`, `Section` |
-| Motion primitive | animation behavior | `Reveal`, `Stagger` |
-| Feature component | portfolio domain data | `ProjectCard`, `SkillsSection` |
-| Route composition | page order and route data | home page, project page |
+| Layer             | Knows about                         | Examples                          |
+| ----------------- | ----------------------------------- | --------------------------------- |
+| UI primitive      | semantics and visual variants       | `Button`, `ExternalLink`, `Prose` |
+| Layout            | site chrome and spatial composition | `Header`, `Container`, `Section`  |
+| Motion primitive  | animation behavior                  | `Reveal`, `Stagger`               |
+| Feature component | portfolio domain data               | `ProjectCard`, `SkillsSection`    |
+| Route composition | page order and route data           | home page, project page           |
 
 This hierarchy is more scalable than organizing components by HTML element or
 putting every component in a single folder.

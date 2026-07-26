@@ -64,15 +64,15 @@ understand or navigate the site.
 
 Inspiration is taken from principles, not copied compositions:
 
-| Source category | What to study | What not to copy |
-| --- | --- | --- |
-| [Itsechi portfolio](https://itsechi.github.io/portfolio/) | monochrome restraint, editorial scale contrast, generous negative space, asymmetric project rhythm, and quiet transitions | its font pairing, grain treatment, exact section geometry, staggered project composition, or wording |
-| Editorial portfolios and case studies | pacing, hierarchy, image sequencing | complete page structures or recognizable compositions |
-| High-quality product sites | concise value propositions, clear actions, trust signals | marketing copy patterns unrelated to a personal portfolio |
-| Developer tools | precision, compact technical metadata, dark-surface discipline | dense dashboard styling |
-| [shadcn/ui](https://ui.shadcn.com/) | accessible primitive structure and state coverage | its default appearance as the final brand |
-| [React Bits](https://reactbits.dev/) | isolated interaction ideas and implementation techniques | effects that reduce legibility or dominate the page |
-| [Aceternity UI](https://ui.aceternity.com/), [Magic UI](https://magicui.design/), and [Motion Primitives](https://motion-primitives.com/) | motion mechanics and focused visual treatments | entire sections, pages, or combined demo aesthetics |
+| Source category                                                                                                                           | What to study                                                                                                             | What not to copy                                                                                     |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| [Itsechi portfolio](https://itsechi.github.io/portfolio/)                                                                                 | monochrome restraint, editorial scale contrast, generous negative space, asymmetric project rhythm, and quiet transitions | its font pairing, grain treatment, exact section geometry, staggered project composition, or wording |
+| Editorial portfolios and case studies                                                                                                     | pacing, hierarchy, image sequencing                                                                                       | complete page structures or recognizable compositions                                                |
+| High-quality product sites                                                                                                                | concise value propositions, clear actions, trust signals                                                                  | marketing copy patterns unrelated to a personal portfolio                                            |
+| Developer tools                                                                                                                           | precision, compact technical metadata, dark-surface discipline                                                            | dense dashboard styling                                                                              |
+| [shadcn/ui](https://ui.shadcn.com/)                                                                                                       | accessible primitive structure and state coverage                                                                         | its default appearance as the final brand                                                            |
+| [React Bits](https://reactbits.dev/)                                                                                                      | isolated interaction ideas and implementation techniques                                                                  | effects that reduce legibility or dominate the page                                                  |
+| [Aceternity UI](https://ui.aceternity.com/), [Magic UI](https://magicui.design/), and [Motion Primitives](https://motion-primitives.com/) | motion mechanics and focused visual treatments                                                                            | entire sections, pages, or combined demo aesthetics                                                  |
 
 Every borrowed idea must be translated through
 [`design-system.md`](./design-system.md) and evaluated under

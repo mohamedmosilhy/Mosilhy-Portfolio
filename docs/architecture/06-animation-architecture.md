@@ -59,15 +59,15 @@ when the sequence is unique, but may not establish a second timing system.
 
 ## Animation inventory
 
-| Requirement | Owner | Trigger | Reduced-motion behavior |
-| --- | --- | --- | --- |
-| Hero text reveal | Hero feature | Initial page render | Immediate content, optional opacity only |
-| Hero background motion | Hero feature client island | Time/pointer if justified | Static background |
-| Section entrance | `Reveal` | First viewport entry | Immediate content |
-| Project card hover | Project card/CSS | Hover-capable pointer | No transform required |
-| Mobile menu | Navigation client island | User action | Immediate open/close |
-| Gallery transition | Gallery client island | User action | Instant media change |
-| Smooth anchor scroll | Global CSS | Anchor navigation | Browser default/instant |
+| Requirement            | Owner                      | Trigger                   | Reduced-motion behavior                  |
+| ---------------------- | -------------------------- | ------------------------- | ---------------------------------------- |
+| Hero text reveal       | Hero feature               | Initial page render       | Immediate content, optional opacity only |
+| Hero background motion | Hero feature client island | Time/pointer if justified | Static background                        |
+| Section entrance       | `Reveal`                   | First viewport entry      | Immediate content                        |
+| Project card hover     | Project card/CSS           | Hover-capable pointer     | No transform required                    |
+| Mobile menu            | Navigation client island   | User action               | Immediate open/close                     |
+| Gallery transition     | Gallery client island      | User action               | Instant media change                     |
+| Smooth anchor scroll   | Global CSS                 | Anchor navigation         | Browser default/instant                  |
 
 Hover effects must also have a keyboard-focus equivalent when they communicate
 meaning. Content may not exist only in an animated state.

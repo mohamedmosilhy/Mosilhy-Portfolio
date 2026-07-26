@@ -19,13 +19,13 @@ protects the score through:
 
 Initial implementation budgets:
 
-| Metric | Target |
-| --- | --- |
-| Lighthouse performance | > 95 on representative mobile run |
-| Lighthouse accessibility | > 95, with 100 as the implementation goal |
-| Core Web Vitals | Pass current "good" thresholds |
-| Cumulative layout shift | Near zero; all media dimensions reserved |
-| Client JavaScript | Reviewed per interactive island, not accepted by default |
+| Metric                   | Target                                                   |
+| ------------------------ | -------------------------------------------------------- |
+| Lighthouse performance   | > 95 on representative mobile run                        |
+| Lighthouse accessibility | > 95, with 100 as the implementation goal                |
+| Core Web Vitals          | Pass current "good" thresholds                           |
+| Cumulative layout shift  | Near zero; all media dimensions reserved                 |
+| Client JavaScript        | Reviewed per interactive island, not accepted by default |
 
 Exact byte budgets should be baselined after the first real design is built;
 inventing a bundle number before typography, imagery, and animation exist would

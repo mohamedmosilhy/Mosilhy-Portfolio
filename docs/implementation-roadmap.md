@@ -25,7 +25,7 @@ Complete this review after every milestone and before starting the next one:
 - [ ] The result looks intentional on mobile, not merely compressed.
 - [ ] Keyboard navigation, focus order, names, and states work.
 - [ ] Animations are smooth, purposeful, and reduced-motion safe when motion is
-  part of the milestone.
+      part of the milestone.
 - [ ] Content remains usable without animation and unnecessary client code.
 - [ ] Relevant automated tests pass.
 - [ ] Type checking passes.
@@ -34,7 +34,7 @@ Complete this review after every milestone and before starting the next one:
 - [ ] The production build passes.
 - [ ] Documentation and the provenance register are updated when applicable.
 - [ ] Review findings are resolved or explicitly moved to a tracked later
-  milestone.
+      milestone.
 - [ ] The milestone is committed with one clear, scoped commit.
 
 A milestone is not complete merely because its deliverables exist. It is

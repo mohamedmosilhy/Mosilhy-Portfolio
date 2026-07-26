@@ -1,0 +1,13 @@
+.next/
+build/
+coverage/
+node_modules/
+out/
+playwright-report/
+test-results/
+
+# Independent repositories audited as portfolio source material.
+PortfolioProjects/
+
+# Evidence reports are maintained as a separate audit artifact.
+docs/project-audit/

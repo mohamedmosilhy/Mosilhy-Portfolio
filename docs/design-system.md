@@ -34,47 +34,47 @@ code, or section sequence.
 
 ### Primitive palette
 
-| Token | Value | Intended role |
-| --- | --- | --- |
-| `neutral-950` | `#080A0F` | deepest canvas |
-| `neutral-900` | `#0E1118` | primary surface |
-| `neutral-850` | `#141925` | raised surface |
-| `neutral-800` | `#1C2330` | interactive surface |
-| `neutral-700` | `#2A3444` | strong border |
-| `neutral-500` | `#687386` | disabled and quiet detail |
-| `neutral-400` | `#929CAE` | muted text |
-| `neutral-200` | `#D8DEE8` | secondary text |
-| `neutral-50` | `#F7F9FC` | primary text |
-| `indigo-400` | `#8B9CFF` | primary accent |
-| `indigo-300` | `#A8B4FF` | primary hover/highlight |
-| `indigo-950` | `#141936` | subtle accent surface |
-| `teal-400` | `#5EEAD4` | secondary technical accent/success |
-| `amber-400` | `#F8C56A` | warning |
-| `rose-400` | `#FF8096` | destructive/error |
+| Token         | Value     | Intended role                      |
+| ------------- | --------- | ---------------------------------- |
+| `neutral-950` | `#080A0F` | deepest canvas                     |
+| `neutral-900` | `#0E1118` | primary surface                    |
+| `neutral-850` | `#141925` | raised surface                     |
+| `neutral-800` | `#1C2330` | interactive surface                |
+| `neutral-700` | `#2A3444` | strong border                      |
+| `neutral-500` | `#687386` | disabled and quiet detail          |
+| `neutral-400` | `#929CAE` | muted text                         |
+| `neutral-200` | `#D8DEE8` | secondary text                     |
+| `neutral-50`  | `#F7F9FC` | primary text                       |
+| `indigo-400`  | `#8B9CFF` | primary accent                     |
+| `indigo-300`  | `#A8B4FF` | primary hover/highlight            |
+| `indigo-950`  | `#141936` | subtle accent surface              |
+| `teal-400`    | `#5EEAD4` | secondary technical accent/success |
+| `amber-400`   | `#F8C56A` | warning                            |
+| `rose-400`    | `#FF8096` | destructive/error                  |
 
 Primitive colors are not used directly in feature components. Components use
 semantic tokens.
 
 ### Semantic tokens
 
-| Token | Primitive | Usage |
-| --- | --- | --- |
-| `color-canvas` | `neutral-950` | page background |
-| `color-surface` | `neutral-900` | cards and navigation |
-| `color-surface-raised` | `neutral-850` | elevated/interactive regions |
-| `color-surface-hover` | `neutral-800` | hover and pressed surfaces |
-| `color-border` | white at 10% over canvas | default separators |
-| `color-border-strong` | `neutral-700` | selected and emphasized boundaries |
-| `color-text` | `neutral-50` | headings and primary copy |
-| `color-text-secondary` | `neutral-200` | body copy |
-| `color-text-muted` | `neutral-400` | metadata and helper text |
-| `color-text-disabled` | `neutral-500` | disabled text only |
-| `color-accent` | `indigo-400` | links, focus, primary action |
-| `color-accent-hover` | `indigo-300` | primary hover state |
-| `color-accent-subtle` | `indigo-950` | selected/technical background |
-| `color-success` | `teal-400` | verified success state |
-| `color-warning` | `amber-400` | warning state |
-| `color-danger` | `rose-400` | destructive/error state |
+| Token                  | Primitive                | Usage                              |
+| ---------------------- | ------------------------ | ---------------------------------- |
+| `color-canvas`         | `neutral-950`            | page background                    |
+| `color-surface`        | `neutral-900`            | cards and navigation               |
+| `color-surface-raised` | `neutral-850`            | elevated/interactive regions       |
+| `color-surface-hover`  | `neutral-800`            | hover and pressed surfaces         |
+| `color-border`         | white at 10% over canvas | default separators                 |
+| `color-border-strong`  | `neutral-700`            | selected and emphasized boundaries |
+| `color-text`           | `neutral-50`             | headings and primary copy          |
+| `color-text-secondary` | `neutral-200`            | body copy                          |
+| `color-text-muted`     | `neutral-400`            | metadata and helper text           |
+| `color-text-disabled`  | `neutral-500`            | disabled text only                 |
+| `color-accent`         | `indigo-400`             | links, focus, primary action       |
+| `color-accent-hover`   | `indigo-300`             | primary hover state                |
+| `color-accent-subtle`  | `indigo-950`             | selected/technical background      |
+| `color-success`        | `teal-400`               | verified success state             |
+| `color-warning`        | `amber-400`              | warning state                      |
+| `color-danger`         | `rose-400`               | destructive/error state            |
 
 ### Color rules
 
@@ -94,11 +94,11 @@ semantic tokens.
 
 ### Font families
 
-| Role | Family | Fallback |
-| --- | --- | --- |
-| Display | Newsreader | `Georgia, "Times New Roman", serif` |
-| Sans | Geist | `Inter, ui-sans-serif, system-ui, sans-serif` |
-| Mono | Geist Mono | `ui-monospace, SFMono-Regular, Consolas, monospace` |
+| Role    | Family     | Fallback                                            |
+| ------- | ---------- | --------------------------------------------------- |
+| Display | Newsreader | `Georgia, "Times New Roman", serif`                 |
+| Sans    | Geist      | `Inter, ui-sans-serif, system-ui, sans-serif`       |
+| Mono    | Geist Mono | `ui-monospace, SFMono-Regular, Consolas, monospace` |
 
 Newsreader is used for display headings and rare editorial emphasis. Geist Sans
 is used for body, navigation, labels, controls, card titles, and dense case-study
@@ -120,19 +120,19 @@ the reference by using Playfair Display or Fira Sans.
 
 ### Type scale
 
-| Token | Size | Line height | Tracking | Usage |
-| --- | --- | --- | --- | --- |
-| `display-xl` | `clamp(3.5rem, 9vw, 7rem)` | `0.92` | `-0.045em` | home hero name, Newsreader |
-| `display-lg` | `clamp(2.75rem, 7vw, 5rem)` | `0.98` | `-0.04em` | project hero title, Newsreader |
-| `heading-xl` | `clamp(2.25rem, 5vw, 4rem)` | `1.02` | `-0.035em` | major section heading, Newsreader |
-| `heading-lg` | `clamp(1.625rem, 3vw, 2.25rem)` | `1.15` | `-0.025em` | case-study section |
-| `heading-md` | `1.5rem` | `1.25` | `-0.02em` | card/group heading |
-| `heading-sm` | `1.125rem` | `1.35` | `-0.01em` | minor heading |
-| `body-lg` | `1.125rem` | `1.7` | `0` | introductory copy |
-| `body-md` | `1rem` | `1.7` | `0` | default body |
-| `body-sm` | `0.875rem` | `1.6` | `0` | supporting copy |
-| `label` | `0.875rem` | `1.25` | `0.01em` | buttons and controls |
-| `eyebrow` | `0.75rem` | `1.3` | `0.1em` | uppercase metadata |
+| Token        | Size                            | Line height | Tracking   | Usage                             |
+| ------------ | ------------------------------- | ----------- | ---------- | --------------------------------- |
+| `display-xl` | `clamp(3.5rem, 9vw, 7rem)`      | `0.92`      | `-0.045em` | home hero name, Newsreader        |
+| `display-lg` | `clamp(2.75rem, 7vw, 5rem)`     | `0.98`      | `-0.04em`  | project hero title, Newsreader    |
+| `heading-xl` | `clamp(2.25rem, 5vw, 4rem)`     | `1.02`      | `-0.035em` | major section heading, Newsreader |
+| `heading-lg` | `clamp(1.625rem, 3vw, 2.25rem)` | `1.15`      | `-0.025em` | case-study section                |
+| `heading-md` | `1.5rem`                        | `1.25`      | `-0.02em`  | card/group heading                |
+| `heading-sm` | `1.125rem`                      | `1.35`      | `-0.01em`  | minor heading                     |
+| `body-lg`    | `1.125rem`                      | `1.7`       | `0`        | introductory copy                 |
+| `body-md`    | `1rem`                          | `1.7`       | `0`        | default body                      |
+| `body-sm`    | `0.875rem`                      | `1.6`       | `0`        | supporting copy                   |
+| `label`      | `0.875rem`                      | `1.25`      | `0.01em`   | buttons and controls              |
+| `eyebrow`    | `0.75rem`                       | `1.3`       | `0.1em`    | uppercase metadata                |
 
 Long-form prose is limited to approximately 65–72 characters per line.
 Heading hierarchy follows document meaning; visual size does not determine the
@@ -145,22 +145,22 @@ restricted to short eyebrow labels and must retain readable tracking.
 
 Use a 4px base scale:
 
-| Token | Value | Common use |
-| --- | --- | --- |
-| `space-0` | `0` | reset |
-| `space-1` | `0.25rem` / 4px | tight icon adjustment |
-| `space-2` | `0.5rem` / 8px | compact inline gap |
-| `space-3` | `0.75rem` / 12px | control internals |
-| `space-4` | `1rem` / 16px | default element gap |
-| `space-5` | `1.25rem` / 20px | card internals |
-| `space-6` | `1.5rem` / 24px | grouped content |
-| `space-8` | `2rem` / 32px | card padding/section subgroups |
-| `space-10` | `2.5rem` / 40px | major local separation |
-| `space-12` | `3rem` / 48px | compact section spacing |
-| `space-16` | `4rem` / 64px | mobile section spacing |
-| `space-20` | `5rem` / 80px | standard section spacing |
-| `space-24` | `6rem` / 96px | desktop section spacing |
-| `space-32` | `8rem` / 128px | major desktop separation |
+| Token      | Value            | Common use                     |
+| ---------- | ---------------- | ------------------------------ |
+| `space-0`  | `0`              | reset                          |
+| `space-1`  | `0.25rem` / 4px  | tight icon adjustment          |
+| `space-2`  | `0.5rem` / 8px   | compact inline gap             |
+| `space-3`  | `0.75rem` / 12px | control internals              |
+| `space-4`  | `1rem` / 16px    | default element gap            |
+| `space-5`  | `1.25rem` / 20px | card internals                 |
+| `space-6`  | `1.5rem` / 24px  | grouped content                |
+| `space-8`  | `2rem` / 32px    | card padding/section subgroups |
+| `space-10` | `2.5rem` / 40px  | major local separation         |
+| `space-12` | `3rem` / 48px    | compact section spacing        |
+| `space-16` | `4rem` / 64px    | mobile section spacing         |
+| `space-20` | `5rem` / 80px    | standard section spacing       |
+| `space-24` | `6rem` / 96px    | desktop section spacing        |
+| `space-32` | `8rem` / 128px   | major desktop separation       |
 
 Do not introduce intermediate values until repeated use proves the scale cannot
 express a layout. Optical one- or two-pixel adjustments may be local when
@@ -168,13 +168,13 @@ required for icons or borders.
 
 ## Radii
 
-| Token | Value | Usage |
-| --- | --- | --- |
-| `radius-sm` | `0.375rem` / 6px | compact tags and code |
-| `radius-md` | `0.625rem` / 10px | controls |
-| `radius-lg` | `1rem` / 16px | cards |
-| `radius-xl` | `1.5rem` / 24px | project media and feature surfaces |
-| `radius-full` | `9999px` | circular controls and pills |
+| Token         | Value             | Usage                              |
+| ------------- | ----------------- | ---------------------------------- |
+| `radius-sm`   | `0.375rem` / 6px  | compact tags and code              |
+| `radius-md`   | `0.625rem` / 10px | controls                           |
+| `radius-lg`   | `1rem` / 16px     | cards                              |
+| `radius-xl`   | `1.5rem` / 24px   | project media and feature surfaces |
+| `radius-full` | `9999px`          | circular controls and pills        |
 
 Nested elements use a radius equal to or smaller than their container. Pills
 are reserved for tags, status, and compact actions—not every rectangular
@@ -182,13 +182,13 @@ surface.
 
 ## Shadows and depth
 
-| Token | Value | Usage |
-| --- | --- | --- |
-| `shadow-none` | `none` | default flat content |
-| `shadow-sm` | `0 1px 2px rgb(0 0 0 / 0.24)` | sticky/control separation |
-| `shadow-md` | `0 12px 32px rgb(0 0 0 / 0.28)` | hover or raised card |
-| `shadow-lg` | `0 24px 64px rgb(0 0 0 / 0.36)` | mobile menu/gallery overlay |
-| `shadow-accent` | `0 0 40px rgb(139 156 255 / 0.14)` | rare focused accent glow |
+| Token           | Value                              | Usage                       |
+| --------------- | ---------------------------------- | --------------------------- |
+| `shadow-none`   | `none`                             | default flat content        |
+| `shadow-sm`     | `0 1px 2px rgb(0 0 0 / 0.24)`      | sticky/control separation   |
+| `shadow-md`     | `0 12px 32px rgb(0 0 0 / 0.28)`    | hover or raised card        |
+| `shadow-lg`     | `0 24px 64px rgb(0 0 0 / 0.36)`    | mobile menu/gallery overlay |
+| `shadow-accent` | `0 0 40px rgb(139 156 255 / 0.14)` | rare focused accent glow    |
 
 Depth order is expressed first through surface color and border, then shadow.
 Only one dominant shadow should appear in a local composition. Accent glow is
@@ -213,26 +213,26 @@ decorative and must not replace a focus ring.
 Motion tokens are shared with
 [`animation-guidelines.md`](./animation-guidelines.md):
 
-| Token | Value | Purpose |
-| --- | --- | --- |
-| `motion-instant` | `0ms` | reduced-motion/state reset |
-| `motion-micro` | `120ms` | press and color response |
-| `motion-fast` | `180ms` | hover and focus |
-| `motion-base` | `260ms` | menus and local state |
-| `motion-slow` | `420ms` | section reveal |
-| `motion-deliberate` | `600ms` | hero/background only |
+| Token               | Value   | Purpose                    |
+| ------------------- | ------- | -------------------------- |
+| `motion-instant`    | `0ms`   | reduced-motion/state reset |
+| `motion-micro`      | `120ms` | press and color response   |
+| `motion-fast`       | `180ms` | hover and focus            |
+| `motion-base`       | `260ms` | menus and local state      |
+| `motion-slow`       | `420ms` | section reveal             |
+| `motion-deliberate` | `600ms` | hero/background only       |
 
 Only `transform` and `opacity` are used for frequent animated transitions.
 Motion cannot delay navigation or keep content invisible when JavaScript fails.
 
 ## Containers and grid
 
-| Container | Maximum width | Use |
-| --- | --- | --- |
-| `container-wide` | `80rem` / 1280px | navigation, project grids, large media |
-| `container-content` | `65rem` / 1040px | standard home sections |
-| `container-prose` | `45rem` / 720px | case-study narrative |
-| `container-narrow` | `36rem` / 576px | compact statements/forms |
+| Container           | Maximum width    | Use                                    |
+| ------------------- | ---------------- | -------------------------------------- |
+| `container-wide`    | `80rem` / 1280px | navigation, project grids, large media |
+| `container-content` | `65rem` / 1040px | standard home sections                 |
+| `container-prose`   | `45rem` / 720px  | case-study narrative                   |
+| `container-narrow`  | `36rem` / 576px  | compact statements/forms               |
 
 Horizontal gutters:
 
@@ -249,14 +249,14 @@ coordinate system.
 
 Use Tailwind's mobile-first defaults:
 
-| Name | Minimum width | Intended change |
-| --- | --- | --- |
-| base | `0` | single-column, touch-first default |
-| `sm` | `40rem` / 640px | wider gutters and compact two-column cases |
-| `md` | `48rem` / 768px | navigation/layout restructuring |
-| `lg` | `64rem` / 1024px | desktop project grid and larger typography |
-| `xl` | `80rem` / 1280px | full container and generous section rhythm |
-| `2xl` | `96rem` / 1536px | breathing room, not uncontrolled scaling |
+| Name  | Minimum width    | Intended change                            |
+| ----- | ---------------- | ------------------------------------------ |
+| base  | `0`              | single-column, touch-first default         |
+| `sm`  | `40rem` / 640px  | wider gutters and compact two-column cases |
+| `md`  | `48rem` / 768px  | navigation/layout restructuring            |
+| `lg`  | `64rem` / 1024px | desktop project grid and larger typography |
+| `xl`  | `80rem` / 1280px | full container and generous section rhythm |
+| `2xl` | `96rem` / 1536px | breathing room, not uncontrolled scaling   |
 
 Breakpoints respond to content failure, not device names. Avoid hiding
 meaningful content merely to make a breakpoint look cleaner.
@@ -290,12 +290,12 @@ meaningful content merely to make a breakpoint look cleaner.
 
 Button geometry:
 
-| Size | Height | Horizontal padding | Text/icon |
-| --- | --- | --- | --- |
-| `sm` | 36px | 14px | 14px text, 16px icon |
-| `md` | 44px | 18px | 14px text, 18px icon |
-| `lg` | 52px | 24px | 16px text, 20px icon |
-| `icon` | 44×44px | none | 20px icon |
+| Size   | Height  | Horizontal padding | Text/icon            |
+| ------ | ------- | ------------------ | -------------------- |
+| `sm`   | 36px    | 14px               | 14px text, 16px icon |
+| `md`   | 44px    | 18px               | 14px text, 18px icon |
+| `lg`   | 52px    | 24px               | 16px text, 20px icon |
+| `icon` | 44×44px | none               | 20px icon            |
 
 All buttons use `radius-md`, a 1px transparent border to prevent size changes
 between variants, and `motion-fast` state transitions. Primary hover uses
@@ -317,12 +317,12 @@ is static under reduced motion.
 
 Card variants:
 
-| Variant | Surface | Boundary | Usage |
-| --- | --- | --- | --- |
-| `editorial` | transparent | optional top divider | project summaries where media and whitespace define grouping |
-| `surface` | `color-surface` | `color-border` | testimonials and grouped information |
-| `interactive` | `color-surface` → `color-surface-raised` | stronger on focus | explicitly clickable feature card |
-| `media` | canvas behind image | no redundant outer border | gallery media and large project covers |
+| Variant       | Surface                                  | Boundary                  | Usage                                                        |
+| ------------- | ---------------------------------------- | ------------------------- | ------------------------------------------------------------ |
+| `editorial`   | transparent                              | optional top divider      | project summaries where media and whitespace define grouping |
+| `surface`     | `color-surface`                          | `color-border`            | testimonials and grouped information                         |
+| `interactive` | `color-surface` → `color-surface-raised` | stronger on focus         | explicitly clickable feature card                            |
+| `media`       | canvas behind image                      | no redundant outer border | gallery media and large project covers                       |
 
 All cards use `radius-lg` for the outer surface and `space-6` or `space-8`
 padding when a surface exists. Cards do not receive shadows at rest unless

@@ -17,21 +17,21 @@ duplicating project metadata.
 
 ## Requirement-to-architecture mapping
 
-| Requirement | Architectural response |
-| --- | --- |
-| Home sections | One `/` route composed from isolated home feature sections |
-| Dynamic project pages | Static dynamic segment at `/projects/[slug]` |
-| Easy to add projects | One validated MDX file per project; route code stays unchanged |
-| Detailed case studies | Structured frontmatter plus long-form MDX body |
-| Reusable components | Three levels: generic UI, shared layout, feature sections |
-| Type-safe | Strict TypeScript plus runtime validation at the content boundary |
-| No duplicated code | Project metadata has one canonical source and shared selectors |
-| SEO optimized | Static rendering, route metadata, sitemap, robots, and structured data |
-| Fast loading / 95+ Lighthouse | Server Components, optimized assets, small client islands, budgets |
-| Accessible / 95+ | Semantic landmarks, keyboard support, focus management, reduced motion |
-| Smooth animations | Central motion tokens and client-only motion wrappers |
-| Dark primary theme | Design tokens applied at the root; theme behavior remains independent |
-| Responsive / mobile-first | Layout primitives and component-owned responsive behavior |
+| Requirement                   | Architectural response                                                 |
+| ----------------------------- | ---------------------------------------------------------------------- |
+| Home sections                 | One `/` route composed from isolated home feature sections             |
+| Dynamic project pages         | Static dynamic segment at `/projects/[slug]`                           |
+| Easy to add projects          | One validated MDX file per project; route code stays unchanged         |
+| Detailed case studies         | Structured frontmatter plus long-form MDX body                         |
+| Reusable components           | Three levels: generic UI, shared layout, feature sections              |
+| Type-safe                     | Strict TypeScript plus runtime validation at the content boundary      |
+| No duplicated code            | Project metadata has one canonical source and shared selectors         |
+| SEO optimized                 | Static rendering, route metadata, sitemap, robots, and structured data |
+| Fast loading / 95+ Lighthouse | Server Components, optimized assets, small client islands, budgets     |
+| Accessible / 95+              | Semantic landmarks, keyboard support, focus management, reduced motion |
+| Smooth animations             | Central motion tokens and client-only motion wrappers                  |
+| Dark primary theme            | Design tokens applied at the root; theme behavior remains independent  |
+| Responsive / mobile-first     | Layout primitives and component-owned responsive behavior              |
 
 ## Architectural principles
 

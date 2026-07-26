@@ -2,14 +2,14 @@
 
 ## Route map
 
-| URL | App Router file | Rendering | Purpose |
-| --- | --- | --- | --- |
-| `/` | `app/(site)/page.tsx` | Static | Full home narrative |
-| `/projects/[slug]` | `app/(site)/projects/[slug]/page.tsx` | Static per project | Detailed case study |
-| unknown route | `app/not-found.tsx` | Static | Branded recovery path |
-| unknown project slug | project `not-found.tsx` | Static | Project-specific recovery |
-| `/sitemap.xml` | `app/sitemap.ts` | Generated from content | Search discovery |
-| `/robots.txt` | `app/robots.ts` | Static/generated | Crawler policy |
+| URL                  | App Router file                       | Rendering              | Purpose                   |
+| -------------------- | ------------------------------------- | ---------------------- | ------------------------- |
+| `/`                  | `app/(site)/page.tsx`                 | Static                 | Full home narrative       |
+| `/projects/[slug]`   | `app/(site)/projects/[slug]/page.tsx` | Static per project     | Detailed case study       |
+| unknown route        | `app/not-found.tsx`                   | Static                 | Branded recovery path     |
+| unknown project slug | project `not-found.tsx`               | Static                 | Project-specific recovery |
+| `/sitemap.xml`       | `app/sitemap.ts`                      | Generated from content | Search discovery          |
+| `/robots.txt`        | `app/robots.ts`                       | Static/generated       | Crawler policy            |
 
 Only `/` and `/projects/[slug]` are product routes in the current
 requirements. Separate `/about`, `/skills`, or `/contact` pages would duplicate
@@ -68,10 +68,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <HeroSection
-        profile={model.profile}
-        socialLinks={model.socialLinks}
-      />
+      <HeroSection profile={model.profile} socialLinks={model.socialLinks} />
       <ProjectsSection
         projects={model.featuredProjects}
         heading="Selected projects"

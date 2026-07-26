@@ -27,14 +27,14 @@ No animation exists solely because a source library offers it.
 
 ## Duration tokens
 
-| Token | Duration | Allowed use |
-| --- | --- | --- |
-| `instant` | 0ms | reduced motion, immediate state |
-| `micro` | 120ms | press, icon response, color confirmation |
-| `fast` | 180ms | hover, focus, underline, small tooltip |
-| `base` | 260ms | menu, disclosure, gallery state |
-| `slow` | 420ms | section reveal, page entrance |
-| `deliberate` | 600ms | hero sequence or subtle background introduction |
+| Token        | Duration | Allowed use                                     |
+| ------------ | -------- | ----------------------------------------------- |
+| `instant`    | 0ms      | reduced motion, immediate state                 |
+| `micro`      | 120ms    | press, icon response, color confirmation        |
+| `fast`       | 180ms    | hover, focus, underline, small tooltip          |
+| `base`       | 260ms    | menu, disclosure, gallery state                 |
+| `slow`       | 420ms    | section reveal, page entrance                   |
+| `deliberate` | 600ms    | hero sequence or subtle background introduction |
 
 Rules:
 
@@ -49,33 +49,33 @@ Rules:
 
 CSS cubic Bézier values and Framer Motion arrays use the same coordinates:
 
-| Token | Value | Use |
-| --- | --- | --- |
-| `ease-standard` | `[0.2, 0, 0, 1]` | position and size state changes |
-| `ease-enter` | `[0.16, 1, 0.3, 1]` | entrances and reveals |
-| `ease-exit` | `[0.4, 0, 1, 1]` | exits |
+| Token             | Value                | Use                             |
+| ----------------- | -------------------- | ------------------------------- |
+| `ease-standard`   | `[0.2, 0, 0, 1]`     | position and size state changes |
+| `ease-enter`      | `[0.16, 1, 0.3, 1]`  | entrances and reveals           |
+| `ease-exit`       | `[0.4, 0, 1, 1]`     | exits                           |
 | `ease-emphasized` | `[0.22, 1, 0.36, 1]` | hero and large media, sparingly |
-| `ease-linear` | `linear` | progress only, not entrances |
+| `ease-linear`     | `linear`             | progress only, not entrances    |
 
 Spring presets:
 
-| Token | Stiffness | Damping | Mass | Use |
-| --- | --- | --- | --- | --- |
-| `spring-responsive` | 420 | 32 | 0.8 | direct drag/press feedback |
-| `spring-gentle` | 220 | 28 | 1 | optional gallery/media settling |
+| Token               | Stiffness | Damping | Mass | Use                             |
+| ------------------- | --------- | ------- | ---- | ------------------------------- |
+| `spring-responsive` | 420       | 32      | 0.8  | direct drag/press feedback      |
+| `spring-gentle`     | 220       | 28      | 1    | optional gallery/media settling |
 
 Springs must not visibly bounce text, navigation, or large page regions.
 
 ## Distance and scale tokens
 
-| Token | Value | Use |
-| --- | --- | --- |
-| `distance-subtle` | 8px | page or compact text entrance |
-| `distance-small` | 16px | section/card entrance |
-| `distance-medium` | 24px | mobile menu panel only |
-| `scale-hover` | 1.02 | project media maximum |
-| `lift-hover` | -4px | interactive card maximum |
-| `lift-button` | -1px | primary button hover maximum |
+| Token             | Value | Use                           |
+| ----------------- | ----- | ----------------------------- |
+| `distance-subtle` | 8px   | page or compact text entrance |
+| `distance-small`  | 16px  | section/card entrance         |
+| `distance-medium` | 24px  | mobile menu panel only        |
+| `scale-hover`     | 1.02  | project media maximum         |
+| `lift-hover`      | -4px  | interactive card maximum      |
+| `lift-button`     | -1px  | primary button hover maximum  |
 
 Large translations, 3D flips, elastic text, and perspective distortion are not
 part of the initial motion language.
@@ -288,18 +288,18 @@ feature needs a skeleton:
 Honor `prefers-reduced-motion: reduce` in CSS and Framer Motion. Reduced motion
 means removing spatial and continuous motion, not simply shortening everything.
 
-| Motion | Standard | Reduced-motion fallback |
-| --- | --- | --- |
-| Hero sequence | grouped fade/rise with stagger | content visible immediately; optional 120ms group fade |
-| Section reveal | 16px rise and fade | visible immediately |
-| Staggered list | 50–70ms item stagger | no stagger; visible immediately |
-| Smooth anchor scroll | native CSS smooth | `scroll-behavior: auto` |
-| Card hover | lift plus media scale | color/border/focus change only |
-| Button hover | 1px lift plus color | color change only |
-| Mobile menu | panel translate/fade | immediate or 120ms fade |
-| Gallery | directional fade/slide | immediate swap or 120ms fade |
-| Page entrance | 8px rise/fade | visible immediately |
-| Background atmosphere | slow drift | static background |
+| Motion                | Standard                       | Reduced-motion fallback                                |
+| --------------------- | ------------------------------ | ------------------------------------------------------ |
+| Hero sequence         | grouped fade/rise with stagger | content visible immediately; optional 120ms group fade |
+| Section reveal        | 16px rise and fade             | visible immediately                                    |
+| Staggered list        | 50–70ms item stagger           | no stagger; visible immediately                        |
+| Smooth anchor scroll  | native CSS smooth              | `scroll-behavior: auto`                                |
+| Card hover            | lift plus media scale          | color/border/focus change only                         |
+| Button hover          | 1px lift plus color            | color change only                                      |
+| Mobile menu           | panel translate/fade           | immediate or 120ms fade                                |
+| Gallery               | directional fade/slide         | immediate swap or 120ms fade                           |
+| Page entrance         | 8px rise/fade                  | visible immediately                                    |
+| Background atmosphere | slow drift                     | static background                                      |
 
 The implementation must not flash hidden content while determining preference.
 Motion primitives select visible initial states for reduced-motion users.
@@ -330,4 +330,3 @@ Motion primitives select visible initial states for reduced-motion users.
 - Is the effect original and adapted to the portfolio design system?
 - Would removing it reduce usability? If not, is its atmospheric value strong
   enough to justify its cost?
-

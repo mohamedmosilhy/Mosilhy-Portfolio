@@ -21,6 +21,8 @@
   adaptation, licensing review, and provenance.
 - [Implementation roadmap](./implementation-roadmap.md) divides future work
   into independently committable milestones.
+- [Tooling foundation](./tooling.md) records supported runtime versions,
+  quality commands, dependency responsibilities, and shadcn configuration.
 
 ## Document order
 

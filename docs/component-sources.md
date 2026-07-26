@@ -194,9 +194,9 @@ For every sourced or adapted component:
 
 Maintain this table when implementation begins:
 
-| Local component | Source | Original URL | Why chosen | Version/date reviewed | License checked | Changes made | Accessibility changes | Animation changes | Reviewer |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| _None yet_ | — | — | — | — | — | No components have been implemented | — | — | — |
+| Local component | Source | Original URL | Why chosen | Version/date reviewed | License checked | Changes made                        | Accessibility changes | Animation changes | Reviewer |
+| --------------- | ------ | ------------ | ---------- | --------------------- | --------------- | ----------------------------------- | --------------------- | ----------------- | -------- |
+| _None yet_      | —      | —            | —          | —                     | —               | No components have been implemented | —                     | —                 | —        |
 
 Field rules:
 
