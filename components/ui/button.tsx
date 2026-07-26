@@ -1,11 +1,7 @@
 import Link from "next/link";
 import { LoaderCircle } from "lucide-react";
 import { cva, type VariantProps } from "class-variance-authority";
-import type {
-  AnchorHTMLAttributes,
-  ButtonHTMLAttributes,
-  ReactNode,
-} from "react";
+import type { ComponentPropsWithRef, ReactNode } from "react";
 
 import { cn } from "@/lib/utils/cn";
 import type { ExternalHref, InternalHref } from "@/types/content";
@@ -62,12 +58,12 @@ type ButtonContentProps =
     };
 
 type NativeElementProps = Omit<
-  ButtonHTMLAttributes<HTMLButtonElement>,
+  ComponentPropsWithRef<"button">,
   keyof SharedButtonProps | keyof ButtonContentProps | "href"
 >;
 
 type LinkElementProps = Omit<
-  AnchorHTMLAttributes<HTMLAnchorElement>,
+  ComponentPropsWithRef<"a">,
   keyof SharedButtonProps | keyof ButtonContentProps | "href"
 > & {
   readonly href: InternalHref | ExternalHref;

@@ -4,6 +4,7 @@ import { join, resolve } from "node:path";
 import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ArrowRight, Code2, Mail } from "lucide-react";
+import { createRef } from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { Button } from "@/components/ui/button";
@@ -37,6 +38,16 @@ const video = {
 } as const satisfies VideoAsset;
 
 describe("Button", () => {
+  it("forwards a native ref for focus management", () => {
+    const ref = createRef<HTMLButtonElement>();
+
+    render(<Button ref={ref}>Focusable action</Button>);
+
+    expect(ref.current).toBe(
+      screen.getByRole("button", { name: "Focusable action" }),
+    );
+  });
+
   it("uses native keyboard button behavior and defaults to a safe button type", async () => {
     const user = userEvent.setup();
     const onClick = vi.fn();

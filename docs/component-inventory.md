@@ -173,12 +173,16 @@ layer.
 | -------------- | ------------------------------------------------------------------------------ |
 | Responsibility | Compose logo, desktop navigation, mobile navigation, and sticky state boundary |
 | Variants       | `transparent`, `scrolled` is state-driven, not consumer-selected               |
-| Props          | `brand`, `items`, `currentPath`                                                |
+| Props          | `brand`, `items`, `currentPath?`                                               |
 | Used by        | Public-site layout                                                             |
 | Rendering      | Server shell with client navigation islands                                    |
 
 The header starts visually quiet. A client observer may add the scrolled
 surface/blur state without changing navigation semantics.
+
+`currentPath` is an optional deterministic override for review and isolated
+rendering. The public-site layout omits it so the leaf navigation island can
+read the pathname without making the static Server Component layout dynamic.
 
 ### `MainNavigation`
 
@@ -186,7 +190,7 @@ surface/blur state without changing navigation semantics.
 | -------------- | --------------------------------------------------------------- |
 | Responsibility | Render desktop anchor navigation and current section indication |
 | Variants       | `desktop`, `footer`                                             |
-| Props          | `items`, `currentPath`, `observeSections?`                      |
+| Props          | `items`, `currentPath?`, `observeSections?`                     |
 | Used by        | Header, optionally footer                                       |
 | Rendering      | Client only when active-section observation is enabled          |
 

@@ -388,6 +388,8 @@ content.
 - accurate `sizes` and intrinsic dimensions;
 - priority limited to the likely LCP image;
 - below-the-fold media loading strategy;
+- constrain production filesystem tracing for local content and asset
+  validation so the build does not scan the whole workspace;
 - bundle analysis and removal of unused client code;
 - Lighthouse CI or equivalent production audit configuration.
 
