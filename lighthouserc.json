@@ -9,7 +9,12 @@
       ],
       "numberOfRuns": 2,
       "settings": {
-        "preset": "perf",
+        "onlyCategories": [
+          "performance",
+          "accessibility",
+          "best-practices",
+          "seo"
+        ],
         "formFactor": "mobile",
         "screenEmulation": {
           "mobile": true,
@@ -34,6 +39,13 @@
           {
             "minScore": 0.95,
             "aggregationMethod": "optimistic"
+          }
+        ],
+        "categories:accessibility": [
+          "error",
+          {
+            "minScore": 1,
+            "aggregationMethod": "pessimistic"
           }
         ],
         "largest-contentful-paint": [

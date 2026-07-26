@@ -96,7 +96,7 @@ describe("SocialLinks", () => {
     render(<SocialLinks links={validSocialLinks} variant="compact" />);
 
     const navigation = screen.getByRole("navigation", {
-      name: "Social and contact links",
+      name: "Hero social and contact links",
     });
     const links = within(navigation).getAllByRole("link");
 

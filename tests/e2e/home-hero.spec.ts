@@ -90,7 +90,7 @@ test("keeps the complete hero available without JavaScript", async ({
     hero.getByRole("link", { name: profile.secondaryCta.label }),
   ).toHaveAttribute("href", profile.secondaryCta.href);
   await expect(
-    hero.getByRole("navigation", { name: "Social and contact links" }),
+    hero.getByRole("navigation", { name: "Hero social and contact links" }),
   ).toBeVisible();
 
   await context.close();

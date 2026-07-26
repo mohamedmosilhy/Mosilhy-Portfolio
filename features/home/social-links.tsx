@@ -24,9 +24,15 @@ function platformIcon(platform: SocialPlatform): ReactNode {
 }
 
 export function SocialLinks({ links, variant = "icons" }: SocialLinksProps) {
+  const navigationLabel = {
+    compact: "Hero social and contact links",
+    icons: "Social profiles and contact links",
+    labelled: "Contact section social links",
+  }[variant];
+
   return (
     <nav
-      aria-label="Social and contact links"
+      aria-label={navigationLabel}
       data-slot="social-links"
       data-variant={variant}
     >

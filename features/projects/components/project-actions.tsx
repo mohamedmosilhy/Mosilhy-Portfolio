@@ -16,7 +16,7 @@ export function ProjectActions({
   if (variant === "links") {
     return (
       <nav
-        aria-label={`${projectTitle} external links`}
+        aria-label={`${projectTitle} supporting project links`}
         data-slot="project-actions"
         data-variant={variant}
         className="flex flex-wrap gap-x-space-6 gap-y-space-2"
@@ -45,7 +45,7 @@ export function ProjectActions({
 
   return (
     <nav
-      aria-label={`${projectTitle} external links`}
+      aria-label={`${projectTitle} primary project links`}
       data-slot="project-actions"
       data-variant={variant}
       className="flex flex-wrap gap-space-3"

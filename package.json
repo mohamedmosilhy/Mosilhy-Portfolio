@@ -25,6 +25,7 @@
     "test:unit:watch": "vitest",
     "test:coverage": "vitest run --coverage --passWithNoTests",
     "test:e2e": "playwright test --pass-with-no-tests",
+    "test:a11y": "playwright test tests/e2e/accessibility.spec.ts",
     "test:e2e:ui": "playwright test --ui",
     "ui:check": "shadcn info",
     "check": "pnpm format:check && pnpm typecheck && pnpm lint && pnpm validate:content && pnpm test"
@@ -48,6 +49,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
     "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.62.0",
     "@tailwindcss/postcss": "^4",
