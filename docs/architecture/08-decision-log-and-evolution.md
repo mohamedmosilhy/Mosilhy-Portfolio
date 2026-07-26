@@ -134,6 +134,49 @@ accessibility intent.
 **Revisit when:** Authored content genuinely needs to select icons by identifier;
 in that case, use a small explicit allowlist rather than the entire package.
 
+### ADR-012: Use bounded local media and system font stacks
+
+**Decision:** Serve bounded AVIF display media through `next/image`, retain
+high-resolution PNGs only for social sharing, and use native system font stacks
+for the first release.
+
+**Reason:** Repository screenshots were much larger than their rendered
+dimensions, and external or bundled web fonts provided less value than the
+measured loading cost. Bounded display assets, accurate responsive `sizes`, and
+system fonts keep the visual presentation while producing predictable static
+loads and avoiding font-related layout or network delay.
+
+**Revisit when:** A font or media change has a defined visual purpose and passes
+the documented Lighthouse, layout-shift, and client-bundle budgets.
+
+### ADR-013: Make accessibility and performance executable release contracts
+
+**Decision:** Enforce route-level axe checks, keyboard journeys, reflow and
+reduced-motion behavior, client JavaScript limits, and Lighthouse budgets in
+repeatable test commands.
+
+**Reason:** Design and architecture documentation alone cannot prevent
+regressions. Executable budgets make the intended experience reviewable and
+fail the release when measurable guarantees are lost.
+
+**Revisit when:** Routes or interaction patterns expand. Extend the covered
+representative pages and journeys before relaxing a threshold.
+
+### ADR-014: Deploy one verified static release to Vercel
+
+**Decision:** Use Vercel as the production host, keep
+`https://portfolio-omega-six-23.vercel.app` as the canonical origin, and deploy
+only after the clean-install release gate passes.
+
+**Reason:** The Next.js application and local content pipeline require no
+runtime data service. Vercel provides an appropriate build and immutable
+deployment history, while one stable origin prevents duplicate canonical,
+sitemap, Open Graph, and structured-data URLs.
+
+**Revisit when:** A custom domain is approved, hosting constraints change, or
+the portfolio gains runtime services. Update site metadata and verify redirects
+before promoting a new canonical origin.
+
 ## Change rules
 
 Architecture is meant to evolve, but changes should be intentional:

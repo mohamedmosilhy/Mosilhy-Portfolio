@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mohamed Mosilhy Portfolio
 
-## Getting Started
+A content-driven portfolio for Mohamed Mosilhy, built with the Next.js App
+Router. The site presents selected full-stack and frontend projects as
+statically generated case studies, alongside skills, background, and contact
+information.
 
-First, run the development server:
+Production: <https://portfolio-omega-six-23.vercel.app>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Architecture
+
+The application keeps presentation and authored content separate:
+
+- `app/` owns routing, metadata, and the public layout;
+- `components/` contains generic UI, layout, motion, and metadata primitives;
+- `features/` contains home and project presentation components;
+- `content/` stores structured TypeScript records and project MDX;
+- `lib/content/` validates content and builds page models for the UI;
+- `lib/metadata/` derives metadata and structured data from those models;
+- `types/` defines normalized public content contracts;
+- `tests/` covers schemas, components, routes, accessibility, and visitor
+  journeys.
+
+Server Components are the default. Client boundaries are limited to navigation
+state, viewport observation, galleries, and motion. Portfolio copy is consumed
+through validated page models rather than hardcoded in components.
+
+See [the architecture documentation](docs/architecture/README.md) and
+[decision log](docs/architecture/08-decision-log-and-evolution.md) for the
+complete rationale.
+
+## Requirements
+
+- Node.js 24.x
+- pnpm 11.x
+
+The exact package manager is declared in `package.json`. Install dependencies
+with:
+
+```sh
+pnpm install --frozen-lockfile
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Local development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open <http://localhost:3000>.
 
-## Learn More
+## Content
 
-To learn more about Next.js, take a look at the following resources:
+Short structured content lives in TypeScript modules under `content/`. Each
+project case study is an MDX file under `content/projects/` with validated
+frontmatter and an approved set of MDX components.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Before publishing content changes, run:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```sh
+pnpm validate:content
+pnpm check:links
+```
 
-## Deploy on Vercel
+The content pipeline rejects invalid relationships, duplicate identifiers,
+unknown technologies, unpublished references, unsafe URLs, missing local
+assets, and unsupported MDX structure.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Quality gates
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Command                 | Purpose                                               |
+| ----------------------- | ----------------------------------------------------- |
+| `pnpm format:check`     | Verify formatting and Tailwind class order            |
+| `pnpm typecheck`        | Run strict TypeScript checks                          |
+| `pnpm lint`             | Run ESLint                                            |
+| `pnpm validate:content` | Validate authored content and project sources         |
+| `pnpm check:links`      | Verify local documentation links and asset references |
+| `pnpm test:unit`        | Run unit, integration, and component tests            |
+| `pnpm test:e2e`         | Run Playwright visitor journeys                       |
+| `pnpm test:a11y`        | Run route-level axe and accessibility checks          |
+| `pnpm build`            | Create the optimized production build                 |
+| `pnpm check:bundle`     | Enforce client JavaScript budgets                     |
+| `pnpm audit:lighthouse` | Enforce performance and accessibility budgets         |
+| `pnpm check`            | Run the standard local quality suite                  |
+
+Performance targets and test conditions are documented in
+[the performance budget](docs/performance-budget.md). Accessibility review
+results are recorded in [the accessibility review](docs/accessibility-review.md).
+
+## Deployment
+
+The production site is hosted on Vercel. Releases are built from the committed
+lockfile and must pass the full release gate before deployment. Follow
+[the deployment checklist](docs/deployment-checklist.md) for preflight,
+production verification, and rollback steps.
+
+## Documentation
+
+Start at [the documentation index](docs/README.md). It links the product,
+architecture, design system, content model, animation policy, component
+inventory, implementation roadmap, audit, performance, accessibility, and
+release records.

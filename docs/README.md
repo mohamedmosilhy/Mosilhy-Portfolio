@@ -23,6 +23,14 @@
   into independently committable milestones.
 - [Tooling foundation](./tooling.md) records supported runtime versions,
   quality commands, dependency responsibilities, and shadcn configuration.
+- [Performance budget](./performance-budget.md) records media, client-bundle,
+  and Lighthouse release limits.
+- [Accessibility review](./accessibility-review.md) records automated and
+  manual-review coverage for the complete experience.
+- [First release review](./release-review.md) accounts for routes, components,
+  content, links, and assets in the first production release.
+- [Deployment checklist](./deployment-checklist.md) defines the production
+  preflight, Vercel smoke test, and rollback process.
 
 ## Document order
 
