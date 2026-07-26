@@ -94,26 +94,23 @@ semantic tokens.
 
 ### Font families
 
-| Role    | Family     | Fallback                                            |
-| ------- | ---------- | --------------------------------------------------- |
-| Display | Newsreader | `Georgia, "Times New Roman", serif`                 |
-| Sans    | Geist      | `Inter, ui-sans-serif, system-ui, sans-serif`       |
-| Mono    | Geist Mono | `ui-monospace, SFMono-Regular, Consolas, monospace` |
+| Role    | Family stack                                                             |
+| ------- | ------------------------------------------------------------------------ |
+| Display | `Georgia, "Times New Roman", ui-serif, serif`                            |
+| Sans    | `Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif` |
+| Mono    | `ui-monospace, SFMono-Regular, "SF Mono", Consolas, monospace`           |
 
-Newsreader is used for display headings and rare editorial emphasis. Geist Sans
-is used for body, navigation, labels, controls, card titles, and dense case-study
-headings. Geist Mono is limited to compact technical metadata, small eyebrow
-labels, code, and optional project numbering. Do not use serif or monospace for
-long technical explanations.
+The display stack is used for headings and rare editorial emphasis. The sans
+stack is used for body, navigation, labels, controls, card titles, and dense
+case-study headings. The mono stack is limited to compact technical metadata,
+small eyebrow labels, code, and optional project numbering. Do not use serif or
+monospace for long technical explanations.
 
-Use only the weights actually loaded:
-
-- Newsreader 500 and 600 for display headings, plus 500 italic for rare
-  editorial emphasis;
-- Geist 400 for body;
-- Geist 500 for labels and controls;
-- Geist 600 for sans headings;
-- Geist Mono 400 and 500 for technical labels.
+These system-first stacks require no font request and therefore cannot delay
+first paint, LCP, or project-image discovery. Use 400 for body, 500 for labels
+and controls, and 600 for sans headings. Display headings use 500 or 600 where
+the installed face supports it; browsers synthesize the closest available
+weight consistently.
 
 The serif/sans pairing creates the editorial/technical contrast. Do not emulate
 the reference by using Playfair Display or Fira Sans.
@@ -122,9 +119,9 @@ the reference by using Playfair Display or Fira Sans.
 
 | Token        | Size                            | Line height | Tracking   | Usage                             |
 | ------------ | ------------------------------- | ----------- | ---------- | --------------------------------- |
-| `display-xl` | `clamp(3.5rem, 9vw, 7rem)`      | `0.92`      | `-0.045em` | home hero name, Newsreader        |
-| `display-lg` | `clamp(2.75rem, 7vw, 5rem)`     | `0.98`      | `-0.04em`  | project hero title, Newsreader    |
-| `heading-xl` | `clamp(2.25rem, 5vw, 4rem)`     | `1.02`      | `-0.035em` | major section heading, Newsreader |
+| `display-xl` | `clamp(3.5rem, 9vw, 7rem)`      | `0.92`      | `-0.045em` | home hero name, display stack     |
+| `display-lg` | `clamp(2.75rem, 7vw, 5rem)`     | `0.98`      | `-0.04em`  | project hero title, display stack |
+| `heading-xl` | `clamp(2.25rem, 5vw, 4rem)`     | `1.02`      | `-0.035em` | section heading, display stack    |
 | `heading-lg` | `clamp(1.625rem, 3vw, 2.25rem)` | `1.15`      | `-0.025em` | case-study section                |
 | `heading-md` | `1.5rem`                        | `1.25`      | `-0.02em`  | card/group heading                |
 | `heading-sm` | `1.125rem`                      | `1.35`      | `-0.01em`  | minor heading                     |

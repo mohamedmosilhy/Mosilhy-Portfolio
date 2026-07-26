@@ -28,7 +28,6 @@ const cardVariants: Record<ProjectCardVariant, string> = {
 export interface ProjectCardProps {
   readonly project: ProjectSummary;
   readonly variant?: ProjectCardVariant;
-  readonly priority?: boolean;
   readonly mediaPosition?: MediaPosition;
   readonly headingLevel?: HeadingLevel;
   readonly ordinal?: number;
@@ -41,7 +40,6 @@ function projectPath(slug: string): InternalHref {
 export function ProjectCard({
   project,
   variant = "featured",
-  priority = false,
   mediaPosition = "start",
   headingLevel = 3,
   ordinal,
@@ -58,8 +56,7 @@ export function ProjectCard({
     >
       <MediaFrame
         asset={project.cover}
-        priority={priority}
-        sizes="(min-width: 1024px) 58vw, 100vw"
+        sizes="(min-width: 1280px) 43rem, (min-width: 1024px) 55vw, calc(100vw - 2rem)"
         variant="browser"
         radius="xl"
       />

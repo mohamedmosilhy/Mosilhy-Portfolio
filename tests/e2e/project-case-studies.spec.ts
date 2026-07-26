@@ -185,7 +185,7 @@ test("keeps case-study content available without JavaScript", async ({
   await context.close();
 });
 
-test("removes the project-page translation for reduced motion", async ({
+test("keeps the unanimated project page stable for reduced motion", async ({
   browser,
 }) => {
   const context = await browser.newContext({
@@ -196,20 +196,15 @@ test("removes the project-page translation for reduced motion", async ({
 
   await page.goto("/projects/wheres-waldo");
 
-  const entrance = page.locator('[data-motion="page-entrance"]');
-
-  await expect(entrance).toHaveAttribute("data-motion-state", "reduced");
+  await expect(page.locator('[data-motion="page-entrance"]')).toHaveCount(0);
   await expect(
     page.getByRole("heading", { level: 1, name: "Where’s Waldo" }),
   ).toBeVisible();
-  await expect
-    .poll(() =>
-      entrance.evaluate((element) => ({
-        opacity: getComputedStyle(element).opacity,
-        transform: getComputedStyle(element).transform,
-      })),
-    )
-    .toEqual({ opacity: "1", transform: "none" });
+  await expect(
+    page.getByRole("img", {
+      name: /Where’s Waldo home page/,
+    }),
+  ).toBeVisible();
 
   await context.close();
 });

@@ -1,5 +1,4 @@
 import { Container } from "@/components/layout/container";
-import { Reveal } from "@/components/motion/reveal";
 import { Button } from "@/components/ui/button";
 import { SocialLinks } from "@/features/home/social-links";
 import type { Profile, SocialLink } from "@/types/content";
@@ -44,7 +43,7 @@ export function HeroSection({ profile, socialLinks }: HeroSectionProps) {
       >
         <div className="grid lg:grid-cols-12 lg:items-center lg:gap-space-12">
           <div className="lg:col-span-7">
-            <Reveal variant="rise" distance="subtle">
+            <div data-hero-group="eyebrow">
               <div className="flex flex-wrap items-center gap-x-space-6 gap-y-space-2">
                 <p className="font-mono text-eyebrow font-medium text-accent uppercase">
                   {profile.greeting}
@@ -59,13 +58,8 @@ export function HeroSection({ profile, socialLinks }: HeroSectionProps) {
                   </p>
                 ) : null}
               </div>
-            </Reveal>
-            <Reveal
-              variant="rise"
-              distance="small"
-              delay={70}
-              className="mt-space-3"
-            >
+            </div>
+            <div data-hero-group="identity" className="mt-space-3">
               <h1
                 id={heroHeadingId}
                 aria-label={profile.name}
@@ -89,7 +83,7 @@ export function HeroSection({ profile, socialLinks }: HeroSectionProps) {
                 />
                 {profile.role}
               </p>
-            </Reveal>
+            </div>
           </div>
 
           <div className="relative mt-space-4 border-t border-border pt-space-4 sm:mt-space-6 sm:pt-space-6 lg:col-span-5 lg:mt-space-0 lg:rounded-xl lg:border lg:bg-surface/75 lg:p-space-8 lg:shadow-lg">
@@ -97,13 +91,13 @@ export function HeroSection({ profile, socialLinks }: HeroSectionProps) {
               aria-hidden="true"
               className="absolute top-0 left-space-8 hidden h-px w-space-20 bg-accent lg:block"
             />
-            <Reveal variant="rise" distance="subtle" delay={140}>
+            <div data-hero-group="introduction">
               <p className="max-w-prose text-body-md text-text-secondary sm:text-body-lg">
                 {profile.introduction}
               </p>
-            </Reveal>
+            </div>
 
-            <Reveal variant="fade" delay={210} className="mt-space-6">
+            <div data-hero-group="actions" className="mt-space-6">
               <div className="flex flex-wrap gap-space-3">
                 <Button href={profile.primaryCta.href}>
                   {profile.primaryCta.label}
@@ -121,7 +115,7 @@ export function HeroSection({ profile, socialLinks }: HeroSectionProps) {
                   {profile.availability}
                 </p>
               ) : null}
-            </Reveal>
+            </div>
           </div>
         </div>
       </Container>

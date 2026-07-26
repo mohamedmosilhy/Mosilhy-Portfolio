@@ -129,7 +129,7 @@ custom to this portfolio.
 - Use `next/image` for local raster project covers, gallery screenshots,
   portraits, and testimonial photos.
 - Declare intrinsic width and height and an accurate responsive `sizes` value.
-- Use `priority`/preload only for the likely route LCP image.
+- Use eager, high-priority loading only for the likely route LCP image.
 - Prefer AVIF or WebP after checking screenshot readability.
 - Keep originals outside the served path if they are retained for future
   editing.

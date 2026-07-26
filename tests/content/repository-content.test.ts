@@ -30,6 +30,19 @@ describe("repository content pipeline", () => {
 
       expect(project?.slug).toBe(slug);
       expect(project?.body.code.length).toBeGreaterThan(100);
+      expect(project?.cover.src).toMatch(/\.avif$/);
+      expect(project?.cover.width).toBeLessThanOrEqual(1600);
+      expect(project?.cover.height).toBeLessThanOrEqual(1600);
+
+      for (const item of project?.gallery.items ?? []) {
+        if (item.kind === "image") {
+          expect(item.src).toMatch(/\.avif$/);
+          expect(item.width).toBeLessThanOrEqual(1600);
+          expect(item.height).toBeLessThanOrEqual(1600);
+        }
+      }
+
+      expect(project?.seo.socialImage?.src).toMatch(/\.png$/);
       expect(project?.technologies.length).toBeGreaterThan(0);
       expect(
         project?.technologies.every((technology) => technology.name.length > 0),

@@ -82,26 +82,24 @@ part of the initial motion language.
 
 ## Animation types
 
-### Initial hero sequence
+### Initial hero presentation
 
-Purpose: establish reading order without delaying identity.
+Purpose: establish reading order without delaying identity or LCP.
 
 Sequence:
 
-1. greeting/eyebrow fades and rises 8px;
-2. name and role fade and rise 16px;
-3. introduction fades and rises 8px;
-4. actions and social links fade in together.
+1. greeting/eyebrow;
+2. name and role;
+3. introduction;
+4. actions and social links.
 
 Specification:
 
-- duration: `slow`;
-- easing: `ease-enter`;
-- stagger: 70ms between groups;
-- maximum accumulated delay: 210ms;
-- trigger: once after first paint;
-- content is present in the server-rendered HTML and defaults to visible before
-  animation enhancement initializes.
+- the initial hero uses no transform or opacity entrance animation;
+- all groups are present and paintable in server-rendered HTML;
+- interactive and decorative state changes may still use motion tokens after
+  first paint;
+- the introduction must remain eligible for the earliest possible LCP.
 
 Do not split the name into character-by-character animation. It harms reading
 and creates excessive delay.
@@ -110,7 +108,7 @@ and creates excessive delay.
 
 Purpose: gently mark progression through a long page.
 
-- variant: opacity 0→1 and block-axis translation 16px→0;
+- variant: paintable content with block-axis translation 16px→0;
 - duration: `slow`;
 - easing: `ease-enter`;
 - trigger: first viewport entry;
@@ -125,7 +123,7 @@ not remain hidden while the observer waits.
 
 Purpose: communicate that related items belong to one group.
 
-- item motion: fade plus 8px rise;
+- item motion: paintable content plus 8px rise;
 - item duration: `base` or `slow`;
 - gap: 50–70ms;
 - maximum items animated individually: 6;
@@ -259,14 +257,12 @@ The initial release does not implement blocking cross-route exit transitions.
 App Router links navigate immediately, preserving responsiveness and browser
 behavior.
 
-Project pages may use `PageEntrance`:
+`PageEntrance` remains available for future non-critical regions, but the
+initial project route does not wrap its article in an entrance animation. This
+keeps the cover image eligible for LCP as soon as it loads.
 
-- opacity 0→1;
-- translate 8px→0;
-- duration `slow`;
-- easing `ease-enter`;
-- no delay;
-- main content is visible without hydration.
+Any later use must keep content at opacity 1, use at most translate 8px→0 with
+`slow`/`ease-enter`, add no delay, and exclude route LCP candidates.
 
 Back/forward navigation and restored scroll position must not be overridden.
 Native View Transitions may be evaluated later only after route behavior,

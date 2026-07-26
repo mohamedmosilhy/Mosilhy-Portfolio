@@ -121,7 +121,7 @@ content would otherwise drift.
 The root layout contains:
 
 - `<html lang="en">`;
-- optimized local or `next/font` font variables;
+- zero-request system font stacks defined in global styles;
 - global styles;
 - site-wide metadata defaults;
 - only providers that every route genuinely needs.

@@ -113,7 +113,7 @@ It styles semantic descendants but does not sanitize or compile content.
 | -------------- | --------------------------------------------------------------- |
 | Responsibility | Reserve aspect ratio and present image/video media with caption |
 | Variants       | `plain`, `surface`, `browser`; radii `none`, `lg`, `xl`         |
-| Props          | `asset`, `priority?`, `sizes`, `caption?`, `variant?`           |
+| Props          | `asset`, `highPriority?`, `sizes`, `caption?`, `variant?`       |
 | Used by        | Project cards, gallery, project hero                            |
 | Rendering      | Server for images; may contain a client video control           |
 
@@ -312,7 +312,7 @@ It does not implement exit animation or delay route navigation.
 | -------------- | ------------------------------------------------------------------------- |
 | Responsibility | Present a project's image, purpose, technologies, and actions             |
 | Variants       | `featured`, `standard`; media position `start`, `end` at wide breakpoints |
-| Props          | `project`, `priority?`, `mediaPosition?`, `headingLevel?`, `ordinal?`     |
+| Props          | `project`, `mediaPosition?`, `headingLevel?`, `ordinal?`                  |
 | Used by        | Projects section and future project index                                 |
 | Rendering      | Server Component with CSS hover behavior                                  |
 
@@ -404,7 +404,7 @@ No form props exist until a contact form becomes a requirement.
 | -------------- | -------------------------------------------------------------------------- |
 | Responsibility | Present project title, summary, role, timeline, cover, and primary actions |
 | Variants       | `default`, `media-led`; chosen from content needs, not authored styling    |
-| Props          | `project`, `priority?`                                                     |
+| Props          | `project`, `highPriority?`                                                 |
 | Used by        | Project case study                                                         |
 | Rendering      | Server Component                                                           |
 

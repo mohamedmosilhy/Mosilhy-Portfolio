@@ -18,7 +18,7 @@ const radii = {
 
 export interface MediaFrameProps {
   readonly asset: MediaAsset;
-  readonly priority?: boolean;
+  readonly highPriority?: boolean;
   readonly sizes: string;
   readonly caption?: ReactNode;
   readonly variant?: keyof typeof variants;
@@ -27,7 +27,7 @@ export interface MediaFrameProps {
 
 export function MediaFrame({
   asset,
-  priority = false,
+  highPriority = false,
   sizes,
   caption,
   variant = "plain",
@@ -60,7 +60,13 @@ export function MediaFrame({
               width={asset.width}
               height={asset.height}
               sizes={sizes}
-              priority={priority}
+              decoding={highPriority ? "sync" : "async"}
+              {...(highPriority
+                ? {
+                    loading: "eager" as const,
+                    fetchPriority: "high" as const,
+                  }
+                : { loading: "lazy" as const })}
               className="h-full w-full object-cover"
             />
           ) : (

@@ -1,77 +1,9 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 
 import { getHomePageModel } from "@/lib/content/site-content";
 import { createRootMetadata } from "@/lib/metadata/create-metadata";
 
 import "./globals.css";
-
-const geistSans = localFont({
-  src: [
-    {
-      path: "./fonts/geist-latin-normal.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "./fonts/geist-latin-normal.woff2",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "./fonts/geist-latin-normal.woff2",
-      weight: "600",
-      style: "normal",
-    },
-  ],
-  variable: "--font-geist-sans",
-  display: "swap",
-  fallback: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
-  adjustFontFallback: "Arial",
-});
-
-const geistMono = localFont({
-  src: [
-    {
-      path: "./fonts/geist-mono-latin-normal.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "./fonts/geist-mono-latin-normal.woff2",
-      weight: "500",
-      style: "normal",
-    },
-  ],
-  variable: "--font-geist-mono",
-  display: "swap",
-  fallback: ["ui-monospace", "SFMono-Regular", "Consolas", "monospace"],
-  adjustFontFallback: "Arial",
-});
-
-const newsreader = localFont({
-  src: [
-    {
-      path: "./fonts/newsreader-latin-normal.woff2",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "./fonts/newsreader-latin-normal.woff2",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "./fonts/newsreader-latin-italic.woff2",
-      weight: "500",
-      style: "italic",
-    },
-  ],
-  variable: "--font-newsreader",
-  display: "swap",
-  fallback: ["Georgia", "Times New Roman", "serif"],
-  adjustFontFallback: "Times New Roman",
-});
 
 export async function generateMetadata(): Promise<Metadata> {
   const model = await getHomePageModel();
@@ -88,7 +20,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${newsreader.variable} ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className="h-full antialiased"
     >
       <body className="flex min-h-full flex-col">{children}</body>
     </html>

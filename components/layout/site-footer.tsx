@@ -29,6 +29,7 @@ export function SiteFooter({
           <div>
             <Link
               href="/"
+              prefetch={false}
               aria-label={`${profile.name}, home`}
               className="inline-flex min-h-11 items-center rounded-md font-display text-heading-md font-semibold text-text transition-colors duration-[var(--motion-fast)] outline-none hover:text-accent-hover focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas motion-reduce:transition-none"
             >

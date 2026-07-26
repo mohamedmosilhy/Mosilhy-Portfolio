@@ -33,6 +33,7 @@ export function ProjectNavigation({
           {previousProject ? (
             <Link
               href={projectPath(previousProject.slug)}
+              prefetch={false}
               aria-label={`Previous case study: ${previousProject.title}`}
               className={linkClasses}
             >
@@ -47,6 +48,7 @@ export function ProjectNavigation({
 
           <Link
             href={allProjectsHref}
+            prefetch={false}
             className={cn(
               linkClasses,
               "text-center md:col-start-2 md:row-start-1",
@@ -58,6 +60,7 @@ export function ProjectNavigation({
           {nextProject ? (
             <Link
               href={projectPath(nextProject.slug)}
+              prefetch={false}
               aria-label={`Next case study: ${nextProject.title}`}
               className={cn(
                 linkClasses,

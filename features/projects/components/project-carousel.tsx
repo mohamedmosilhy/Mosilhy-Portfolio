@@ -46,7 +46,7 @@ export function ProjectCarousel({ items, projectTitle }: ProjectCarouselProps) {
           >
             <MediaFrame
               asset={item}
-              sizes="(min-width: 1024px) 65rem, 100vw"
+              sizes="(min-width: 1040px) 45rem, (min-width: 640px) calc(100vw - 3rem), calc(100vw - 2rem)"
               variant="browser"
               radius="xl"
             />

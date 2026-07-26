@@ -39,7 +39,7 @@ export function AboutSection({ profile }: AboutSectionProps) {
                 <div className="relative">
                   <MediaFrame
                     asset={profile.portrait}
-                    sizes="(min-width: 1024px) 28vw, 100vw"
+                    sizes="(min-width: 1280px) 23rem, (min-width: 1024px) 30vw, (min-width: 640px) 36rem, calc(100vw - 2rem)"
                     variant="surface"
                     radius="xl"
                   />

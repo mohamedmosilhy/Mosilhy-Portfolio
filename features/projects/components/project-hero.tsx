@@ -5,7 +5,7 @@ import type { ISODate, ProjectDetail } from "@/types/content";
 
 export interface ProjectHeroProps {
   readonly project: ProjectDetail;
-  readonly priority?: boolean;
+  readonly highPriority?: boolean;
 }
 
 function formatProjectDate(value: ISODate) {
@@ -22,7 +22,10 @@ function formatProjectDate(value: ISODate) {
   }).format(date);
 }
 
-export function ProjectHero({ project, priority = true }: ProjectHeroProps) {
+export function ProjectHero({
+  project,
+  highPriority = true,
+}: ProjectHeroProps) {
   return (
     <header
       data-slot="project-hero"
@@ -80,8 +83,8 @@ export function ProjectHero({ project, priority = true }: ProjectHeroProps) {
         <div className="mt-space-12 lg:mt-space-16">
           <MediaFrame
             asset={project.cover}
-            priority={priority}
-            sizes="(min-width: 1280px) 80rem, 100vw"
+            highPriority={highPriority}
+            sizes="(min-width: 1280px) 76rem, (min-width: 640px) calc(100vw - 3rem), calc(100vw - 2rem)"
             variant="browser"
             radius="xl"
           />

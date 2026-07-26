@@ -179,7 +179,7 @@ export function Button(props: ButtonProps) {
     } as const;
 
     return href.startsWith("/") ? (
-      <Link href={href} {...sharedLinkProps}>
+      <Link href={href} prefetch={false} {...sharedLinkProps}>
         {contents}
       </Link>
     ) : (

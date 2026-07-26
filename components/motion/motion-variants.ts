@@ -37,7 +37,9 @@ export function createRevealVariants(
   distance: RevealDistance = "small",
 ): Variants {
   const hidden = {
-    opacity: 0,
+    // Motion progressively enhances already paintable content so initialization
+    // can never delay LCP or leave content invisible without JavaScript.
+    opacity: 1,
     x: variant === "slide-inline" ? motionTokens.distance[distance] : 0,
     y: variant === "rise" ? motionTokens.distance[distance] : 0,
   };
@@ -85,7 +87,7 @@ export function createStaggerVariants(
 export function createStaggerItemVariants(variant: "fade" | "rise"): Variants {
   return {
     hidden: {
-      opacity: 0,
+      opacity: 1,
       y: variant === "rise" ? motionTokens.distance.subtle : 0,
     },
     reduced: immediateVisible,
@@ -102,7 +104,7 @@ export function createStaggerItemVariants(variant: "fade" | "rise"): Variants {
 
 export const pageEntranceVariants: Variants = {
   hidden: {
-    opacity: 0,
+    opacity: 1,
     y: motionTokens.distance.subtle,
   },
   reduced: immediateVisible,

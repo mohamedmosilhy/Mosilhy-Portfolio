@@ -19,7 +19,6 @@ imports through the existing `@/*` alias.
 │   │           └── not-found.tsx
 │   ├── api/
 │   │   └── contact/route.ts                # reserved; add only with a contact form
-│   ├── fonts/                              # self-hosted, licensed webfont subsets
 │   ├── globals.css
 │   ├── layout.tsx
 │   ├── not-found.tsx
@@ -133,8 +132,8 @@ compose feature modules. They should not contain reusable section
 implementations or raw content.
 
 The `(site)` route group provides a shared public-site shell without adding a
-URL segment. The root layout remains responsible for the document, fonts,
-global metadata defaults, and root providers. The site layout owns header,
+URL segment. The root layout remains responsible for the document, global
+styles, metadata defaults, and root providers. The site layout owns header,
 main, and footer composition.
 
 ### `features`

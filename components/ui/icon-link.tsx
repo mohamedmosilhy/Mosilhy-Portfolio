@@ -65,7 +65,7 @@ export function IconLink({
   } as const;
 
   return href.startsWith("/") ? (
-    <Link href={href} {...sharedProps}>
+    <Link href={href} prefetch={false} {...sharedProps}>
       {contents}
     </Link>
   ) : (

@@ -36,8 +36,8 @@ export function ProjectGallery({
             asset={item}
             sizes={
               variant === "grid"
-                ? "(min-width: 768px) 32rem, 100vw"
-                : "(min-width: 1024px) 65rem, 100vw"
+                ? "(min-width: 1040px) 21rem, (min-width: 768px) calc(50vw - 3rem), calc(100vw - 2rem)"
+                : "(min-width: 1040px) 45rem, (min-width: 640px) calc(100vw - 3rem), calc(100vw - 2rem)"
             }
             variant="browser"
             radius="xl"

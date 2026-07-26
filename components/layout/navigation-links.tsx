@@ -50,6 +50,7 @@ export function NavigationLinks({
             <li key={item.id}>
               <Link
                 href={item.href}
+                prefetch={false}
                 aria-current={
                   isActiveSection
                     ? "location"

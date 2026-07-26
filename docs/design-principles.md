@@ -85,8 +85,8 @@ its elegance and smoothness in original ways:
 
 - its stark black-and-white restraint becomes a deep ink system with pearl text
   and one controlled indigo accent;
-- its serif/sans contrast becomes a different editorial serif paired with
-  Geist;
+- its serif/sans contrast becomes a system-resident editorial serif paired
+  with the visitor's native interface sans;
 - its expansive spacing becomes a documented responsive spacing and container
   system;
 - its asymmetric project flow becomes varied media emphasis inside a stable,

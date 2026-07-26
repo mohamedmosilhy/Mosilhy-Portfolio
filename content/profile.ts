@@ -37,10 +37,10 @@ export const profile = {
   location: "Cairo, Egypt",
   portrait: {
     kind: "image",
-    src: "/images/profile/mohamed-mosilhy.jpg",
+    src: "/images/profile/mohamed-mosilhy.avif",
     alt: "Portrait of Mohamed Mosilhy",
-    width: 1536,
-    height: 2048,
+    width: 720,
+    height: 960,
   },
   email: "mailto:mmosilhyofficial@gmail.com",
   primaryCta: {

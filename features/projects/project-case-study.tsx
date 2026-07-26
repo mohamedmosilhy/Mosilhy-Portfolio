@@ -25,7 +25,7 @@ export async function ProjectCaseStudy({
 
   return (
     <article data-slot="project-case-study">
-      <ProjectHero project={project} priority />
+      <ProjectHero project={project} highPriority />
 
       <section
         aria-label={`${project.title} case study`}

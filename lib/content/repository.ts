@@ -105,8 +105,8 @@ let repositoryContentPromise: Promise<RepositoryContent> | undefined;
 
 export function getRepositoryContent(): Promise<RepositoryContent> {
   repositoryContentPromise ??= loadRepositoryContent({
-    content: join(process.cwd(), "content"),
-    public: join(process.cwd(), "public"),
+    content: join(/* turbopackIgnore: true */ process.cwd(), "content"),
+    public: join(/* turbopackIgnore: true */ process.cwd(), "public"),
   });
 
   return repositoryContentPromise;

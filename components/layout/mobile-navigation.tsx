@@ -119,6 +119,7 @@ export function MobileNavigation({ items, brandLabel }: MobileNavigationProps) {
               <li key={item.id}>
                 <Link
                   href={item.href}
+                  prefetch={false}
                   className="flex min-h-11 items-center rounded-md px-space-4 text-body-md font-medium text-text-secondary transition-colors duration-[var(--motion-fast)] outline-none hover:bg-surface-hover hover:text-text focus-visible:bg-surface-hover focus-visible:text-text focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset motion-reduce:transition-none"
                   onClick={closeMenu}
                 >

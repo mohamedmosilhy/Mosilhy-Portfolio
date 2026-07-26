@@ -96,6 +96,8 @@ the preference differently.
 - Do not apply `will-change` globally; use it briefly and only where measured.
 - Keep route content as Server Components even when wrapped by a client motion
   primitive.
+- Keep entrance content at opacity 1 while viewport state initializes so
+  animation never delays LCP or creates a hydration-time flash.
 - Measure bundle impact before adding specialized animation libraries in
   addition to Framer Motion.
 

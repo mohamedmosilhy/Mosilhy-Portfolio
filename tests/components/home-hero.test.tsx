@@ -68,7 +68,7 @@ describe("HeroSection", () => {
     expect(contactAction).toHaveFocus();
   });
 
-  it("groups the introduction into the documented four-step sequence", () => {
+  it("keeps four authored hero groups paintable without client motion", () => {
     render(
       <HeroSection profile={validProfile} socialLinks={validSocialLinks} />,
     );
@@ -76,11 +76,12 @@ describe("HeroSection", () => {
     const hero = screen.getByRole("region", {
       name: validProfile.name,
     });
-    const groups = [
-      ...hero.querySelectorAll<HTMLElement>('[data-motion="reveal"]'),
-    ];
+    const groups = [...hero.querySelectorAll<HTMLElement>("[data-hero-group]")];
 
     expect(groups).toHaveLength(4);
+    expect(
+      hero.querySelector('[data-motion="reveal"]'),
+    ).not.toBeInTheDocument();
     expect(groups[0]).toHaveTextContent(validProfile.greeting);
     expect(groups[1]).toHaveTextContent(validProfile.name);
     expect(groups[1]).toHaveTextContent(validProfile.role);

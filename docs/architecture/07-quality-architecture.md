@@ -11,7 +11,7 @@ protects the score through:
 - leaf-level client islands;
 - `next/image` with correct `sizes`, dimensions, and priority only for the
   route's likely largest-contentful image;
-- `next/font` or self-hosted fonts with controlled weights;
+- zero-request system font stacks that cannot block first paint;
 - no runtime API request for local content;
 - no global state or animation library imports in server modules;
 - deferred loading for below-the-fold video and interactive galleries;

@@ -22,14 +22,6 @@ function readCustomProperties(source: string) {
   );
 }
 
-function readFontVariants(source: string) {
-  return [
-    ...source.matchAll(
-      /path: "([^"]+)",\s+weight: "([^"]+)",\s+style: "([^"]+)"/g,
-    ),
-  ].map(([, path, weight, style]) => ({ path, weight, style }));
-}
-
 function hexToRgb(hex: string) {
   const normalized = hex.replace("#", "");
 
@@ -230,83 +222,14 @@ describe("design system foundation", () => {
     });
   });
 
-  it("loads exactly the documented font variants with swap behavior", () => {
-    const geistSansSource = layoutSource.slice(
-      layoutSource.indexOf("const geistSans"),
-      layoutSource.indexOf("const geistMono"),
+  it("uses zero-request system font stacks", () => {
+    expect(layoutSource).not.toContain("next/font");
+    expect(globalsSource).toContain(
+      '--font-display: Georgia, "Times New Roman", ui-serif, serif;',
     );
-    const geistMonoSource = layoutSource.slice(
-      layoutSource.indexOf("const geistMono"),
-      layoutSource.indexOf("const newsreader"),
-    );
-    const newsreaderSource = layoutSource.slice(
-      layoutSource.indexOf("const newsreader"),
-      layoutSource.indexOf("export const metadata"),
-    );
-
-    expect(layoutSource).toContain('import localFont from "next/font/local"');
-    expect(readFontVariants(geistSansSource)).toEqual([
-      {
-        path: "./fonts/geist-latin-normal.woff2",
-        weight: "400",
-        style: "normal",
-      },
-      {
-        path: "./fonts/geist-latin-normal.woff2",
-        weight: "500",
-        style: "normal",
-      },
-      {
-        path: "./fonts/geist-latin-normal.woff2",
-        weight: "600",
-        style: "normal",
-      },
-    ]);
-    expect(readFontVariants(geistMonoSource)).toEqual([
-      {
-        path: "./fonts/geist-mono-latin-normal.woff2",
-        weight: "400",
-        style: "normal",
-      },
-      {
-        path: "./fonts/geist-mono-latin-normal.woff2",
-        weight: "500",
-        style: "normal",
-      },
-    ]);
-    expect(readFontVariants(newsreaderSource)).toEqual([
-      {
-        path: "./fonts/newsreader-latin-normal.woff2",
-        weight: "500",
-        style: "normal",
-      },
-      {
-        path: "./fonts/newsreader-latin-normal.woff2",
-        weight: "600",
-        style: "normal",
-      },
-      {
-        path: "./fonts/newsreader-latin-italic.woff2",
-        weight: "500",
-        style: "italic",
-      },
-    ]);
-    expect(layoutSource.match(/display: "swap"/g)).toHaveLength(3);
-    expect(layoutSource.match(/adjustFontFallback:/g)).toHaveLength(3);
-    expect(layoutSource).toContain("--font-newsreader");
-    expect(layoutSource).toContain("--font-geist-sans");
-    expect(layoutSource).toContain("--font-geist-mono");
-
-    for (const path of [
-      "app/fonts/geist-latin-normal.woff2",
-      "app/fonts/geist-mono-latin-normal.woff2",
-      "app/fonts/newsreader-latin-normal.woff2",
-      "app/fonts/newsreader-latin-italic.woff2",
-    ]) {
-      expect(
-        readFileSync(resolve(process.cwd(), path)).subarray(0, 4).toString(),
-      ).toBe("wOF2");
-    }
+    expect(globalsSource).toContain("ui-sans-serif");
+    expect(globalsSource).toContain("ui-monospace");
+    expect(globalsSource).not.toContain("@font-face");
   });
 
   it("provides accessible base contrast on every documented surface", () => {

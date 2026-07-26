@@ -214,9 +214,9 @@ describe("motion specifications", () => {
     const variants = createRevealVariants("rise", 10_000);
     const subtleVariants = createRevealVariants("rise", 0, "subtle");
 
-    expect(variants.hidden).toMatchObject({ opacity: 0, x: 0, y: 16 });
+    expect(variants.hidden).toMatchObject({ opacity: 1, x: 0, y: 16 });
     expect(subtleVariants.hidden).toMatchObject({
-      opacity: 0,
+      opacity: 1,
       x: 0,
       y: 8,
     });
@@ -254,7 +254,7 @@ describe("motion specifications", () => {
       },
     });
     expect(pageEntranceVariants).toMatchObject({
-      hidden: { opacity: 0, y: 8 },
+      hidden: { opacity: 1, y: 8 },
       visible: {
         opacity: 1,
         y: 0,

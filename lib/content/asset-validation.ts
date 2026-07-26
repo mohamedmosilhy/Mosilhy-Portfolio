@@ -31,7 +31,7 @@ interface AssetReference {
 async function detectAssetKind(
   filePath: string,
 ): Promise<"image" | "video" | "unknown"> {
-  const file = await open(filePath, "r");
+  const file = await open(/* turbopackIgnore: true */ filePath, "r");
   const bytes = Buffer.alloc(512);
 
   try {
@@ -211,7 +211,7 @@ export async function validateAssetReferences(
         const filePath = resolve(publicDirectory, `.${src}`);
 
         try {
-          const file = await stat(filePath);
+          const file = await stat(/* turbopackIgnore: true */ filePath);
 
           if (!file.isFile()) {
             throw new Error("not a file");

@@ -14,6 +14,9 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "audit:prod": "pnpm audit --prod",
+    "audit:lighthouse": "node scripts/run-lighthouse.mjs",
+    "analyze:bundle": "next experimental-analyze --output",
+    "check:bundle": "node scripts/check-client-bundles.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "validate:content": "vitest run tests/unit/content-schemas.test.ts tests/unit/content-validation.test.ts tests/unit/project-source.test.ts tests/unit/project-selectors.test.ts tests/content/repository-content.test.ts",
@@ -45,6 +48,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.62.0",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^7.0.0",

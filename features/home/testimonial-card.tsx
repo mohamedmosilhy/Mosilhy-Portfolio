@@ -34,6 +34,8 @@ export function TestimonialCard({
             width={testimonial.person.photo.width}
             height={testimonial.person.photo.height}
             sizes="48px"
+            loading="lazy"
+            decoding="async"
             className="size-12 shrink-0 rounded-full object-cover"
           />
           <div className="min-w-0 text-body-sm">

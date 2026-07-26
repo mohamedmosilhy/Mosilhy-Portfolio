@@ -1,34 +1,23 @@
 import { expect, test } from "@playwright/test";
 
-test("settles the documented home choreography within its motion budget", async ({
+test("keeps the hero paintable and applies motion below the fold", async ({
   page,
 }) => {
   await page.goto("/");
 
   const heroGroups = page.locator(
-    '[data-slot="hero-section"] [data-motion="reveal"]',
+    '[data-slot="hero-section"] [data-hero-group]',
   );
 
   await expect(heroGroups).toHaveCount(4);
-  await expect
-    .poll(() =>
-      heroGroups.evaluateAll((groups) =>
-        groups.every(
-          (group) => group.getAttribute("data-motion-state") === "visible",
-        ),
-      ),
-    )
-    .toBe(true);
-  await expect
-    .poll(() =>
-      heroGroups.evaluateAll((groups) =>
-        groups.every((group) => {
-          const style = getComputedStyle(group);
-          return style.opacity === "1" && style.transform === "none";
-        }),
-      ),
-    )
-    .toBe(true);
+  expect(
+    await heroGroups.evaluateAll((groups) =>
+      groups.every((group) => {
+        const style = getComputedStyle(group);
+        return style.opacity === "1" && style.transform === "none";
+      }),
+    ),
+  ).toBe(true);
 
   const projectCollection = page.locator('#projects [data-motion="stagger"]');
 

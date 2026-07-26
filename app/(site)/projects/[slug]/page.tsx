@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { StructuredData } from "@/components/metadata/structured-data";
-import { PageEntrance } from "@/components/motion/page-entrance";
 import { ProjectCaseStudy } from "@/features/projects/project-case-study";
 import { getProjectSlugs } from "@/lib/content/projects";
 import {
@@ -59,14 +58,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           model.project,
         )}
       />
-      <PageEntrance>
-        <ProjectCaseStudy
-          project={model.project}
-          previousProject={model.previousProject}
-          nextProject={model.nextProject}
-          allProjectsHref="/#projects"
-        />
-      </PageEntrance>
+      <ProjectCaseStudy
+        project={model.project}
+        previousProject={model.previousProject}
+        nextProject={model.nextProject}
+        allProjectsHref="/#projects"
+      />
     </>
   );
 }
