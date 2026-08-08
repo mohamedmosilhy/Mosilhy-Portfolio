@@ -5,7 +5,7 @@ export const profile = {
   name: "Mohamed Mosilhy",
   role: "Full-stack developer",
   introduction:
-    "I build web applications across frontend and backend systems, with additional work in interactive graphics and scientific computing.",
+    "I build fast, polished applications with clean architecture, optimized performance, and thoughtful user experiences.",
   biography: [
     "My web work includes React and Next.js interfaces, server-side application logic, relational data modeling, authentication, and tested business workflows.",
     "I also build animation-led interfaces and interactive 3D experiences, alongside Python projects in computer vision and scientific computing.",

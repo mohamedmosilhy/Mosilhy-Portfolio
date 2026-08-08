@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 
+import { NavigationIcon } from "@/components/layout/navigation-icon";
 import { Button } from "@/components/ui/button";
 import type { NavigationItem } from "@/types/navigation";
 
@@ -92,11 +93,11 @@ export function MobileNavigation({ items, brandLabel }: MobileNavigationProps) {
   );
 
   return (
-    <div className="relative md:hidden">
+    <div className="relative">
       <Button
         ref={triggerRef}
         size="icon"
-        variant="ghost"
+        variant="secondary"
         aria-label={open ? "Close navigation menu" : "Open navigation menu"}
         aria-expanded={open}
         aria-controls={panelId}
@@ -111,7 +112,7 @@ export function MobileNavigation({ items, brandLabel }: MobileNavigationProps) {
         aria-hidden={!open}
         data-slot="mobile-navigation-panel"
         data-state={phase}
-        className="pointer-events-none absolute end-0 top-[calc(100%+var(--space-2))] w-[calc(100vw-var(--space-8))] max-w-narrow translate-y-space-4 rounded-lg border border-border bg-surface-raised p-space-2 opacity-0 shadow-lg transition-[opacity,transform] data-[state=closed]:duration-[var(--motion-instant)] data-[state=closing]:translate-y-space-2 data-[state=closing]:duration-[var(--motion-fast)] data-[state=closing]:ease-[var(--ease-exit)] data-[state=open]:pointer-events-auto data-[state=open]:translate-y-0 data-[state=open]:opacity-100 data-[state=open]:duration-[var(--motion-base)] data-[state=open]:ease-[var(--ease-enter)] data-[state=opening]:pointer-events-auto data-[state=opening]:duration-[var(--motion-instant)] motion-reduce:transform-none motion-reduce:transition-none motion-reduce:data-[state=opening]:opacity-100"
+        className="pointer-events-none absolute end-0 top-[calc(100%+var(--space-3))] w-[calc(100vw-var(--space-8))] max-w-narrow translate-y-space-4 rounded-xl border border-border-strong bg-canvas/95 p-space-2 opacity-0 shadow-lg backdrop-blur-xl transition-[opacity,transform] data-[state=closed]:duration-[var(--motion-instant)] data-[state=closing]:translate-y-space-2 data-[state=closing]:duration-[var(--motion-fast)] data-[state=closing]:ease-[var(--ease-exit)] data-[state=open]:pointer-events-auto data-[state=open]:translate-y-0 data-[state=open]:opacity-100 data-[state=open]:duration-[var(--motion-base)] data-[state=open]:ease-[var(--ease-enter)] data-[state=opening]:pointer-events-auto data-[state=opening]:duration-[var(--motion-instant)] motion-reduce:transform-none motion-reduce:transition-none motion-reduce:data-[state=opening]:opacity-100"
       >
         <nav aria-label={`${brandLabel} mobile`}>
           <ul>
@@ -120,9 +121,10 @@ export function MobileNavigation({ items, brandLabel }: MobileNavigationProps) {
                 <Link
                   href={item.href}
                   prefetch={false}
-                  className="flex min-h-11 items-center rounded-md px-space-4 text-body-md font-medium text-text-secondary transition-colors duration-[var(--motion-fast)] outline-none hover:bg-surface-hover hover:text-text focus-visible:bg-surface-hover focus-visible:text-text focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset motion-reduce:transition-none"
+                  className="group/mobile-link flex min-h-12 items-center gap-space-3 rounded-lg px-space-4 text-body-md font-medium text-text-secondary transition-colors duration-[var(--motion-fast)] outline-none hover:bg-surface-hover hover:text-text focus-visible:bg-surface-hover focus-visible:text-text focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset motion-reduce:transition-none [&_[data-navigation-icon]]:size-5 [&_[data-navigation-icon]]:stroke-[1.75] [&_[data-navigation-icon]]:text-accent"
                   onClick={closeMenu}
                 >
+                  <NavigationIcon itemId={item.id} />
                   {item.label}
                 </Link>
               </li>

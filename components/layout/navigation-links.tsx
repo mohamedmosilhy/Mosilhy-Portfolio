@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { NavigationIcon } from "@/components/layout/navigation-icon";
 import { cn } from "@/lib/utils/cn";
 import type { NavigationItem } from "@/types/navigation";
 
@@ -10,7 +11,7 @@ const listVariants = {
 
 const linkVariants = {
   desktop:
-    "relative inline-flex min-h-11 items-center rounded-md px-space-3 text-label font-medium text-text-muted outline-none transition-colors duration-[var(--motion-fast)] ease-[var(--ease-standard)] after:absolute after:inset-x-space-3 after:bottom-space-2 after:h-px after:origin-center after:scale-x-0 after:bg-accent after:transition-transform after:duration-[var(--motion-fast)] hover:text-text hover:after:scale-x-100 focus-visible:text-text focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas focus-visible:after:scale-x-100 aria-[current=location]:text-text aria-[current=location]:after:scale-x-100 aria-[current=page]:text-text aria-[current=page]:after:scale-x-100 motion-reduce:after:transition-none motion-reduce:transition-none",
+    "group/link inline-flex min-h-10 items-center gap-space-2 rounded-md px-space-3 text-label font-medium text-text-muted outline-none transition-[color,background-color,box-shadow] duration-[var(--motion-fast)] ease-[var(--ease-standard)] hover:bg-surface-hover hover:text-text focus-visible:text-text focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas aria-[current=location]:bg-accent-subtle aria-[current=location]:text-text aria-[current=page]:bg-accent-subtle aria-[current=page]:text-text motion-reduce:transition-none [&_[data-navigation-icon]]:size-4 [&_[data-navigation-icon]]:stroke-[1.75] [&_[data-navigation-icon]]:transition-colors hover:[&_[data-navigation-icon]]:text-accent aria-[current=location]:[&_[data-navigation-icon]]:text-accent aria-[current=page]:[&_[data-navigation-icon]]:text-accent",
   footer:
     "inline-flex min-h-11 items-center rounded-md px-space-2 text-body-sm text-text-muted outline-none transition-colors duration-[var(--motion-fast)] hover:text-text focus-visible:text-text focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas aria-[current=page]:text-text motion-reduce:transition-none",
 } as const;
@@ -58,8 +59,16 @@ export function NavigationLinks({
                       ? "page"
                       : undefined
                 }
-                className={cn(linkVariants[variant])}
+                className={cn(
+                  linkVariants[variant],
+                  variant === "desktop" &&
+                    item.id === "contact" &&
+                    "bg-accent text-canvas hover:bg-accent-hover hover:text-canvas [&_[data-navigation-icon]]:text-canvas hover:[&_[data-navigation-icon]]:text-canvas",
+                )}
               >
+                {variant === "desktop" ? (
+                  <NavigationIcon itemId={item.id} />
+                ) : null}
                 {item.label}
               </Link>
             </li>

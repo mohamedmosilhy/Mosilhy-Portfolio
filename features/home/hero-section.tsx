@@ -1,5 +1,8 @@
+import { ArrowDownRight, ArrowUpRight, MapPin } from "lucide-react";
+
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
+import { MediaFrame } from "@/components/ui/media-frame";
 import { SocialLinks } from "@/features/home/social-links";
 import type { Profile, SocialLink } from "@/types/content";
 
@@ -23,42 +26,29 @@ export function HeroSection({ profile, socialLinks }: HeroSectionProps) {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-20 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] [mask-image:linear-gradient(to_bottom,black,transparent_88%)] bg-[size:4rem_4rem] opacity-30"
+        className="pointer-events-none absolute inset-0 -z-20 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] [mask-image:linear-gradient(to_bottom,black,transparent_82%)] bg-[size:4rem_4rem] opacity-20"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-[18%] left-[58%] -z-10 hidden size-[34rem] rounded-full border border-accent/15 shadow-accent lg:block"
-      >
-        <span className="absolute inset-[18%] rounded-full border border-border" />
-        <span className="absolute inset-[38%] rounded-full border border-accent/20 bg-accent-subtle/30" />
-      </div>
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-0 right-[12%] -z-10 hidden h-full w-px bg-gradient-to-b from-transparent via-accent/30 to-transparent lg:block"
+        className="pointer-events-none absolute -top-space-24 right-[-10rem] -z-10 size-[38rem] rounded-full bg-accent/10 blur-[120px]"
       />
 
       <Container
         size="wide"
-        className="relative grid min-h-[calc(100svh-var(--space-16))] items-center py-space-6 sm:py-space-12 lg:py-space-20"
+        className="relative grid min-h-[calc(100svh-var(--space-16))] items-center py-space-6 sm:py-space-12 lg:py-space-16"
       >
-        <div className="grid lg:grid-cols-12 lg:items-center lg:gap-space-12">
-          <div className="lg:col-span-7">
+        <div className="grid items-center lg:grid-cols-12 lg:gap-space-12 xl:gap-space-20">
+          <div className="relative z-10 lg:col-span-7">
             <div data-hero-group="eyebrow">
-              <div className="flex flex-wrap items-center gap-x-space-6 gap-y-space-2">
-                <p className="font-mono text-eyebrow font-medium text-accent uppercase">
-                  {profile.greeting}
-                </p>
-                {profile.location ? (
-                  <p className="flex items-center gap-space-2 font-mono text-eyebrow text-text-muted uppercase">
-                    <span
-                      aria-hidden="true"
-                      className="size-1.5 rounded-full bg-accent"
-                    />
-                    {profile.location}
-                  </p>
-                ) : null}
-              </div>
+              <p className="flex items-center gap-space-2 font-mono text-eyebrow font-medium text-accent uppercase">
+                <span className="relative flex size-2" aria-hidden="true">
+                  <span className="absolute inline-flex size-full rounded-full bg-success opacity-40 motion-safe:animate-ping" />
+                  <span className="relative inline-flex size-2 rounded-full bg-success" />
+                </span>
+                {profile.greeting}
+              </p>
             </div>
+
             <div data-hero-group="identity" className="mt-space-3">
               <h1
                 id={heroHeadingId}
@@ -73,50 +63,95 @@ export function HeroSection({ profile, socialLinks }: HeroSectionProps) {
                   ) : null}
                   <span className="block text-text-secondary italic">
                     {familyName}
+                    <span className="text-accent not-italic">.</span>
                   </span>
                 </span>
               </h1>
-              <p className="mt-space-5 flex items-center gap-space-3 text-heading-sm font-medium text-text-secondary">
+              <div className="mt-space-5 flex items-center gap-space-3">
                 <span
                   aria-hidden="true"
                   className="h-px w-space-12 shrink-0 bg-accent"
                 />
-                {profile.role}
-              </p>
+                <p className="text-heading-sm font-medium text-text-secondary">
+                  {profile.role}
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div className="relative mt-space-4 border-t border-border pt-space-4 sm:mt-space-6 sm:pt-space-6 lg:col-span-5 lg:mt-space-0 lg:rounded-xl lg:border lg:bg-surface/75 lg:p-space-8 lg:shadow-lg">
-            <span
-              aria-hidden="true"
-              className="absolute top-0 left-space-8 hidden h-px w-space-20 bg-accent lg:block"
-            />
-            <div data-hero-group="introduction">
-              <p className="max-w-prose text-body-md text-text-secondary sm:text-body-lg">
+            <div
+              data-hero-group="introduction"
+              className="mt-space-5 sm:mt-space-6"
+            >
+              <p className="max-w-[42rem] text-body-md text-pretty text-text-secondary sm:text-body-lg">
                 {profile.introduction}
               </p>
             </div>
 
-            <div data-hero-group="actions" className="mt-space-6">
+            <div data-hero-group="actions" className="mt-space-6 sm:mt-space-8">
               <div className="flex flex-wrap gap-space-3">
-                <Button href={profile.primaryCta.href}>
+                <Button
+                  href={profile.primaryCta.href}
+                  size="lg"
+                  trailingIcon={<ArrowDownRight />}
+                >
                   {profile.primaryCta.label}
                 </Button>
-                <Button href={profile.secondaryCta.href} variant="secondary">
+                <Button
+                  href={profile.secondaryCta.href}
+                  variant="secondary"
+                  size="lg"
+                  trailingIcon={<ArrowUpRight />}
+                >
                   {profile.secondaryCta.label}
                 </Button>
               </div>
 
-              <div className="mt-space-3">
+              <div className="mt-space-3 flex flex-wrap items-center gap-x-space-5 gap-y-space-2">
                 <SocialLinks links={socialLinks} variant="compact" />
+                {profile.location ? (
+                  <p className="flex items-center gap-space-2 text-body-sm text-text-muted">
+                    <MapPin aria-hidden="true" className="size-4" />
+                    Based in {profile.location}
+                  </p>
+                ) : null}
+                {profile.availability ? (
+                  <p className="text-body-sm text-text-muted">
+                    {profile.availability}
+                  </p>
+                ) : null}
               </div>
-              {profile.availability ? (
-                <p className="mt-space-5 border-t border-border pt-space-4 text-body-sm text-text-muted">
-                  {profile.availability}
-                </p>
-              ) : null}
             </div>
           </div>
+
+          {profile.portrait ? (
+            <div
+              className="relative hidden lg:col-span-5 lg:block"
+              aria-hidden="true"
+            >
+              <div className="relative ml-auto max-w-[24rem]">
+                <div className="absolute -top-space-5 -right-space-5 h-space-20 w-space-20 border-t border-r border-accent/60" />
+                <div className="absolute -bottom-space-5 -left-space-5 h-space-20 w-space-20 border-b border-l border-accent/60" />
+
+                <div className="relative overflow-hidden rounded-xl border border-border bg-surface p-space-2 shadow-lg">
+                  <MediaFrame
+                    asset={profile.portrait}
+                    highPriority
+                    sizes="(min-width: 1280px) 384px, (min-width: 1024px) 32vw, 0px"
+                    radius="lg"
+                  />
+                </div>
+              </div>
+            </div>
+          ) : null}
+        </div>
+
+        <div
+          aria-hidden="true"
+          className="absolute right-space-8 bottom-space-4 hidden items-center gap-space-3 font-mono text-eyebrow text-text-muted uppercase xl:flex"
+        >
+          <span>Scroll to explore</span>
+          <span className="h-px w-space-12 bg-border-strong" />
+          <ArrowDownRight className="size-3.5 text-accent" />
         </div>
       </Container>
     </section>
