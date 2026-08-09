@@ -146,6 +146,14 @@ export function ProjectCard({
       data-media-position={mediaPosition}
       className="group relative isolate overflow-hidden rounded-xl border border-border bg-surface p-space-5 transition-[translate,background-color,border-color,box-shadow] duration-[var(--motion-fast)] ease-[var(--ease-standard)] before:pointer-events-none before:absolute before:-top-32 before:-right-32 before:-z-10 before:size-80 before:rounded-full before:bg-[radial-gradient(circle,var(--color-accent-subtle),transparent_68%)] before:opacity-0 before:transition-opacity before:duration-[var(--motion-base)] focus-within:border-border-strong focus-within:bg-surface-raised focus-within:before:opacity-100 hover:border-border-strong hover:bg-surface-raised hover:shadow-md hover:before:opacity-100 motion-safe:hover:translate-y-[var(--lift-hover)] motion-reduce:translate-none motion-reduce:transition-[background-color,border-color] sm:p-space-6 lg:p-space-10"
     >
+      {ordinal !== undefined ? (
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute top-space-3 right-space-5 -z-10 font-display text-[clamp(5rem,12vw,10rem)] leading-none font-semibold text-accent opacity-[0.035] transition-opacity duration-[var(--motion-base)] group-hover:opacity-[0.075] motion-reduce:transition-none"
+        >
+          {String(ordinal).padStart(2, "0")}
+        </span>
+      ) : null}
       <div className={cn("grid gap-space-8", cardVariants[variant])}>
         {media}
         {content}

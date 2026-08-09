@@ -5,7 +5,6 @@ import { cleanup, render, screen, within } from "@testing-library/react";
 import { afterEach, describe, expect, it } from "vitest";
 
 import { AboutSection } from "@/features/home/about-section";
-import { ContactSection } from "@/features/home/contact-section";
 import { SkillGroup } from "@/features/home/skill-group";
 import { SkillsSection } from "@/features/home/skills-section";
 import { TestimonialCard } from "@/features/home/testimonial-card";
@@ -13,7 +12,6 @@ import { TestimonialsSection } from "@/features/home/testimonials-section";
 import {
   validProfile,
   validSkillGroups,
-  validSocialLinks,
   validTestimonial,
 } from "@/tests/fixtures/content-records";
 
@@ -102,7 +100,7 @@ describe("testimonials", () => {
   });
 });
 
-describe("about and contact", () => {
+describe("about", () => {
   it("renders biography, optional experience, interests, and portrait from profile", () => {
     render(<AboutSection profile={validProfile} />);
 
@@ -126,42 +124,11 @@ describe("about and contact", () => {
     ).toHaveAttribute("width", String(validProfile.portrait.width));
     expect(about.querySelector('[data-motion="reveal"]')).toBeInTheDocument();
   });
-
-  it("provides direct email and model-provided social destinations", () => {
-    render(
-      <ContactSection
-        heading="Contact"
-        email={validProfile.email}
-        socialLinks={validSocialLinks}
-      />,
-    );
-
-    const contact = screen.getByRole("region", { name: "Contact" });
-
-    expect(contact).toHaveTextContent(
-      validProfile.email.replace("mailto:", ""),
-    );
-    expect(
-      within(contact).getByRole("link", { name: "Send an email" }),
-    ).toHaveAttribute("href", validProfile.email);
-    expect(
-      within(contact).getByRole("link", {
-        name: "GitHub (opens in a new tab)",
-      }),
-    ).toHaveAttribute("href", validSocialLinks[1].href);
-    expect(
-      within(contact).getByRole("link", {
-        name: "LinkedIn (opens in a new tab)",
-      }),
-    ).toHaveAttribute("href", validSocialLinks[2].href);
-    expect(contact.querySelector('[data-motion="reveal"]')).toBeInTheDocument();
-  });
 });
 
 describe("supporting feature architecture guardrails", () => {
   const featureSources = [
     "about-section.tsx",
-    "contact-section.tsx",
     "skill-group.tsx",
     "skills-section.tsx",
     "testimonial-card.tsx",

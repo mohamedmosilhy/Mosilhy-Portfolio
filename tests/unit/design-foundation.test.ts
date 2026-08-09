@@ -225,7 +225,7 @@ describe("design system foundation", () => {
   it("uses zero-request system font stacks", () => {
     expect(layoutSource).not.toContain("next/font");
     expect(globalsSource).toContain(
-      '--font-display: Georgia, "Times New Roman", ui-serif, serif;',
+      '--font-display: "Caveat Variable", "Segoe Print", cursive;',
     );
     expect(globalsSource).toContain("ui-sans-serif");
     expect(globalsSource).toContain("ui-monospace");

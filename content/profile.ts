@@ -7,8 +7,10 @@ export const profile = {
   introduction:
     "I build fast, polished applications with clean architecture, optimized performance, and thoughtful user experiences.",
   biography: [
-    "My web work includes React and Next.js interfaces, server-side application logic, relational data modeling, authentication, and tested business workflows.",
-    "I also build animation-led interfaces and interactive 3D experiences, alongside Python projects in computer vision and scientific computing.",
+    "I came to programming through biomedical engineering, where code gave me a practical way to explore signals, images, and data. Python turned abstract technical problems into tools I could test, understand, and improve.",
+    "That curiosity grew into computer vision and scientific-computing projects. Working across image processing, Fourier analysis, and machine learning taught me to break complex problems into clear, measurable steps.",
+    "I wanted those ideas to become products people could actually use, so I moved deeper into web development—first shaping responsive interfaces, then learning the server logic, databases, authentication, and testing behind them.",
+    "Today I work across the full stack with React and Next.js, combining an engineer’s systems thinking with a growing focus on motion, interaction, and browser-based 3D. The goal is always the same: make ambitious software feel clear and human.",
   ],
   experience: [],
   interests: [

@@ -302,7 +302,7 @@ describe("site chrome", () => {
     expect(header).toHaveAttribute("data-scrolled", "true");
   });
 
-  it("renders model-provided footer identity, navigation, and destinations", () => {
+  it("combines contact and footer content without duplicating destinations", () => {
     render(
       <SiteFooter
         profile={validProfile}
@@ -312,7 +312,7 @@ describe("site chrome", () => {
       />,
     );
 
-    const footer = screen.getByRole("contentinfo");
+    const footer = screen.getByRole("contentinfo", { name: "Contact" });
 
     expect(
       within(footer).getByRole("link", {
@@ -323,11 +323,27 @@ describe("site chrome", () => {
       within(footer).getByRole("navigation", { name: "Footer" }),
     ).toBeInTheDocument();
     expect(
+      within(footer).queryByRole("link", { name: "Contact" }),
+    ).not.toBeInTheDocument();
+    expect(
+      within(footer).getByRole("link", {
+        name: validProfile.email.replace("mailto:", ""),
+      }),
+    ).toHaveAttribute("href", validProfile.email);
+    expect(
       within(footer).getByRole("link", {
         name: "GitHub (opens in a new tab)",
       }),
     ).toHaveAttribute("href", validSocialLinks[1].href);
-    expect(footer).toHaveTextContent(`© 2026 ${validProfile.name}`);
+    expect(
+      within(footer).getByRole("navigation", { name: "Social profiles" }),
+    ).toBeInTheDocument();
+    expect(footer).toHaveTextContent("© 2026");
+    expect(
+      within(footer).queryAllByRole("link", {
+        name: validProfile.email.replace("mailto:", ""),
+      }),
+    ).toHaveLength(1);
   });
 });
 

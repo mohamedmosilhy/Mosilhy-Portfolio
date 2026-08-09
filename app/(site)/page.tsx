@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import { StructuredData } from "@/components/metadata/structured-data";
 import { AboutSection } from "@/features/home/about-section";
-import { ContactSection } from "@/features/home/contact-section";
 import { HeroSection } from "@/features/home/hero-section";
 import { SkillsSection } from "@/features/home/skills-section";
 import { TestimonialsSection } from "@/features/home/testimonials-section";
@@ -38,11 +37,6 @@ export default async function HomePage() {
         />
       ) : null}
       <AboutSection profile={model.profile} />
-      <ContactSection
-        heading="Contact"
-        email={model.profile.email}
-        socialLinks={model.socialLinks}
-      />
     </>
   );
 }

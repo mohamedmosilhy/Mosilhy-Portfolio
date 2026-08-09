@@ -3,6 +3,7 @@ import { ArrowDownRight, ArrowUpRight, MapPin } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import { MediaFrame } from "@/components/ui/media-frame";
+import { Spotlight } from "@/components/ui/spotlight";
 import { SocialLinks } from "@/features/home/social-links";
 import type { Profile, SocialLink } from "@/types/content";
 
@@ -27,6 +28,10 @@ export function HeroSection({ profile, socialLinks }: HeroSectionProps) {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-20 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] [mask-image:linear-gradient(to_bottom,black,transparent_82%)] bg-[size:4rem_4rem] opacity-20"
+      />
+      <Spotlight
+        filterId="hero-spotlight-filter"
+        className="-top-[38rem] -left-[42rem] hidden sm:block lg:-top-[34rem] lg:-left-[24rem]"
       />
       <div
         aria-hidden="true"
@@ -53,7 +58,7 @@ export function HeroSection({ profile, socialLinks }: HeroSectionProps) {
               <h1
                 id={heroHeadingId}
                 aria-label={profile.name}
-                className="font-display text-display-xl font-medium text-balance text-text"
+                className="font-display text-display-xl font-semibold text-balance text-text"
               >
                 <span aria-hidden="true">
                   {givenNames ? (
@@ -61,9 +66,9 @@ export function HeroSection({ profile, socialLinks }: HeroSectionProps) {
                       <span className="block">{givenNames}</span>{" "}
                     </>
                   ) : null}
-                  <span className="block text-text-secondary italic">
+                  <span className="block text-text-secondary">
                     {familyName}
-                    <span className="text-accent not-italic">.</span>
+                    <span className="text-accent">.</span>
                   </span>
                 </span>
               </h1>
@@ -125,7 +130,7 @@ export function HeroSection({ profile, socialLinks }: HeroSectionProps) {
 
           {profile.portrait ? (
             <div
-              className="relative hidden lg:col-span-5 lg:block"
+              className="relative z-10 hidden lg:col-span-5 lg:block"
               aria-hidden="true"
             >
               <div className="relative ml-auto max-w-[24rem]">

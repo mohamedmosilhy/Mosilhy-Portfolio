@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const sectionNames = ["Selected projects", "Skills", "About", "Contact"];
+const sectionNames = ["Selected projects", "Skills", "About"];
 
 test("renders the complete home narrative in the required order", async ({
   page,
@@ -10,12 +10,14 @@ test("renders the complete home narrative in the required order", async ({
   const main = page.locator("main");
   const sections = main.locator(":scope > section");
 
-  await expect(sections).toHaveCount(5);
+  await expect(sections).toHaveCount(4);
   await expect(sections.nth(0)).toHaveAttribute("data-slot", "hero-section");
   await expect(sections.nth(1)).toHaveAttribute("id", "projects");
   await expect(sections.nth(2)).toHaveAttribute("id", "skills");
   await expect(sections.nth(3)).toHaveAttribute("id", "about");
-  await expect(sections.nth(4)).toHaveAttribute("id", "contact");
+  await expect(
+    page.getByRole("contentinfo", { name: "Contact" }),
+  ).toHaveAttribute("id", "contact");
   await expect(page.getByRole("region", { name: "Testimonials" })).toHaveCount(
     0,
   );
@@ -64,7 +66,7 @@ test("keeps the complete home page available without JavaScript", async ({
   }
 
   await expect(
-    page.getByRole("link", { name: "Send an email" }),
+    page.getByRole("link", { name: "mmosilhyofficial@gmail.com" }),
   ).toHaveAttribute("href", "mailto:mmosilhyofficial@gmail.com");
   await expect(page.getByRole("contentinfo")).toBeVisible();
 

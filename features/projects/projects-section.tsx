@@ -24,9 +24,12 @@ export function ProjectsSection({ projects, heading }: ProjectsSectionProps) {
     >
       <Container size="wide">
         <Reveal>
-          <div id={projectsHeadingId}>
-            <SectionHeading title={heading} />
-          </div>
+          <SectionHeading
+            id={projectsHeadingId}
+            title={heading}
+            eyebrow="01 / Selected work"
+            description="A focused set of products, interfaces, and systems—from polished frontends to tested full-stack applications."
+          />
         </Reveal>
 
         <Stagger

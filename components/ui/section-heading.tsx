@@ -18,6 +18,7 @@ const sizes = {
 } as const;
 
 export interface SectionHeadingProps {
+  readonly id?: string;
   readonly title: ReactNode;
   readonly eyebrow?: ReactNode;
   readonly description?: ReactNode;
@@ -29,6 +30,7 @@ export interface SectionHeadingProps {
 }
 
 export function SectionHeading({
+  id,
   title,
   eyebrow,
   description,
@@ -49,6 +51,7 @@ export function SectionHeading({
         </p>
       ) : null}
       <Heading
+        id={id}
         className={cn(
           "font-semibold text-balance text-text",
           sizes[size],

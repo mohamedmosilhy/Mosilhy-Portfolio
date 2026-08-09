@@ -30,9 +30,7 @@ export function TestimonialsSection({
     >
       <Container size="wide">
         <Reveal>
-          <div id={testimonialsHeadingId}>
-            <SectionHeading title={heading} />
-          </div>
+          <SectionHeading id={testimonialsHeadingId} title={heading} />
         </Reveal>
 
         <Stagger

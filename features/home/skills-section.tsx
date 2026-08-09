@@ -24,9 +24,12 @@ export function SkillsSection({ groups, heading }: SkillsSectionProps) {
     >
       <Container size="wide">
         <Reveal>
-          <div id={skillsHeadingId}>
-            <SectionHeading title={heading} />
-          </div>
+          <SectionHeading
+            id={skillsHeadingId}
+            title={heading}
+            eyebrow="02 / Capabilities"
+            description="The tools I use to move from an interface idea to a reliable, production-ready system."
+          />
         </Reveal>
 
         <Stagger

@@ -22,9 +22,11 @@ export function AboutSection({ profile }: AboutSectionProps) {
       <Container size="wide">
         <Reveal className="grid gap-space-12 lg:grid-cols-12 lg:gap-space-8">
           <div className="lg:sticky lg:top-space-24 lg:col-span-4 lg:self-start">
-            <div id={aboutHeadingId}>
-              <SectionHeading title="About" />
-            </div>
+            <SectionHeading
+              id={aboutHeadingId}
+              title="About"
+              eyebrow="03 / My journey"
+            />
             {profile.location ? (
               <p className="mt-space-6 font-mono text-eyebrow font-medium text-accent uppercase">
                 {profile.location}
@@ -49,20 +51,31 @@ export function AboutSection({ profile }: AboutSectionProps) {
           </div>
 
           <div className="lg:col-span-7 lg:col-start-6">
-            <div className="space-y-space-8 text-pretty">
+            <h3 className="max-w-[18ch] font-display text-heading-lg font-semibold text-balance text-text">
+              From engineering problems to products people can use.
+            </h3>
+            <ol className="relative mt-space-10 border-l border-border pl-space-8 text-pretty sm:pl-space-10">
               {profile.biography.map((paragraph, index) => (
-                <p
-                  key={paragraph}
-                  className={
-                    index === 0
-                      ? "font-display text-heading-md font-medium text-text"
-                      : "max-w-prose text-body-lg text-text-secondary"
-                  }
-                >
-                  {paragraph}
-                </p>
+                <li key={paragraph} className="relative pb-space-10 last:pb-0">
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-[0.45rem] -left-[calc(var(--space-8)+0.3125rem)] size-2.5 rounded-full border-2 border-surface bg-accent shadow-[0_0_0_4px_var(--color-accent-subtle)] sm:-left-[calc(var(--space-10)+0.3125rem)]"
+                  />
+                  <p className="font-mono text-eyebrow font-medium text-accent uppercase">
+                    Chapter {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <p
+                    className={
+                      index === 0
+                        ? "mt-space-3 max-w-prose text-body-lg font-semibold text-text"
+                        : "mt-space-3 max-w-prose text-body-lg text-text-secondary"
+                    }
+                  >
+                    {paragraph}
+                  </p>
+                </li>
               ))}
-            </div>
+            </ol>
 
             {profile.experience.length > 0 ? (
               <div className="mt-space-12">

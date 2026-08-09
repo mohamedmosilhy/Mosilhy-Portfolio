@@ -282,7 +282,6 @@ describe("motion architecture guardrails", () => {
     );
     const choreographedFeatures = [
       "features/home/about-section.tsx",
-      "features/home/contact-section.tsx",
       "features/home/hero-section.tsx",
       "features/home/skills-section.tsx",
       "features/home/testimonials-section.tsx",

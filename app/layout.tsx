@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { getHomePageModel } from "@/lib/content/site-content";
 import { createRootMetadata } from "@/lib/metadata/create-metadata";
 
+import "@fontsource-variable/caveat";
+import "@fontsource-variable/nunito-sans";
 import "./globals.css";
 
 export async function generateMetadata(): Promise<Metadata> {
