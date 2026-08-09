@@ -8,7 +8,7 @@ export default function ProjectNotFound() {
       className="grid min-h-[calc(100svh-var(--space-16))] items-center py-space-16"
     >
       <Container size="narrow">
-        <p className="font-mono text-eyebrow font-medium text-accent uppercase">
+        <p className="font-sans text-eyebrow font-semibold text-accent uppercase">
           404
         </p>
         <h1

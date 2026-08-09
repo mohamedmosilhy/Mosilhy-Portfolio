@@ -45,7 +45,7 @@ export function HeroSection({ profile, socialLinks }: HeroSectionProps) {
         <div className="grid items-center lg:grid-cols-12 lg:gap-space-12 xl:gap-space-20">
           <div className="relative z-10 lg:col-span-7">
             <div data-hero-group="eyebrow">
-              <p className="flex items-center gap-space-2 font-mono text-eyebrow font-medium text-accent uppercase">
+              <p className="flex items-center gap-space-2 font-sans text-eyebrow font-semibold text-accent uppercase">
                 <span className="relative flex size-2" aria-hidden="true">
                   <span className="absolute inline-flex size-full rounded-full bg-success opacity-40 motion-safe:animate-ping" />
                   <span className="relative inline-flex size-2 rounded-full bg-success" />
@@ -152,7 +152,7 @@ export function HeroSection({ profile, socialLinks }: HeroSectionProps) {
 
         <div
           aria-hidden="true"
-          className="absolute right-space-8 bottom-space-4 hidden items-center gap-space-3 font-mono text-eyebrow text-text-muted uppercase xl:flex"
+          className="absolute right-space-8 bottom-space-4 hidden items-center gap-space-3 font-sans text-eyebrow font-semibold text-text-muted uppercase xl:flex"
         >
           <span>Scroll to explore</span>
           <span className="h-px w-space-12 bg-border-strong" />

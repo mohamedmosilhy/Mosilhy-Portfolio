@@ -100,7 +100,7 @@ describe("repository content pipeline", () => {
     ]);
 
     expect(home.profile.name).toBe("Mohamed Mosilhy");
-    expect(home.featuredProjects.map((project) => project.slug)).toEqual(
+    expect(home.projects.map((project) => project.slug)).toEqual(
       expectedProjectOrder,
     );
     expect(home.testimonials).toEqual([]);

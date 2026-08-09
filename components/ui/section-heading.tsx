@@ -13,7 +13,7 @@ const headingElements: Record<HeadingLevel, ElementType> = {
 };
 
 const sizes = {
-  lg: "text-heading-lg",
+  lg: "font-display text-heading-lg font-medium text-text",
   xl: "font-display text-heading-xl font-medium text-text",
 } as const;
 
@@ -46,17 +46,13 @@ export function SectionHeading({
   const content = (
     <div className={cn("max-w-prose", centered && "mx-auto text-center")}>
       {eyebrow ? (
-        <p className="mb-space-3 font-mono text-eyebrow font-medium tracking-[var(--eyebrow-tracking)] text-accent uppercase">
+        <p className="mb-space-3 font-sans text-eyebrow font-semibold tracking-[var(--eyebrow-tracking)] text-accent uppercase">
           {eyebrow}
         </p>
       ) : null}
       <Heading
         id={id}
-        className={cn(
-          "font-semibold text-balance text-text",
-          sizes[size],
-          size === "lg" && "font-sans",
-        )}
+        className={cn("font-semibold text-balance text-text", sizes[size])}
       >
         {title}
       </Heading>

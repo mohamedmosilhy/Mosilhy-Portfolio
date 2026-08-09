@@ -319,9 +319,11 @@ describe("primitive architecture guardrails", () => {
       source: readFileSync(join(componentDirectory, file), "utf8"),
     }));
 
-  it("keeps every primitive server-compatible", () => {
+  it("limits client behavior to the scroll-reactive tracing beam", () => {
     for (const { file, source } of sources) {
-      expect(source, file).not.toMatch(/^["']use client["'];?/m);
+      const isClient = /^["']use client["'];?/m.test(source);
+
+      expect(isClient, file).toBe(file === "tracing-beam.tsx");
     }
   });
 

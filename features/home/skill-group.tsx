@@ -46,7 +46,7 @@ export function SkillGroup({
         </Heading>
         <span
           aria-hidden="true"
-          className="font-mono text-eyebrow text-text-muted"
+          className="font-sans text-eyebrow font-semibold text-text-muted"
         >
           {String(group.skills.length).padStart(2, "0")}
         </span>

@@ -124,7 +124,7 @@ test("returns to the home project section by keyboard", async ({ page }) => {
 
   await expect(page).toHaveURL(/\/#projects$/);
   await expect(
-    page.getByRole("region", { name: "Selected projects" }),
+    page.getByRole("region", { name: "Project gallery" }),
   ).toBeInViewport();
 });
 

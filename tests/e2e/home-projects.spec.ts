@@ -7,18 +7,17 @@ const projectTitles = [
   "iPhone 15 Pro Website Recreation",
 ] as const;
 
-test("renders ordered featured project evidence and actions", async ({
-  page,
-}) => {
+test("renders an ordered, minimal project gallery", async ({ page }) => {
   await page.goto("/");
 
-  const section = page.getByRole("region", { name: "Selected projects" });
+  const section = page.getByRole("region", { name: "Project gallery" });
   const cards = section.getByRole("article");
 
   await expect(cards).toHaveCount(projectTitles.length);
   await expect(
     cards.getByRole("heading", { level: 3 }).allTextContents(),
   ).resolves.toEqual(projectTitles);
+  await expect(section.getByText("Showing 4 of 4 projects")).toBeVisible();
 
   const nova = cards.first();
 
@@ -27,24 +26,42 @@ test("renders ordered featured project evidence and actions", async ({
       name: "Arabic Nova storefront home page with product collections",
     }),
   ).toBeVisible();
+  await expect(nova.getByRole("link")).toHaveCount(1);
   await expect(
     nova.getByRole("link", {
       name: "View Nova E-commerce Platform case study",
     }),
   ).toHaveAttribute("href", "/projects/nova-ecommerce");
-  await expect(
-    nova.getByRole("link", {
-      name: /Open Nova E-commerce Platform GitHub repository/,
-    }),
-  ).toHaveAttribute("href", "https://github.com/mohamedmosilhy/e-commerce-app");
-  await expect(
-    nova.getByRole("link", {
-      name: /Open Nova E-commerce Platform live demo/,
-    }),
-  ).toHaveAttribute("href", "https://kenzkids.com/");
+  await expect(nova).not.toContainText("Next.js");
 });
 
-test("keeps project content available without JavaScript or hover", async ({
+test("filters by discipline and searches across project tools", async ({
+  page,
+}) => {
+  await page.goto("/");
+
+  const section = page.getByRole("region", { name: "Project gallery" });
+
+  await section.getByRole("button", { name: "Frontend" }).click();
+  await expect(section.getByRole("article")).toHaveCount(2);
+  await expect(section.getByText("Blacktape Website")).toBeVisible();
+  await expect(
+    section.getByText("iPhone 15 Pro Website Recreation"),
+  ).toBeVisible();
+
+  await section.getByRole("button", { name: "All", exact: true }).click();
+  await section
+    .getByRole("searchbox", { name: "Search projects" })
+    .fill("Waldo");
+  await expect(section.getByRole("article")).toHaveCount(1);
+  await expect(section.getByText("Where’s Waldo")).toBeVisible();
+  await expect(section.getByText("Showing 1 of 4 projects")).toBeVisible();
+
+  await section.getByRole("button", { name: "Reset filters" }).click();
+  await expect(section.getByRole("article")).toHaveCount(4);
+});
+
+test("keeps every project available without JavaScript or hover", async ({
   browser,
 }) => {
   const context = await browser.newContext({
@@ -55,27 +72,20 @@ test("keeps project content available without JavaScript or hover", async ({
 
   await page.goto("/");
 
-  const firstProject = page
-    .getByRole("region", { name: "Selected projects" })
-    .getByRole("article")
-    .first();
+  const section = page.getByRole("region", { name: "Project gallery" });
+  const cards = section.getByRole("article");
 
+  await expect(cards).toHaveCount(projectTitles.length);
   await expect(
-    firstProject.getByRole("heading", {
+    cards.first().getByRole("heading", {
       level: 3,
       name: projectTitles[0],
     }),
   ).toBeVisible();
   await expect(
-    firstProject.getByText("Next.js", { exact: true }),
-  ).toBeVisible();
-  await expect(
-    firstProject.getByRole("link", {
+    cards.first().getByRole("link", {
       name: `View ${projectTitles[0]} case study`,
     }),
-  ).toBeVisible();
-  await expect(
-    firstProject.getByRole("link", { name: /live demo/ }),
   ).toBeVisible();
 
   await context.close();

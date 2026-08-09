@@ -178,6 +178,7 @@ type ProjectSummary = {
   slug: string;
   title: string;
   summary: string;
+  category: ProjectCategory;
   technologies: readonly Skill[];
   cover: ImageAsset;
   links: ProjectLinks;

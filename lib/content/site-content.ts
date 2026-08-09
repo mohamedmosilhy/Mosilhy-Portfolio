@@ -2,7 +2,7 @@ import "server-only";
 
 import {
   getAdjacentProjects,
-  getFeaturedProjects,
+  getAllProjectSummaries,
   getProjectBySlug,
 } from "@/lib/content/projects";
 import { getRepositoryContent } from "@/lib/content/repository";
@@ -10,9 +10,9 @@ import type { CompiledMdx } from "@/types/content";
 import type { HomePageModel, ProjectPageModel } from "@/types/page-models";
 
 export async function getHomePageModel(): Promise<HomePageModel> {
-  const [repository, featuredProjects] = await Promise.all([
+  const [repository, projects] = await Promise.all([
     getRepositoryContent(),
-    getFeaturedProjects(),
+    getAllProjectSummaries(),
   ]);
   const { catalog } = repository;
 
@@ -24,7 +24,7 @@ export async function getHomePageModel(): Promise<HomePageModel> {
     socialLinks: Object.freeze(
       [...catalog.socialLinks].sort((left, right) => left.order - right.order),
     ),
-    featuredProjects,
+    projects,
     skillGroups: Object.freeze(
       [...catalog.skillGroups].sort((left, right) => left.order - right.order),
     ),

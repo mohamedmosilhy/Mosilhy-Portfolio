@@ -17,6 +17,7 @@ const projectSummary = {
   title: validProject.title,
   summary: validProject.summary,
   role: validProject.role,
+  category: validProject.category,
   technologies: validSkillGroups[0].skills,
   links: validProject.links,
   cover: validProject.cover,
@@ -28,76 +29,38 @@ const projectSummary = {
 afterEach(cleanup);
 
 describe("ProjectCard", () => {
-  it("renders complete project evidence with valid sibling actions", () => {
-    render(<ProjectCard project={projectSummary} />);
+  it("keeps the gallery preview visual and deliberately minimal", () => {
+    render(<ProjectCard project={projectSummary} ordinal={1} />);
 
-    const card = screen.getByRole("article", {
-      name: projectSummary.title,
-    });
+    const card = screen.getByRole("article", { name: projectSummary.title });
     const media = within(card).getByRole("img", {
       name: projectSummary.cover.alt,
     });
+    const links = within(card).getAllByRole("link");
 
     expect(media).toHaveAttribute("width", String(projectSummary.cover.width));
     expect(media).toHaveAttribute(
       "height",
       String(projectSummary.cover.height),
     );
+    expect(card).toHaveTextContent("Full-stack");
     expect(card).toHaveTextContent(projectSummary.role);
-    expect(card).toHaveTextContent(projectSummary.summary);
-
-    for (const technology of projectSummary.technologies) {
-      expect(card).toHaveTextContent(technology.name);
-    }
-
-    const caseStudy = within(card).getByRole("link", {
-      name: `View ${projectSummary.title} case study`,
-    });
-    const github = within(card).getByRole("link", {
-      name: `Open ${projectSummary.title} GitHub repository (opens in a new tab)`,
-    });
-    const liveDemo = within(card).getByRole("link", {
-      name: `Open ${projectSummary.title} live demo (opens in a new tab)`,
-    });
-
-    expect(caseStudy).toHaveAttribute(
+    expect(card).toHaveTextContent("01");
+    expect(card).not.toHaveTextContent(projectSummary.summary);
+    expect(card).not.toHaveTextContent(projectSummary.technologies[0].name);
+    expect(links).toHaveLength(1);
+    expect(links[0]).toHaveAccessibleName(
+      `View ${projectSummary.title} case study`,
+    );
+    expect(links[0]).toHaveAttribute(
       "href",
       `/projects/${projectSummary.slug}`,
     );
-    expect(github).toHaveAttribute("href", projectSummary.links.github);
-    expect(liveDemo).toHaveAttribute("href", projectSummary.links.live);
-    expect(caseStudy.closest("a")?.querySelectorAll("a")).toHaveLength(0);
-    expect(github.closest("a")?.querySelectorAll("a")).toHaveLength(0);
-    expect(liveDemo.closest("a")?.querySelectorAll("a")).toHaveLength(0);
-  });
-
-  it("keeps a stable mobile reading order and applies alternation at wide breakpoints", () => {
-    const { rerender } = render(
-      <ProjectCard project={projectSummary} mediaPosition="start" />,
-    );
-    let layout = screen
-      .getByRole("article", { name: projectSummary.title })
-      .querySelector(".grid")!;
-
-    expect(layout.firstElementChild).toContainElement(
-      screen.getByRole("img", { name: projectSummary.cover.alt }),
-    );
-
-    rerender(<ProjectCard project={projectSummary} mediaPosition="end" />);
-    layout = screen
-      .getByRole("article", { name: projectSummary.title })
-      .querySelector(".grid")!;
-
-    expect(layout.firstElementChild).toContainElement(
-      screen.getByRole("img", { name: projectSummary.cover.alt }),
-    );
-    expect(layout.firstElementChild).toHaveClass("lg:order-2");
-    expect(layout.lastElementChild).toHaveClass("lg:order-1");
   });
 });
 
 describe("ProjectsSection", () => {
-  it("preserves the order supplied by the validated page model", () => {
+  it("preserves model order inside the filterable bento gallery", () => {
     const secondProject = {
       ...projectSummary,
       slug: "second-project",
@@ -109,34 +72,29 @@ describe("ProjectsSection", () => {
     render(
       <ProjectsSection
         projects={[secondProject, projectSummary]}
-        heading="Selected projects"
+        heading="Project gallery"
       />,
     );
 
-    const section = screen.getByRole("region", {
-      name: "Selected projects",
-    });
+    const section = screen.getByRole("region", { name: "Project gallery" });
     const cards = within(section).getAllByRole("article");
-    const collection = section.querySelector('[data-motion="stagger"]');
 
     expect(cards.map((card) => card.getAttribute("aria-labelledby"))).toEqual([
       "project-second-project-heading",
       `project-${projectSummary.slug}-heading`,
     ]);
+    expect(within(section).getByText("Showing 2 of 2 projects")).toBeVisible();
     expect(
-      cards.map((card) => card.getAttribute("data-media-position")),
-    ).toEqual(["start", "end"]);
-    expect(cards[0]).toHaveTextContent("01");
-    expect(cards[1]).toHaveTextContent("02");
-    expect(collection).toHaveAttribute("data-motion-item-count", "2");
-    expect(
-      collection?.querySelectorAll(':scope > [data-motion="stagger-item"]'),
-    ).toHaveLength(2);
+      within(section).getByRole("button", { name: "All" }),
+    ).toHaveAttribute("aria-pressed", "true");
+    expect(section.querySelector('[data-slot="bento-grid"]')).toHaveClass(
+      "lg:grid-cols-6",
+    );
   });
 });
 
 describe("project feature architecture guardrails", () => {
-  const featureSources = [
+  const serverFeatureSources = [
     "features/projects/components/project-card.tsx",
     "features/projects/projects-section.tsx",
   ].map((file) => ({
@@ -144,19 +102,27 @@ describe("project feature architecture guardrails", () => {
     source: readFileSync(resolve(process.cwd(), file), "utf8"),
   }));
 
-  it("keeps project features server-rendered and page-model driven", () => {
-    for (const { file, source } of featureSources) {
+  it("keeps only filtering in a focused client island", () => {
+    for (const { file, source } of serverFeatureSources) {
       expect(source, file).not.toMatch(/^["']use client["'];?/m);
       expect(source, file).not.toContain("@/content/");
       expect(source, file).not.toContain("@/lib/content/");
-      expect(source, file).not.toMatch(
-        /Mohamed Mosilhy|Nova E-commerce|Where’s Waldo|Blacktape/,
-      );
     }
+
+    const gallerySource = readFileSync(
+      resolve(
+        process.cwd(),
+        "features/projects/components/filterable-project-gallery.tsx",
+      ),
+      "utf8",
+    );
+
+    expect(gallerySource).toMatch(/^["']use client["'];?/m);
+    expect(gallerySource).not.toContain("@/lib/content/");
   });
 
   it("uses semantic design tokens instead of raw palette values", () => {
-    for (const { file, source } of featureSources) {
+    for (const { file, source } of serverFeatureSources) {
       expect(source, file).not.toMatch(/#[\da-f]{3,8}\b/i);
       expect(source, file).not.toMatch(
         /\b(?:bg|text|border)-(?:zinc|slate|gray|neutral|indigo|rose|teal|amber)-\d+/,

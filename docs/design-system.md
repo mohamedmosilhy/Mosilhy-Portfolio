@@ -94,42 +94,39 @@ semantic tokens.
 
 ### Font families
 
-| Role    | Family stack                                                             |
-| ------- | ------------------------------------------------------------------------ |
-| Display | `Georgia, "Times New Roman", ui-serif, serif`                            |
-| Sans    | `Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif` |
-| Mono    | `ui-monospace, SFMono-Regular, "SF Mono", Consolas, monospace`           |
+| Role    | Family stack                                                              |
+| ------- | ------------------------------------------------------------------------- |
+| Display | `"Fraunces Variable", Georgia, serif`                                     |
+| Sans    | `"DM Sans Variable", ui-sans-serif, system-ui, -apple-system, sans-serif` |
+| Mono    | `ui-monospace, SFMono-Regular, "SF Mono", Consolas, monospace`            |
 
 The display stack is used for headings and rare editorial emphasis. The sans
-stack is used for body, navigation, labels, controls, card titles, and dense
-case-study headings. The mono stack is limited to compact technical metadata,
-small eyebrow labels, code, and optional project numbering. Do not use serif or
-monospace for long technical explanations.
+stack is used for body, navigation, labels, controls, and compact metadata.
+Fraunces is used consistently for card and case-study headings. The mono stack
+is limited to literal code content. Do not use serif or monospace for long
+technical explanations.
 
-These system-first stacks require no font request and therefore cannot delay
-first paint, LCP, or project-image discovery. Use 400 for body, 500 for labels
-and controls, and 600 for sans headings. Display headings use 500 or 600 where
-the installed face supports it; browsers synthesize the closest available
-weight consistently.
+Both primary families are self-hosted through Fontsource. Use 400 for body and
+500–600 for labels and controls. Display headings use 500 or 600 so Fraunces
+retains its editorial character without becoming ornamental.
 
-The serif/sans pairing creates the editorial/technical contrast. Do not emulate
-the reference by using Playfair Display or Fira Sans.
+The Fraunces/DM Sans pairing creates an editorial but approachable contrast.
 
 ### Type scale
 
-| Token        | Size                            | Line height | Tracking   | Usage                             |
-| ------------ | ------------------------------- | ----------- | ---------- | --------------------------------- |
-| `display-xl` | `clamp(3.5rem, 9vw, 7rem)`      | `0.92`      | `-0.045em` | home hero name, display stack     |
-| `display-lg` | `clamp(2.75rem, 7vw, 5rem)`     | `0.98`      | `-0.04em`  | project hero title, display stack |
-| `heading-xl` | `clamp(2.25rem, 5vw, 4rem)`     | `1.02`      | `-0.035em` | section heading, display stack    |
-| `heading-lg` | `clamp(1.625rem, 3vw, 2.25rem)` | `1.15`      | `-0.025em` | case-study section                |
-| `heading-md` | `1.5rem`                        | `1.25`      | `-0.02em`  | card/group heading                |
-| `heading-sm` | `1.125rem`                      | `1.35`      | `-0.01em`  | minor heading                     |
-| `body-lg`    | `1.125rem`                      | `1.7`       | `0`        | introductory copy                 |
-| `body-md`    | `1rem`                          | `1.7`       | `0`        | default body                      |
-| `body-sm`    | `0.875rem`                      | `1.6`       | `0`        | supporting copy                   |
-| `label`      | `0.875rem`                      | `1.25`      | `0.01em`   | buttons and controls              |
-| `eyebrow`    | `0.75rem`                       | `1.3`       | `0.1em`    | uppercase metadata                |
+| Token        | Size                                        | Line height | Tracking   | Usage                             |
+| ------------ | ------------------------------------------- | ----------- | ---------- | --------------------------------- |
+| `display-xl` | `clamp(4rem, 8.5vw, 7.5rem)`                | `0.9`       | `-0.05em`  | home hero name, display stack     |
+| `display-lg` | `clamp(3.25rem, 6.5vw, 5.75rem)`            | `0.94`      | `-0.045em` | project hero title, display stack |
+| `heading-xl` | `clamp(2.625rem, 4.75vw, 4.25rem)`          | `1`         | `-0.04em`  | section heading, display stack    |
+| `heading-lg` | `clamp(2rem, 3vw, 3rem)`                    | `1.08`      | `-0.03em`  | case-study section                |
+| `heading-md` | `clamp(1.5rem, 2vw, 2rem)`                  | `1.15`      | `-0.025em` | card/group heading                |
+| `heading-sm` | `1.25rem`                                   | `1.25`      | `-0.015em` | minor heading                     |
+| `body-lg`    | `clamp(1.0625rem, 0.4vw + 1rem, 1.1875rem)` | `1.65`      | `0`        | introductory copy                 |
+| `body-md`    | `1rem`                                      | `1.65`      | `0`        | default body                      |
+| `body-sm`    | `0.875rem`                                  | `1.55`      | `0`        | supporting copy                   |
+| `label`      | `0.875rem`                                  | `1.25`      | `0.01em`   | buttons and controls              |
+| `eyebrow`    | `0.75rem`                                   | `1.3`       | `0.08em`   | uppercase metadata                |
 
 Long-form prose is limited to approximately 65–72 characters per line.
 Heading hierarchy follows document meaning; visual size does not determine the

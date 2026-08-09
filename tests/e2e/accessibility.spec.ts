@@ -101,7 +101,7 @@ test("primary home and project journeys complete by keyboard", async ({
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/\/#projects$/);
   await expect(
-    page.getByRole("region", { name: "Selected projects" }),
+    page.getByRole("region", { name: "Project gallery" }),
   ).toBeVisible();
 });
 

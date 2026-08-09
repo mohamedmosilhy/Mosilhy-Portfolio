@@ -17,7 +17,7 @@ export function Spotlight({
       focusable="false"
       data-slot="spotlight"
       className={cn(
-        "pointer-events-none absolute z-[1] h-[169%] w-[138%] text-accent opacity-0 motion-safe:animate-[spotlight_900ms_var(--ease-enter)_150ms_forwards] motion-reduce:opacity-35 lg:w-[84%]",
+        "pointer-events-none absolute z-1 h-[169%] w-[138%] text-accent opacity-0 motion-safe:animate-[spotlight_900ms_var(--ease-enter)_150ms_forwards] motion-reduce:opacity-35 lg:w-[84%]",
         className,
       )}
       xmlns="http://www.w3.org/2000/svg"

@@ -1,4 +1,6 @@
 import { Container } from "@/components/layout/container";
+import { TracingBeam } from "@/components/ui/tracing-beam";
+import { CaseStudyOutline } from "@/features/projects/components/case-study-outline";
 import { renderProjectMdx } from "@/features/projects/components/mdx-components";
 import { ProjectHero } from "@/features/projects/components/project-hero";
 import { ProjectNavigation } from "@/features/projects/components/project-navigation";
@@ -31,7 +33,14 @@ export async function ProjectCaseStudy({
         aria-label={`${project.title} case study`}
         className="border-t border-border py-space-16 lg:py-space-24"
       >
-        <Container size="prose">{body}</Container>
+        <Container size="wide">
+          <div className="grid gap-space-12 lg:grid-cols-12 lg:gap-space-16">
+            <CaseStudyOutline />
+            <div className="lg:col-span-8 lg:col-start-5">
+              <TracingBeam>{body}</TracingBeam>
+            </div>
+          </div>
+        </Container>
       </section>
 
       <ProjectNavigation

@@ -23,6 +23,7 @@ export interface MediaFrameProps {
   readonly caption?: ReactNode;
   readonly variant?: keyof typeof variants;
   readonly radius?: keyof typeof radii;
+  readonly fill?: boolean;
 }
 
 export function MediaFrame({
@@ -32,13 +33,25 @@ export function MediaFrame({
   caption,
   variant = "plain",
   radius = "xl",
+  fill = false,
 }: MediaFrameProps) {
   const poster = asset.kind === "video" ? asset.poster : asset;
   const resolvedCaption = caption ?? asset.caption;
 
   return (
-    <figure data-slot="media-frame" data-variant={variant}>
-      <div className={cn("overflow-hidden", variants[variant], radii[radius])}>
+    <figure
+      data-slot="media-frame"
+      data-variant={variant}
+      className={cn(fill && "h-full")}
+    >
+      <div
+        className={cn(
+          "overflow-hidden",
+          variants[variant],
+          radii[radius],
+          fill && "h-full",
+        )}
+      >
         {variant === "browser" ? (
           <div
             aria-hidden="true"
@@ -50,8 +63,12 @@ export function MediaFrame({
           </div>
         ) : null}
         <div
-          className="relative overflow-hidden bg-canvas"
-          style={{ aspectRatio: `${poster.width} / ${poster.height}` }}
+          className={cn("relative overflow-hidden bg-canvas", fill && "h-full")}
+          style={
+            fill
+              ? undefined
+              : { aspectRatio: `${poster.width} / ${poster.height}` }
+          }
         >
           {asset.kind === "image" ? (
             <Image

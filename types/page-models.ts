@@ -13,7 +13,7 @@ export interface HomePageModel {
   readonly profile: Profile;
   readonly navigation: readonly NavigationItem[];
   readonly socialLinks: readonly SocialLink[];
-  readonly featuredProjects: readonly ProjectSummary[];
+  readonly projects: readonly ProjectSummary[];
   readonly skillGroups: readonly SkillGroup[];
   readonly testimonials: readonly Testimonial[];
   readonly metadata: SiteMetadata;

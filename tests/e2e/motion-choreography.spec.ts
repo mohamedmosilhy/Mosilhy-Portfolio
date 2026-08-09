@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("keeps the hero paintable and applies motion below the fold", async ({
+test("keeps the hero and project gallery immediately paintable", async ({
   page,
 }) => {
   await page.goto("/");
@@ -19,25 +19,18 @@ test("keeps the hero paintable and applies motion below the fold", async ({
     ),
   ).toBe(true);
 
-  const projectCollection = page.locator('#projects [data-motion="stagger"]');
+  const projectCollection = page.locator('#projects [data-slot="bento-grid"]');
 
   await projectCollection.scrollIntoViewIfNeeded();
-  await expect(projectCollection).toHaveAttribute(
-    "data-motion-state",
-    "visible",
-  );
-  await expect
-    .poll(() =>
-      projectCollection
-        .locator(':scope > [data-motion="stagger-item"]')
-        .evaluateAll((items) =>
-          items.every((item) => {
-            const style = getComputedStyle(item);
-            return style.opacity === "1" && style.transform === "none";
-          }),
-        ),
-    )
-    .toBe(true);
+  await expect(projectCollection.locator(":scope > li")).toHaveCount(4);
+  expect(
+    await projectCollection.locator(":scope > li").evaluateAll((items) =>
+      items.every((item) => {
+        const style = getComputedStyle(item);
+        return style.opacity === "1" && style.transform === "none";
+      }),
+    ),
+  ).toBe(true);
 });
 
 test("removes spatial motion for reduced-motion users", async ({ browser }) => {
@@ -115,7 +108,7 @@ test("uses tokenized header and mobile-menu transition states", async ({
   await expect(panel).toHaveCSS("transition-duration", "0.18s");
 });
 
-test("matches project-card hover emphasis with a keyboard focus cue", async ({
+test("gives project cards distinct hover and keyboard focus cues", async ({
   page,
 }) => {
   await page.goto("/");
@@ -148,27 +141,9 @@ test("matches project-card hover emphasis with a keyboard focus cue", async ({
     )
     .not.toEqual(restingSurface);
 
-  const hoverSurface = await card.evaluate((element) => {
-    const style = getComputedStyle(element);
-    return {
-      backgroundColor: style.backgroundColor,
-      borderColor: style.borderColor,
-    };
-  });
-
   await page.mouse.move(0, 0);
   await caseStudy.focus();
   await expect(caseStudy).toBeFocused();
-  await expect
-    .poll(() =>
-      card.evaluate((element) => {
-        const style = getComputedStyle(element);
-        return {
-          backgroundColor: style.backgroundColor,
-          borderColor: style.borderColor,
-        };
-      }),
-    )
-    .toEqual(hoverSurface);
+  await expect(card).toHaveCSS("border-color", "rgb(139, 156, 255)");
   await expect(card).toHaveCSS("translate", "none");
 });

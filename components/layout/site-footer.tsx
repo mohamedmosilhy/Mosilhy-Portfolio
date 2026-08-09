@@ -50,7 +50,7 @@ export function SiteFooter({
         <div className="relative z-10">
           <div className="grid gap-space-10 py-space-20 lg:grid-cols-12 lg:items-end lg:gap-space-12 lg:py-space-24">
             <div className="lg:col-span-8">
-              <p className="font-mono text-eyebrow font-medium text-accent uppercase">
+              <p className="font-sans text-eyebrow font-semibold text-accent uppercase">
                 Contact
               </p>
               <h2
@@ -82,7 +82,7 @@ export function SiteFooter({
                 aria-label="Social profiles"
                 className="border-t border-border pt-space-6 lg:col-span-3 lg:col-start-10 lg:border-t-0 lg:border-l lg:pt-space-0 lg:pl-space-8"
               >
-                <p className="font-mono text-eyebrow text-text-muted uppercase">
+                <p className="font-sans text-eyebrow font-semibold text-text-muted uppercase">
                   Elsewhere
                 </p>
                 <ul className="mt-space-3 grid gap-space-1">

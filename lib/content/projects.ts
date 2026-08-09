@@ -36,6 +36,7 @@ function toSummary(
     title: project.title,
     summary: project.summary,
     role: project.role,
+    category: project.category,
     technologies: resolveSkills(project.technologies, skillsById),
     links: project.links,
     cover: project.cover,

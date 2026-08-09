@@ -1,6 +1,11 @@
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
+
 import { Container } from "@/components/layout/container";
 import { MediaFrame } from "@/components/ui/media-frame";
+import { Spotlight } from "@/components/ui/spotlight";
 import { ProjectActions } from "@/features/projects/components/project-actions";
+import { projectCategoryLabels } from "@/features/projects/project-categories";
 import type { ISODate, ProjectDetail } from "@/types/content";
 
 export interface ProjectHeroProps {
@@ -30,13 +35,34 @@ export function ProjectHero({
     <header
       data-slot="project-hero"
       data-variant="media-led"
-      className="py-space-16 lg:py-space-24"
+      className="relative isolate overflow-hidden border-b border-border py-space-12 lg:py-space-20"
     >
-      <Container size="wide">
-        <div className="grid gap-space-10 lg:grid-cols-12 lg:items-end lg:gap-space-8">
+      <Spotlight
+        filterId="project-hero-spotlight"
+        className="-top-[80%] -left-[35%] opacity-25 lg:-top-[110%] lg:-left-[20%]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-20 bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] [mask-image:linear-gradient(to_bottom,black,transparent_72%)] bg-[size:4rem_4rem] opacity-20"
+      />
+
+      <Container size="wide" className="relative z-10">
+        <Link
+          href="/#projects"
+          className="group inline-flex min-h-10 items-center gap-space-2 rounded-md font-sans text-body-sm font-medium text-text-muted outline-none hover:text-text focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+        >
+          <ArrowLeft
+            aria-hidden="true"
+            className="size-4 transition-transform group-hover:-translate-x-1 motion-reduce:transition-none"
+          />
+          Project archive
+        </Link>
+
+        <div className="mt-space-10 grid gap-space-10 lg:grid-cols-12 lg:items-end lg:gap-space-12">
           <div className="lg:col-span-8">
-            <p className="font-mono text-eyebrow font-medium text-accent uppercase">
-              {project.role}
+            <p className="font-sans text-eyebrow font-semibold tracking-[var(--eyebrow-tracking)] text-accent uppercase">
+              Case study&nbsp; / &nbsp;
+              {projectCategoryLabels[project.category]}
             </p>
             <h1 className="mt-space-4 max-w-content font-display text-display-lg font-medium text-balance text-text">
               {project.title}
@@ -44,30 +70,45 @@ export function ProjectHero({
             <p className="mt-space-6 max-w-prose text-body-lg text-pretty text-text-secondary">
               {project.summary}
             </p>
+            <div className="mt-space-8">
+              <ProjectActions
+                links={project.links}
+                projectTitle={project.title}
+              />
+            </div>
           </div>
 
-          <dl className="grid grid-cols-2 gap-space-4 border-t border-border pt-space-6 lg:col-span-4 lg:border-t-0 lg:border-l lg:pt-space-0 lg:pl-space-8">
+          <dl className="gap-y-space-7 grid grid-cols-2 gap-x-space-6 border-t border-border pt-space-6 lg:col-span-4 lg:grid-cols-1 lg:border-t-0 lg:border-l lg:pt-space-0 lg:pl-space-8">
             <div>
-              <dt className="font-mono text-eyebrow text-text-muted uppercase">
-                Started
+              <dt className="font-sans text-eyebrow font-semibold text-text-muted uppercase">
+                Role
+              </dt>
+              <dd className="mt-space-2 text-body-sm font-medium text-text">
+                {project.role}
+              </dd>
+            </div>
+            <div>
+              <dt className="font-sans text-eyebrow font-semibold text-text-muted uppercase">
+                Timeline
               </dt>
               <dd className="mt-space-2 text-body-sm text-text-secondary">
                 {formatProjectDate(project.timeline.startedAt)}
+                {project.timeline.completedAt
+                  ? ` — ${formatProjectDate(project.timeline.completedAt)}`
+                  : " — Ongoing"}
               </dd>
             </div>
-            {project.timeline.completedAt ? (
-              <div>
-                <dt className="font-mono text-eyebrow text-text-muted uppercase">
-                  Completed
-                </dt>
-                <dd className="mt-space-2 text-body-sm text-text-secondary">
-                  {formatProjectDate(project.timeline.completedAt)}
-                </dd>
-              </div>
-            ) : null}
             <div>
-              <dt className="font-mono text-eyebrow text-text-muted uppercase">
-                Updated
+              <dt className="font-sans text-eyebrow font-semibold text-text-muted uppercase">
+                Toolkit
+              </dt>
+              <dd className="mt-space-2 text-body-sm text-text-secondary">
+                {project.technologies.length} technologies
+              </dd>
+            </div>
+            <div>
+              <dt className="font-sans text-eyebrow font-semibold text-text-muted uppercase">
+                Last refined
               </dt>
               <dd className="mt-space-2 text-body-sm text-text-secondary">
                 {formatProjectDate(project.timeline.updatedAt)}
@@ -76,11 +117,11 @@ export function ProjectHero({
           </dl>
         </div>
 
-        <div className="mt-space-10">
-          <ProjectActions links={project.links} projectTitle={project.title} />
-        </div>
-
-        <div className="mt-space-12 lg:mt-space-16">
+        <div className="relative mt-space-12 lg:mt-space-16">
+          <div
+            aria-hidden="true"
+            className="absolute -inset-space-4 -z-10 rounded-xl bg-accent opacity-[0.06] blur-3xl"
+          />
           <MediaFrame
             asset={project.cover}
             highPriority={highPriority}

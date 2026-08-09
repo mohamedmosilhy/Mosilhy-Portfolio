@@ -290,6 +290,13 @@ Rules:
 
 ```ts
 type ProjectStatus = "draft" | "published";
+type ProjectCategory =
+  | "full-stack"
+  | "frontend"
+  | "backend"
+  | "mobile"
+  | "ai-data"
+  | "creative-coding";
 type GalleryLayout = "stack" | "grid" | "carousel";
 
 interface ProjectFrontmatter {
@@ -297,6 +304,7 @@ interface ProjectFrontmatter {
   readonly title: string;
   readonly summary: string;
   readonly role: string;
+  readonly category: ProjectCategory;
   readonly status: ProjectStatus;
   readonly featured: boolean;
   readonly featuredOrder?: number;
@@ -317,6 +325,7 @@ interface ProjectSummary {
   readonly title: string;
   readonly summary: string;
   readonly role: string;
+  readonly category: ProjectCategory;
   readonly technologies: readonly Skill[];
   readonly links: ProjectLinks;
   readonly cover: ImageAsset;
@@ -399,7 +408,7 @@ interface HomePageModel {
   readonly profile: Profile;
   readonly navigation: readonly NavigationItem[];
   readonly socialLinks: readonly SocialLink[];
-  readonly featuredProjects: readonly ProjectSummary[];
+  readonly projects: readonly ProjectSummary[];
   readonly skillGroups: readonly SkillGroup[];
   readonly testimonials: readonly Testimonial[];
   readonly metadata: SiteMetadata;

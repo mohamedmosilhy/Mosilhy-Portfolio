@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const sectionNames = ["Selected projects", "Skills", "About"];
+const sectionNames = ["Project gallery", "Skills", "About"];
 
 test("renders the complete home narrative in the required order", async ({
   page,

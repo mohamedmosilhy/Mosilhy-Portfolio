@@ -69,10 +69,7 @@ export default async function HomePage() {
   return (
     <>
       <HeroSection profile={model.profile} socialLinks={model.socialLinks} />
-      <ProjectsSection
-        projects={model.featuredProjects}
-        heading="Selected projects"
-      />
+      <ProjectsSection projects={model.projects} heading="Project gallery" />
       <SkillsSection groups={model.skillGroups} heading="Skills" />
       {model.testimonials.length > 0 ? (
         <TestimonialsSection

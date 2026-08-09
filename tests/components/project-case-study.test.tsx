@@ -60,6 +60,18 @@ describe("ProjectCaseStudy", () => {
       "Challenges",
       "Lessons learned",
     ]);
+    const outline = screen.getByRole("navigation", {
+      name: "Case study outline",
+    });
+
+    expect(within(outline).getAllByRole("link")).toHaveLength(5);
+    expect(
+      within(outline).getByRole("link", { name: /Overview/ }),
+    ).toHaveAttribute("href", "#overview");
+    expect(sectionHeadings.every(Boolean)).toBe(true);
+    expect(
+      within(body).getByRole("heading", { name: "Overview" }),
+    ).toHaveAttribute("id", "overview");
     expect(
       within(body).getByRole("region", {
         name: `${model!.project.title} gallery`,
@@ -270,6 +282,7 @@ describe("project feature architecture guardrails", () => {
     "features/projects/components",
   );
   const featureFiles = [
+    "case-study-outline.tsx",
     "callout.tsx",
     "mdx-components.tsx",
     "metric.tsx",

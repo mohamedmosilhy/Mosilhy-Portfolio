@@ -170,6 +170,7 @@ export const validProject = {
   summary:
     "A full-stack messaging application with authenticated conversations and structured data flows.",
   role: "Full-stack developer",
+  category: "full-stack",
   status: "published",
   featured: true,
   featuredOrder: 1,

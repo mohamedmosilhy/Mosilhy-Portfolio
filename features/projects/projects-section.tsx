@@ -1,10 +1,8 @@
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { Reveal } from "@/components/motion/reveal";
-import { Stagger } from "@/components/motion/stagger";
-import { StaggerItem } from "@/components/motion/stagger-item";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { ProjectCard } from "@/features/projects/components/project-card";
+import { FilterableProjectGallery } from "@/features/projects/components/filterable-project-gallery";
 import type { ProjectSummary } from "@/types/content";
 
 export interface ProjectsSectionProps {
@@ -27,26 +25,12 @@ export function ProjectsSection({ projects, heading }: ProjectsSectionProps) {
           <SectionHeading
             id={projectsHeadingId}
             title={heading}
-            eyebrow="01 / Selected work"
-            description="A focused set of products, interfaces, and systems—from polished frontends to tested full-stack applications."
+            eyebrow="01 / Project archive"
+            description="Browse the work by discipline or search by technology. Each tile opens a focused case study with the decisions, process, and result."
           />
         </Reveal>
 
-        <Stagger
-          className="mt-space-16 grid gap-space-16 lg:mt-space-20 lg:gap-space-20"
-          variant="default"
-        >
-          {projects.map((project, index) => (
-            <StaggerItem key={project.slug}>
-              <ProjectCard
-                project={project}
-                variant="featured"
-                ordinal={index + 1}
-                mediaPosition={index % 2 === 0 ? "start" : "end"}
-              />
-            </StaggerItem>
-          ))}
-        </Stagger>
+        <FilterableProjectGallery projects={projects} />
       </Container>
     </Section>
   );

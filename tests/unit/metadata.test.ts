@@ -25,6 +25,7 @@ const project = {
   title: validProject.title,
   summary: validProject.summary,
   role: validProject.role,
+  category: validProject.category,
   technologies: validSkillGroups.flatMap((group) =>
     group.skills.filter((skill) =>
       validProject.technologies.includes(

@@ -128,6 +128,13 @@ export interface SeoFields {
 }
 
 export type ProjectStatus = "draft" | "published";
+export type ProjectCategory =
+  | "full-stack"
+  | "frontend"
+  | "backend"
+  | "mobile"
+  | "ai-data"
+  | "creative-coding";
 export type GalleryLayout = "stack" | "grid" | "carousel";
 
 export interface ProjectGallery {
@@ -140,6 +147,7 @@ export interface ProjectFrontmatter {
   readonly title: string;
   readonly summary: string;
   readonly role: string;
+  readonly category: ProjectCategory;
   readonly status: ProjectStatus;
   readonly featured: boolean;
   readonly featuredOrder?: number;
@@ -189,6 +197,7 @@ export interface ProjectSummary {
   readonly title: string;
   readonly summary: string;
   readonly role: string;
+  readonly category: ProjectCategory;
   readonly technologies: readonly Skill[];
   readonly links: ProjectLinks;
   readonly cover: ImageAsset;

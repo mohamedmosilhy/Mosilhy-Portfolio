@@ -28,7 +28,7 @@ export function AboutSection({ profile }: AboutSectionProps) {
               eyebrow="03 / My journey"
             />
             {profile.location ? (
-              <p className="mt-space-6 font-mono text-eyebrow font-medium text-accent uppercase">
+              <p className="mt-space-6 font-sans text-eyebrow font-semibold text-accent uppercase">
                 {profile.location}
               </p>
             ) : null}
@@ -61,7 +61,7 @@ export function AboutSection({ profile }: AboutSectionProps) {
                     aria-hidden="true"
                     className="absolute top-[0.45rem] -left-[calc(var(--space-8)+0.3125rem)] size-2.5 rounded-full border-2 border-surface bg-accent shadow-[0_0_0_4px_var(--color-accent-subtle)] sm:-left-[calc(var(--space-10)+0.3125rem)]"
                   />
-                  <p className="font-mono text-eyebrow font-medium text-accent uppercase">
+                  <p className="font-sans text-eyebrow font-semibold text-accent uppercase">
                     Chapter {String(index + 1).padStart(2, "0")}
                   </p>
                   <p

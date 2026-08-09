@@ -34,10 +34,27 @@ function MdxLink({ href, children, ...props }: ComponentPropsWithoutRef<"a">) {
   );
 }
 
+function MdxHeading({ children, ...props }: ComponentPropsWithoutRef<"h2">) {
+  const id =
+    typeof children === "string"
+      ? children
+          .toLocaleLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/(^-|-$)/g, "")
+      : undefined;
+
+  return (
+    <h2 {...props} id={id} className="scroll-mt-32">
+      {children}
+    </h2>
+  );
+}
+
 export function createMdxComponents(project: ProjectDetail) {
   return {
     wrapper: MdxWrapper,
     a: MdxLink,
+    h2: MdxHeading,
     Callout,
     Metric,
     ProjectGallery: () => (
