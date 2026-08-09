@@ -109,7 +109,14 @@ Rules:
 ## Skills
 
 ```ts
-type SkillCategory = "frontend" | "backend" | "database" | "tools";
+type SkillCategory =
+  | "frontend"
+  | "backend"
+  | "database"
+  | "mobile"
+  | "ai-data"
+  | "creative-coding"
+  | "tools";
 
 type SkillId = Slug;
 
@@ -136,7 +143,8 @@ Rules:
 - A skill ID appears once in the global catalog.
 - A project references skill IDs instead of repeating display names.
 - Skills do not include percentage, star rating, years, or self-assigned level.
-- Category order is frontend, backend, database, tools.
+- Category order is frontend, backend, database, mobile, AI/data, creative
+  coding, and tools.
 - Icons are optional implementation detail and are not stored in content.
 
 ## Testimonials
@@ -183,12 +191,23 @@ interface Interest {
   readonly order: number;
 }
 
+interface JourneyChapter {
+  readonly id: Slug;
+  readonly period: string;
+  readonly eyebrow: string;
+  readonly title: string;
+  readonly description: string;
+  readonly evidence: readonly string[];
+  readonly order: number;
+}
+
 interface Profile {
   readonly greeting: string;
   readonly name: string;
   readonly role: string;
   readonly introduction: string;
   readonly biography: readonly string[];
+  readonly journey: readonly JourneyChapter[];
   readonly experience: readonly ExperienceSummary[];
   readonly interests: readonly Interest[];
   readonly location?: string;

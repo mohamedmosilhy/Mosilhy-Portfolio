@@ -5,6 +5,9 @@ const categoryOrder: readonly SkillCategory[] = [
   "frontend",
   "backend",
   "database",
+  "mobile",
+  "ai-data",
+  "creative-coding",
   "tools",
 ];
 
@@ -12,6 +15,9 @@ const categoryLabels: Record<SkillCategory, string> = {
   frontend: "Frontend",
   backend: "Backend",
   database: "Database",
+  mobile: "Mobile",
+  "ai-data": "AI, data & scientific",
+  "creative-coding": "Creative coding",
   tools: "Tools",
 };
 

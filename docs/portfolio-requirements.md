@@ -124,8 +124,11 @@ Grouped into
 
 - Frontend
 - Backend
-- Database
-- Tools
+- Data and cloud
+- Mobile development
+- AI and scientific computing
+- Creative coding and games
+- Quality and delivery
 
 ---
 

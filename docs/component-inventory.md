@@ -368,8 +368,8 @@ Quote markup uses semantic `blockquote` and `cite`.
 
 | Field          | Definition                                           |
 | -------------- | ---------------------------------------------------- |
-| Responsibility | Present biography, experience summary, and interests |
-| Variants       | canonical split/editorial composition                |
+| Responsibility | Present the profile journey as an evidence-led story |
+| Variants       | sticky portrait with scroll-led timeline             |
 | Props          | `profile`                                            |
 | Used by        | Home route `#about`                                  |
 | Rendering      | Server Component                                     |

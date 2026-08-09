@@ -28,7 +28,7 @@ export function SkillsSection({ groups, heading }: SkillsSectionProps) {
             id={skillsHeadingId}
             title={heading}
             eyebrow="02 / Capabilities"
-            description="The tools I use to move from an interface idea to a reliable, production-ready system."
+            description="A focused toolkit shaped by 49 web, mobile, backend, scientific, machine-learning, and creative-coding projects."
           />
         </Reveal>
 
@@ -36,8 +36,13 @@ export function SkillsSection({ groups, heading }: SkillsSectionProps) {
           className="mt-space-16 grid gap-space-6 md:grid-cols-2 lg:mt-space-20 lg:gap-space-8"
           variant="default"
         >
-          {groups.map((group) => (
-            <StaggerItem key={group.id}>
+          {groups.map((group, index) => (
+            <StaggerItem
+              key={group.id}
+              className={
+                index === groups.length - 1 ? "md:col-span-2" : undefined
+              }
+            >
               <SkillGroup group={group} variant="tags" />
             </StaggerItem>
           ))}

@@ -364,7 +364,10 @@ export function collectCrossRecordIssues(
     frontend: 1,
     backend: 2,
     database: 3,
-    tools: 4,
+    mobile: 4,
+    "ai-data": 5,
+    "creative-coding": 6,
+    tools: 7,
   } as const;
 
   catalog.skillGroups.forEach((group, groupIndex) => {

@@ -35,7 +35,14 @@ export interface SocialLink {
   readonly order: number;
 }
 
-export type SkillCategory = "frontend" | "backend" | "database" | "tools";
+export type SkillCategory =
+  | "frontend"
+  | "backend"
+  | "database"
+  | "mobile"
+  | "ai-data"
+  | "creative-coding"
+  | "tools";
 export type SkillId = Slug;
 
 export interface Skill {
@@ -85,6 +92,16 @@ export interface Interest {
   readonly order: number;
 }
 
+export interface JourneyChapter {
+  readonly id: Slug;
+  readonly period: string;
+  readonly eyebrow: string;
+  readonly title: string;
+  readonly description: string;
+  readonly evidence: readonly string[];
+  readonly order: number;
+}
+
 export interface ProfileCta {
   readonly label: string;
   readonly href: InternalHref | ExternalHref;
@@ -96,6 +113,7 @@ export interface Profile {
   readonly role: string;
   readonly introduction: string;
   readonly biography: readonly string[];
+  readonly journey: readonly JourneyChapter[];
   readonly experience: readonly ExperienceSummary[];
   readonly interests: readonly Interest[];
   readonly location?: string;

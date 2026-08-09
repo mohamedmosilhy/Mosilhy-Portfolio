@@ -128,6 +128,18 @@ export const validProfile = {
   biography: [
     "I approach product work through clear architecture, careful implementation, and evidence-based iteration.",
   ],
+  journey: [
+    {
+      id: "engineering-foundations",
+      period: "The beginning",
+      eyebrow: "Foundations",
+      title: "Learning to solve product problems",
+      description:
+        "I approach product work through clear architecture, careful implementation, and evidence-based iteration.",
+      evidence: ["Architecture", "Implementation"],
+      order: 1,
+    },
+  ],
   experience: [
     {
       id: "projects-built",

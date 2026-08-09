@@ -3,6 +3,7 @@ import { Section } from "@/components/layout/section";
 import { Reveal } from "@/components/motion/reveal";
 import { MediaFrame } from "@/components/ui/media-frame";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { TracingBeam } from "@/components/ui/tracing-beam";
 import type { Profile } from "@/types/content";
 
 const aboutHeadingId = "about-heading";
@@ -32,6 +33,11 @@ export function AboutSection({ profile }: AboutSectionProps) {
                 {profile.location}
               </p>
             ) : null}
+            <p className="mt-space-5 max-w-[31rem] text-body-md text-pretty text-text-muted">
+              A non-linear route through computer science, engineering,
+              self-directed study, and client work—each chapter changed how I
+              build the next one.
+            </p>
             {profile.portrait ? (
               <div className="relative mt-space-8 max-w-narrow">
                 <div
@@ -50,44 +56,73 @@ export function AboutSection({ profile }: AboutSectionProps) {
             ) : null}
           </div>
 
-          <div className="lg:col-span-7 lg:col-start-6">
-            <h3 className="max-w-[18ch] font-display text-heading-lg font-semibold text-balance text-text">
-              From engineering problems to products people can use.
+          <div className="lg:col-span-8 lg:col-start-5 lg:pl-space-8">
+            <p className="font-sans text-eyebrow font-semibold tracking-widest text-accent uppercase">
+              The long way around became the useful way in
+            </p>
+            <h3 className="mt-space-4 max-w-[19ch] font-display text-heading-xl font-medium text-balance text-text">
+              From a first line of C to products built for real people.
             </h3>
-            <ol className="relative mt-space-10 border-l border-border pl-space-8 text-pretty sm:pl-space-10">
-              {profile.biography.map((paragraph, index) => (
-                <li key={paragraph} className="relative pb-space-10 last:pb-0">
-                  <span
-                    aria-hidden="true"
-                    className="absolute top-[0.45rem] -left-[calc(var(--space-8)+0.3125rem)] size-2.5 rounded-full border-2 border-surface bg-accent shadow-[0_0_0_4px_var(--color-accent-subtle)] sm:-left-[calc(var(--space-10)+0.3125rem)]"
-                  />
-                  <p className="font-sans text-eyebrow font-semibold text-accent uppercase">
-                    Chapter {String(index + 1).padStart(2, "0")}
-                  </p>
-                  <p
-                    className={
-                      index === 0
-                        ? "mt-space-3 max-w-prose text-body-lg font-semibold text-text"
-                        : "mt-space-3 max-w-prose text-body-lg text-text-secondary"
-                    }
+
+            <TracingBeam className="mt-space-12 mb-space-3 md:ml-space-10">
+              <ol className="text-pretty">
+                {profile.journey.map((chapter, index) => (
+                  <li
+                    key={chapter.id}
+                    className="grid gap-space-5 border-b border-border py-space-10 first:pt-0 last:border-b-0 last:pb-0 md:grid-cols-[9rem_minmax(0,1fr)] md:gap-space-8"
                   >
-                    {paragraph}
-                  </p>
-                </li>
-              ))}
-            </ol>
+                    <div className="md:sticky md:top-space-24 md:self-start">
+                      <span
+                        aria-hidden="true"
+                        className="block font-display text-heading-lg font-medium text-border-strong"
+                      >
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <p className="text-body-xs mt-space-2 font-semibold tracking-wide text-text-muted uppercase">
+                        {chapter.period}
+                      </p>
+                    </div>
+
+                    <article>
+                      <p className="text-eyebrow font-semibold tracking-widest text-accent uppercase">
+                        {chapter.eyebrow}
+                      </p>
+                      <h4 className="mt-space-3 max-w-[24ch] font-display text-heading-md font-semibold text-balance text-text">
+                        {chapter.title}
+                      </h4>
+                      <p
+                        className={
+                          index === 0
+                            ? "mt-space-5 max-w-prose text-body-lg font-medium text-text"
+                            : "mt-space-5 max-w-prose text-body-md text-text-secondary"
+                        }
+                      >
+                        {chapter.description}
+                      </p>
+                      <ul
+                        aria-label={`What I learned during ${chapter.eyebrow}`}
+                        className="mt-space-6 flex flex-wrap gap-space-2"
+                      >
+                        {chapter.evidence.map((item) => (
+                          <li
+                            key={item}
+                            className="text-body-xs rounded-full border border-border bg-surface px-space-3 py-space-1 font-medium text-text-muted"
+                          >
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </article>
+                  </li>
+                ))}
+              </ol>
+            </TracingBeam>
 
             {profile.experience.length > 0 ? (
-              <div className="mt-space-12">
-                <h3 className="text-heading-sm font-semibold text-text">
-                  Experience
-                </h3>
-                <dl className="mt-space-6 grid gap-space-4 sm:grid-cols-2">
+              <div className="mt-space-14 border-y border-border py-space-6">
+                <dl className="grid gap-space-6 sm:grid-cols-2">
                   {profile.experience.map((item) => (
-                    <div
-                      key={item.id}
-                      className="rounded-lg border border-border bg-surface p-space-6"
-                    >
+                    <div key={item.id}>
                       <dt className="text-body-sm text-text-muted">
                         {item.label}
                       </dt>
@@ -101,17 +136,14 @@ export function AboutSection({ profile }: AboutSectionProps) {
             ) : null}
 
             {profile.interests.length > 0 ? (
-              <div className="mt-space-12">
-                <h3 className="text-heading-sm font-semibold text-text">
-                  Areas of interest
+              <div className="mt-space-14 border-t border-border pt-space-8">
+                <h3 className="font-display text-heading-sm font-semibold text-text">
+                  What the journey shaped
                 </h3>
-                <ul className="mt-space-6 grid gap-space-6 sm:grid-cols-2">
+                <ul className="mt-space-6 grid gap-space-6 sm:grid-cols-3">
                   {profile.interests.map((interest) => (
-                    <li
-                      key={interest.id}
-                      className="rounded-lg border border-border bg-surface p-space-5"
-                    >
-                      <h4 className="font-semibold text-text">
+                    <li key={interest.id}>
+                      <h4 className="text-body-sm font-semibold text-text">
                         {interest.label}
                       </h4>
                       {interest.description ? (

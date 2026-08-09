@@ -110,6 +110,15 @@ describe("about", () => {
       expect(about).toHaveTextContent(paragraph);
     }
 
+    for (const chapter of validProfile.journey) {
+      expect(about).toHaveTextContent(chapter.eyebrow);
+      expect(about).toHaveTextContent(chapter.title);
+
+      for (const item of chapter.evidence) {
+        expect(about).toHaveTextContent(item);
+      }
+    }
+
     for (const item of validProfile.experience) {
       expect(about).toHaveTextContent(item.label);
       expect(about).toHaveTextContent(item.value);

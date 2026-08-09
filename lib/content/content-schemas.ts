@@ -7,6 +7,7 @@ import type {
   ImageAsset,
   Interest,
   InternalHref,
+  JourneyChapter,
   MediaAsset,
   Profile,
   SeoFields,
@@ -365,7 +366,15 @@ export const skillSchema: z.ZodType<Skill> = z
   .strictObject({
     id: slugSchema,
     name: shortTextSchema,
-    category: z.enum(["frontend", "backend", "database", "tools"]),
+    category: z.enum([
+      "frontend",
+      "backend",
+      "database",
+      "mobile",
+      "ai-data",
+      "creative-coding",
+      "tools",
+    ]),
     description: z.string().trim().min(1).max(300).optional(),
     featured: z.boolean(),
     order: orderSchema,
@@ -374,7 +383,15 @@ export const skillSchema: z.ZodType<Skill> = z
 
 export const skillGroupSchema: z.ZodType<SkillGroup> = z
   .strictObject({
-    id: z.enum(["frontend", "backend", "database", "tools"]),
+    id: z.enum([
+      "frontend",
+      "backend",
+      "database",
+      "mobile",
+      "ai-data",
+      "creative-coding",
+      "tools",
+    ]),
     label: labelSchema,
     description: z.string().trim().min(1).max(300).optional(),
     order: orderSchema,
@@ -462,6 +479,18 @@ export const interestSchema: z.ZodType<Interest> = z
   })
   .readonly();
 
+export const journeyChapterSchema: z.ZodType<JourneyChapter> = z
+  .strictObject({
+    id: slugSchema,
+    period: labelSchema,
+    eyebrow: labelSchema,
+    title: shortTextSchema,
+    description: paragraphSchema,
+    evidence: z.array(labelSchema).min(1).max(8).readonly(),
+    order: orderSchema,
+  })
+  .readonly();
+
 export const profileSchema: z.ZodType<Profile> = z
   .strictObject({
     greeting: shortTextSchema,
@@ -469,6 +498,15 @@ export const profileSchema: z.ZodType<Profile> = z
     role: z.string().trim().min(2).max(120),
     introduction: z.string().trim().min(20).max(500),
     biography: z.array(paragraphSchema).min(1).max(12).readonly(),
+    journey: z
+      .array(journeyChapterSchema)
+      .min(1)
+      .max(8)
+      .superRefine((items, context) => {
+        addDuplicateIssues(items, context, "id");
+        addDuplicateIssues(items, context, "order");
+      })
+      .readonly(),
     experience: z
       .array(experienceSummarySchema)
       .superRefine((items, context) => {

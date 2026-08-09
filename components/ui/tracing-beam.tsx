@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { m, useScroll, useSpring, useTransform } from "framer-motion";
 import { useEffect, useId, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils/cn";
@@ -65,7 +65,7 @@ export function TracingBeam({ children, className }: TracingBeamProps) {
             stroke="var(--color-border-strong)"
             strokeWidth="1"
           />
-          <motion.path
+          <m.path
             d={`M 10 0 V ${height}`}
             fill="none"
             stroke={`url(#${gradientId})`}
@@ -73,7 +73,7 @@ export function TracingBeam({ children, className }: TracingBeamProps) {
             className="motion-reduce:hidden"
           />
           <defs>
-            <motion.linearGradient
+            <m.linearGradient
               id={gradientId}
               gradientUnits="userSpaceOnUse"
               x1="0"
@@ -89,7 +89,7 @@ export function TracingBeam({ children, className }: TracingBeamProps) {
                 stopColor="var(--color-teal-400)"
                 stopOpacity="0"
               />
-            </motion.linearGradient>
+            </m.linearGradient>
           </defs>
         </svg>
       </div>
