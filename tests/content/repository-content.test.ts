@@ -14,9 +14,32 @@ import {
 
 const expectedProjectOrder = [
   "nova-ecommerce",
+  "messaging-app",
+  "blog-api",
   "wheres-waldo",
   "blacktape",
+  "teo",
   "iphone-15-pro",
+  "multi-source-attribute-extraction",
+  "stroke-clot-classification",
+  "signal-equalizer",
+  "flutter-blog-app",
+  "spotify-flutter",
+  "cs50-problem-sets",
+  "fighter-planes-game",
+] as const;
+
+const expectedFeaturedOrder = [
+  "nova-ecommerce",
+  "messaging-app",
+  "blog-api",
+  "wheres-waldo",
+  "blacktape",
+  "teo",
+  "iphone-15-pro",
+  "multi-source-attribute-extraction",
+  "stroke-clot-classification",
+  "flutter-blog-app",
 ] as const;
 
 describe("repository content pipeline", () => {
@@ -30,9 +53,11 @@ describe("repository content pipeline", () => {
 
       expect(project?.slug).toBe(slug);
       expect(project?.body.code.length).toBeGreaterThan(100);
-      expect(project?.cover.src).toMatch(/\.avif$/);
-      expect(project?.cover.width).toBeLessThanOrEqual(1600);
-      expect(project?.cover.height).toBeLessThanOrEqual(1600);
+      if (project?.cover) {
+        expect(project.cover.src).toMatch(/\.avif$/);
+        expect(project.cover.width).toBeLessThanOrEqual(1600);
+        expect(project.cover.height).toBeLessThanOrEqual(1600);
+      }
 
       for (const item of project?.gallery.items ?? []) {
         if (item.kind === "image") {
@@ -42,7 +67,9 @@ describe("repository content pipeline", () => {
         }
       }
 
-      expect(project?.seo.socialImage?.src).toMatch(/\.png$/);
+      if (project?.seo.socialImage) {
+        expect(project.seo.socialImage.src).toMatch(/\.png$/);
+      }
       expect(project?.technologies.length).toBeGreaterThan(0);
       expect(
         project?.technologies.every((technology) => technology.name.length > 0),
@@ -62,13 +89,13 @@ describe("repository content pipeline", () => {
       expectedProjectOrder,
     );
     expect(featuredProjects.map((project) => project.slug)).toEqual(
-      expectedProjectOrder,
+      expectedFeaturedOrder,
     );
     expect(allProjects.map((project) => project.projectOrder)).toEqual([
-      1, 2, 3, 4,
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
     ]);
     expect(featuredProjects.map((project) => project.featuredOrder)).toEqual([
-      1, 2, 3, 4,
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
     ]);
     expect("body" in allProjects[0]!).toBe(false);
   });
@@ -76,14 +103,16 @@ describe("repository content pipeline", () => {
   it("returns non-wrapping previous and next projects", async () => {
     await expect(getAdjacentProjects("nova-ecommerce")).resolves.toMatchObject({
       previous: null,
-      next: { slug: "wheres-waldo" },
+      next: { slug: "messaging-app" },
     });
     await expect(getAdjacentProjects("wheres-waldo")).resolves.toMatchObject({
-      previous: { slug: "nova-ecommerce" },
+      previous: { slug: "blog-api" },
       next: { slug: "blacktape" },
     });
-    await expect(getAdjacentProjects("iphone-15-pro")).resolves.toMatchObject({
-      previous: { slug: "blacktape" },
+    await expect(
+      getAdjacentProjects("fighter-planes-game"),
+    ).resolves.toMatchObject({
+      previous: { slug: "cs50-problem-sets" },
       next: null,
     });
     await expect(getAdjacentProjects("missing-project")).resolves.toEqual({
@@ -108,7 +137,7 @@ describe("repository content pipeline", () => {
 
     expect(projectPage).toMatchObject({
       project: { slug: "wheres-waldo" },
-      previousProject: { slug: "nova-ecommerce" },
+      previousProject: { slug: "blog-api" },
       nextProject: { slug: "blacktape" },
     });
     expect(missingPage).toBeNull();

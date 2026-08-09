@@ -22,7 +22,7 @@ test("keeps the hero and project gallery immediately paintable", async ({
   const projectCollection = page.locator('#projects [data-slot="bento-grid"]');
 
   await projectCollection.scrollIntoViewIfNeeded();
-  await expect(projectCollection.locator(":scope > li")).toHaveCount(4);
+  await expect(projectCollection.locator(":scope > li")).toHaveCount(3);
   expect(
     await projectCollection.locator(":scope > li").evaluateAll((items) =>
       items.every((item) => {
@@ -76,9 +76,10 @@ test("removes spatial motion for reduced-motion users", async ({ browser }) => {
   await card.scrollIntoViewIfNeeded();
   await card.hover();
   await expect(card).toHaveCSS("translate", "none");
-  await expect(
-    card.locator('[data-slot="media-frame"]').locator(".."),
-  ).toHaveCSS("scale", "none");
+  await expect(card.locator('[data-slot="project-card-cover"]')).toHaveCSS(
+    "scale",
+    "none",
+  );
 
   await context.close();
 });

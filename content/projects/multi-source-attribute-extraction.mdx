@@ -1,0 +1,86 @@
+---
+slug: "multi-source-attribute-extraction"
+title: "Multi-Source Attribute Extraction for E-commerce Products (Graduation Project)"
+summary: "A multimodal graduation research system that extracts catalog attributes from product text and imagery at FashionGen scale."
+role: "AI / machine learning lead"
+category: "ai-data-scientific"
+status: "published"
+featured: true
+featuredOrder: 8
+projectOrder: 8
+timeline:
+  startedAt: "2025-10-03"
+  completedAt: "2025-10-03"
+  updatedAt: "2026-08-10"
+technologies:
+  - "python"
+  - "pytorch"
+  - "transformers"
+  - "opencv"
+  - "numpy"
+  - "pandas"
+  - "matplotlib"
+  - "computer-vision"
+links:
+  github: "https://github.com/mohamedmosilhy/Attribute-Value-Generation-VQA"
+  video: "https://drive.google.com/file/d/1nMLZj8dKrZKNZv2fS_DRpxcpEqMGloyW/view?usp=sharing"
+  paper: "https://drive.google.com/file/d/18YQo3ozuFFZ0JAQOjDsPVuk81v-l9ut-/view?usp=sharing"
+cover:
+  kind: "image"
+  src: "/images/projects/multi-source-attribute-extraction/paper-cover.avif"
+  alt: "First page of the graduation research paper showing the multimodal product attribute extraction problem"
+  width: 1024
+  height: 1448
+gallery:
+  layout: "stack"
+  items: []
+seo:
+  title: "Multi-Source Attribute Extraction Graduation Project"
+  description: "A multimodal AI graduation project using BLIP-MAE, cross-modal fusion, and FashionGen data to automate e-commerce product attribute extraction."
+  canonicalPath: "/projects/multi-source-attribute-extraction"
+---
+
+## Overview
+
+I led the development of a multimodal AI system that automates product-attribute extraction from unstructured text and visual data across large e-commerce catalogs. The work covered the complete research pipeline: curating and preprocessing data, designing multimodal experiments, training models, evaluating generalization, and translating the results into a scalable alternative to manual catalog enrichment.
+
+<ProjectGallery />
+
+<Metric
+  value="95.6%"
+  label="Reported Macro F1"
+  detail="Best BLIP-MAE result on more than 200,000 FashionGen samples"
+/>
+
+## Features
+
+- Attribute extraction from product imagery, free-form descriptions, or both modalities together.
+- BLIP-MAE experiments using cross-modal attention and generative decoding.
+- Image-only, text-only, and fused-input ablations that measure each modality’s contribution.
+- Multi-task learning strategies for explicit and implicit product attributes.
+- Zero-shot evaluation across categories not represented during training.
+- Distributed training optimized for NVIDIA T4 GPUs.
+- Configuration-driven data preparation and Hugging Face-compatible inference workflows.
+
+## Architecture
+
+The pipeline separates FashionGen acquisition and preprocessing, configurable datasets, image transforms, tokenization, model behavior, and executable workflows. Vision and language representations meet through cross-modal attention before a generative decoder produces attribute values. YAML configuration keeps modality ablations and inference parameters repeatable, while the public repository exposes preprocessing and inference components independently from the research paper’s full training evidence.
+
+<ProjectTechnologies />
+
+## Challenges
+
+Catalog data is incomplete by nature: descriptions omit visible details, imagery cannot reliably expose every material or brand, and unseen categories challenge closed-set classifiers. The project therefore needed a fusion strategy that learned complementary signals rather than allowing one modality to dominate. Training over more than 200,000 samples also demanded careful GPU utilization, repeatable evaluation, and comparison across model and modality combinations.
+
+<Callout title="Research context" variant="note">
+  The 95.6% Macro F1 is presented as the reported graduation-project result. The
+  linked paper and demo document the complete research outcome; the public
+  repository currently exposes the modular data, preprocessing, and inference
+  layers.
+</Callout>
+
+## Lessons learned
+
+The strongest result was not only a higher score—it was evidence that fusion recovered attributes that image-only or text-only systems missed. Ablation studies made that contribution measurable, zero-shot tests examined whether the model learned transferable signals, and the generative formulation allowed the system to infer implicit values instead of choosing only from a rigid category list.
+
+<ProjectActions />

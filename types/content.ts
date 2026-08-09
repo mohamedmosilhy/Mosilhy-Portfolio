@@ -128,7 +128,9 @@ export interface Profile {
 
 export interface ProjectLinks {
   readonly github: AbsoluteUrl;
-  readonly live: AbsoluteUrl;
+  readonly live?: AbsoluteUrl;
+  readonly video?: AbsoluteUrl;
+  readonly paper?: AbsoluteUrl;
 }
 
 export interface ProjectTimeline {
@@ -147,12 +149,11 @@ export interface SeoFields {
 
 export type ProjectStatus = "draft" | "published";
 export type ProjectCategory =
-  | "full-stack"
-  | "frontend"
-  | "backend"
-  | "mobile"
-  | "ai-data"
-  | "creative-coding";
+  | "frontend-web"
+  | "backend-full-stack"
+  | "mobile-applications"
+  | "ai-data-scientific"
+  | "cs50-work";
 export type GalleryLayout = "stack" | "grid" | "carousel";
 
 export interface ProjectGallery {
@@ -173,7 +174,7 @@ export interface ProjectFrontmatter {
   readonly timeline: ProjectTimeline;
   readonly technologies: readonly SkillId[];
   readonly links: ProjectLinks;
-  readonly cover: ImageAsset;
+  readonly cover?: ImageAsset;
   readonly gallery: ProjectGallery;
   readonly seo: SeoFields;
 }
@@ -218,7 +219,7 @@ export interface ProjectSummary {
   readonly category: ProjectCategory;
   readonly technologies: readonly Skill[];
   readonly links: ProjectLinks;
-  readonly cover: ImageAsset;
+  readonly cover?: ImageAsset;
   readonly featured: boolean;
   readonly featuredOrder?: number;
   readonly projectOrder: number;

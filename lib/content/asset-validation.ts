@@ -121,7 +121,9 @@ function collectAssetReferences(
 
   catalog.projects.forEach((project, projectIndex) => {
     const source = sources.projects[projectIndex]?.source ?? "<projects>";
-    references.push({ asset: project.cover, source, path: ["cover"] });
+    if (project.cover !== undefined) {
+      references.push({ asset: project.cover, source, path: ["cover"] });
+    }
 
     project.gallery.items.forEach((asset, assetIndex) => {
       addMediaReference(references, asset, source, [

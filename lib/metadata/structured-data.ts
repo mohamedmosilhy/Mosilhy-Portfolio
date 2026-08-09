@@ -85,10 +85,11 @@ export function createProjectStructuredData(
         url: absoluteUrl(site.siteUrl, canonicalPath),
         image: absoluteUrl(
           site.siteUrl,
-          (project.seo.socialImage ?? project.cover).src,
+          (project.seo.socialImage ?? project.cover ?? site.defaultSocialImage)
+            .src,
         ),
         codeRepository: project.links.github,
-        sameAs: project.links.live,
+        ...(project.links.live ? { sameAs: project.links.live } : {}),
         dateCreated: project.timeline.startedAt,
         dateModified: project.timeline.updatedAt,
         keywords: project.technologies.map((technology) => technology.name),

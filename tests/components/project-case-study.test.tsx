@@ -222,7 +222,7 @@ describe("project component variants", () => {
 
   it("renders non-wrapping project navigation boundaries", async () => {
     const first = await getProjectPageModel("nova-ecommerce");
-    const last = await getProjectPageModel("iphone-15-pro");
+    const last = await getProjectPageModel("fighter-planes-game");
     const { rerender } = render(
       <ProjectNavigation
         previousProject={first!.previousProject}

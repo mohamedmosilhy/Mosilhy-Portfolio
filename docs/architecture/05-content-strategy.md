@@ -162,9 +162,9 @@ Validation rules include:
 - title, summary, alt text, and SEO description are non-empty and length-bound;
 - project and featured ordering values are unique where applicable;
 - URLs use approved protocols;
-- published projects include both GitHub and live-demo destinations unless the
-  requirements are explicitly revised;
-- cover and gallery dimensions are positive;
+- published projects include a GitHub destination, while live demos, videos,
+  and papers are optional evidence;
+- supplied cover and gallery dimensions are positive;
 - published projects include the required case-study headings;
 - published project slugs are unique;
 - featured projects are also published;

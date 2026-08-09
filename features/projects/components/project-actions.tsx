@@ -13,6 +13,35 @@ export function ProjectActions({
   projectTitle,
   variant = "buttons",
 }: ProjectActionsProps) {
+  const resources = [
+    links.live
+      ? {
+          href: links.live,
+          label: "Live demo",
+          accessibleLabel: `Open ${projectTitle} live demo`,
+        }
+      : null,
+    links.video
+      ? {
+          href: links.video,
+          label: "Demo video",
+          accessibleLabel: `Open ${projectTitle} demo video`,
+        }
+      : null,
+    {
+      href: links.github,
+      label: "GitHub repository",
+      accessibleLabel: `Open ${projectTitle} GitHub repository`,
+    },
+    links.paper
+      ? {
+          href: links.paper,
+          label: "Research paper",
+          accessibleLabel: `Open ${projectTitle} research paper`,
+        }
+      : null,
+  ].filter((resource) => resource !== null);
+
   if (variant === "links") {
     return (
       <nav
@@ -21,24 +50,18 @@ export function ProjectActions({
         data-variant={variant}
         className="flex flex-wrap gap-x-space-6 gap-y-space-2"
       >
-        <ExternalLink
-          href={links.github}
-          variant="standalone"
-          newTab
-          showExternalIcon
-          accessibleLabel={`Open ${projectTitle} GitHub repository`}
-        >
-          GitHub repository
-        </ExternalLink>
-        <ExternalLink
-          href={links.live}
-          variant="standalone"
-          newTab
-          showExternalIcon
-          accessibleLabel={`Open ${projectTitle} live demo`}
-        >
-          Live demo
-        </ExternalLink>
+        {resources.map((resource) => (
+          <ExternalLink
+            key={resource.label}
+            href={resource.href}
+            variant="standalone"
+            newTab
+            showExternalIcon
+            accessibleLabel={resource.accessibleLabel}
+          >
+            {resource.label}
+          </ExternalLink>
+        ))}
       </nav>
     );
   }
@@ -50,25 +73,19 @@ export function ProjectActions({
       data-variant={variant}
       className="flex flex-wrap gap-space-3"
     >
-      <Button
-        href={links.live}
-        size="lg"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`Open ${projectTitle} live demo (opens in a new tab)`}
-      >
-        Open live demo
-      </Button>
-      <Button
-        href={links.github}
-        variant="secondary"
-        size="lg"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`Open ${projectTitle} GitHub repository (opens in a new tab)`}
-      >
-        View GitHub
-      </Button>
+      {resources.map((resource, index) => (
+        <Button
+          key={resource.label}
+          href={resource.href}
+          variant={index === 0 ? "primary" : "secondary"}
+          size="lg"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${resource.accessibleLabel} (opens in a new tab)`}
+        >
+          {resource.label}
+        </Button>
+      ))}
     </nav>
   );
 }

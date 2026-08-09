@@ -1,6 +1,10 @@
 import { expect, test } from "@playwright/test";
 
-const projects = [
+const projects: readonly {
+  readonly slug: string;
+  readonly title: string;
+  readonly coverAlt?: string;
+}[] = [
   {
     slug: "nova-ecommerce",
     title: "Nova E-commerce Platform",
@@ -23,7 +27,20 @@ const projects = [
     title: "iPhone 15 Pro Website Recreation",
     coverAlt: "iPhone 15 Pro recreation hero with a titanium phone image",
   },
-] as const;
+  {
+    slug: "multi-source-attribute-extraction",
+    title:
+      "Multi-Source Attribute Extraction for E-commerce Products (Graduation Project)",
+    coverAlt:
+      "First page of the graduation research paper showing the multimodal product attribute extraction problem",
+  },
+  {
+    slug: "fighter-planes-game",
+    title: "Fighter Planes",
+    coverAlt:
+      "Fighter Planes gameplay showing the player aircraft, an enemy, score, and level",
+  },
+];
 
 const requiredHeadings = [
   "Overview",
@@ -51,17 +68,22 @@ for (const project of projects) {
     await expect(
       caseStudy.getByRole("heading", { level: 2 }).allTextContents(),
     ).resolves.toEqual(requiredHeadings);
-    await expect(
-      page.getByRole("img", { name: project.coverAlt }).first(),
-    ).toHaveAttribute("width", /\d+/);
+    if ("coverAlt" in project) {
+      await expect(
+        page.getByRole("img", { name: project.coverAlt }).first(),
+      ).toHaveAttribute("width", /\d+/);
+    } else {
+      await expect(
+        page
+          .getByRole("img", { name: `${project.title} project artwork` })
+          .first(),
+      ).toBeVisible();
+    }
     await expect(
       caseStudy.getByRole("heading", { level: 3, name: "Technologies" }),
     ).toBeVisible();
     await expect(
       caseStudy.getByRole("link", { name: /GitHub repository/ }),
-    ).toHaveAttribute("target", "_blank");
-    await expect(
-      caseStudy.getByRole("link", { name: /live demo/ }),
     ).toHaveAttribute("target", "_blank");
   });
 }
@@ -80,32 +102,32 @@ test("preserves non-wrapping previous, all, and next project order", async ({
   ).toHaveCount(0);
   await expect(
     navigation.getByRole("link", {
-      name: "Next case study: Where’s Waldo",
+      name: "Next case study: Relay Messaging App",
     }),
-  ).toHaveAttribute("href", "/projects/wheres-waldo");
+  ).toHaveAttribute("href", "/projects/messaging-app");
 
   await page.goto("/projects/wheres-waldo");
   navigation = page.getByRole("navigation", { name: "Project case studies" });
 
   await expect(
     navigation.getByRole("link", {
-      name: "Previous case study: Nova E-commerce Platform",
+      name: "Previous case study: Blog API Platform",
     }),
-  ).toHaveAttribute("href", "/projects/nova-ecommerce");
+  ).toHaveAttribute("href", "/projects/blog-api");
   await expect(
     navigation.getByRole("link", {
       name: "Next case study: Blacktape Website",
     }),
   ).toHaveAttribute("href", "/projects/blacktape");
 
-  await page.goto("/projects/iphone-15-pro");
+  await page.goto("/projects/fighter-planes-game");
   navigation = page.getByRole("navigation", { name: "Project case studies" });
 
   await expect(
     navigation.getByRole("link", {
-      name: "Previous case study: Blacktape Website",
+      name: "Previous case study: CS50 Problem Sets",
     }),
-  ).toHaveAttribute("href", "/projects/blacktape");
+  ).toHaveAttribute("href", "/projects/cs50-problem-sets");
   await expect(
     navigation.getByRole("link", { name: /Next case study:/ }),
   ).toHaveCount(0);

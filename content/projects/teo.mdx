@@ -1,0 +1,79 @@
+---
+slug: "teo"
+title: "TEO Architecture Portfolio"
+summary: "A media-rich architecture portfolio that turns a large mixed-media project library into a focused, navigable client experience."
+role: "Frontend developer"
+category: "frontend-web"
+status: "published"
+featured: true
+featuredOrder: 6
+projectOrder: 6
+timeline:
+  startedAt: "2025-09-08"
+  completedAt: "2025-10-24"
+  updatedAt: "2026-08-10"
+technologies:
+  - "react"
+  - "javascript"
+  - "vite"
+  - "tailwind-css"
+  - "gsap"
+  - "responsive-design"
+links:
+  github: "https://github.com/mohamedmosilhy/TEO"
+  live: "https://mohamedmosilhy.github.io/TEO/"
+cover:
+  kind: "image"
+  src: "/images/projects/teo/home.avif"
+  alt: "TEO architecture studio homepage with full-screen interior visualization"
+  width: 1440
+  height: 900
+gallery:
+  layout: "grid"
+  items:
+    - kind: "image"
+      src: "/images/projects/teo/project-gallery.avif"
+      alt: "Interior design visualization from the TEO mixed-media project gallery"
+      width: 1600
+      height: 1279
+    - kind: "image"
+      src: "/images/projects/teo/landscape-project.avif"
+      alt: "Landscape design visualization presented inside the TEO portfolio"
+      width: 1600
+      height: 1200
+seo:
+  title: "TEO Architecture Portfolio Case Study"
+  description: "How a React architecture portfolio organizes mixed image and video collections through reusable filters, routes, and an advanced media viewer."
+  canonicalPath: "/projects/teo"
+---
+
+## Overview
+
+TEO is an architecture-studio portfolio built around visual discovery. Instead of presenting projects as a flat image wall, the experience helps prospective clients move between design work, completed projects, specialties, studio story, and consultation—all while keeping the media itself central.
+
+<ProjectGallery />
+
+## Features
+
+- Dedicated routes for the home, studio story, specialties, and project archive.
+- Filtered design and real-project collections with visible result counts.
+- Grid and list viewing modes for different browsing preferences.
+- A shared image/video viewer with thumbnails, zoom, playback, previous/next controls, and automatic progression.
+- Lazy-loaded routes with Suspense fallbacks and an application-level error boundary.
+- A consultation flow connected to Google Forms without introducing an unnecessary backend.
+
+## Architecture
+
+The React application separates project content, filtering behavior, and media presentation. Route pages are lazy loaded, a dedicated hook owns project filtering, and reusable gallery components share one media model for both images and video. This keeps a large asset library manageable while allowing the interface to evolve independently from the content.
+
+<ProjectTechnologies />
+
+## Challenges
+
+The difficult part was not rendering media—it was making a large, uneven collection feel coherent. Image and video assets needed consistent navigation, filters had to work across multiple representations, and modal state had to remain understandable as users moved through thumbnails, playback, zoom, and auto-advance. GitHub Pages subpath routing also required careful deployment configuration.
+
+## Lessons learned
+
+Media-heavy products benefit from a shared content model before visual polish is added. Isolating filtering from rendering reduced component complexity, while route-level code splitting protected the initial experience from the cost of a large portfolio. The project strengthened my ability to turn abundant visual content into a deliberate client journey.
+
+<ProjectActions />

@@ -31,7 +31,8 @@ export function createSitemap(
       images: [
         absoluteUrl(
           site.siteUrl,
-          (project.seo.socialImage ?? project.cover).src,
+          (project.seo.socialImage ?? project.cover ?? site.defaultSocialImage)
+            .src,
         ),
       ],
     })),

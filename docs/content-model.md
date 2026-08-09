@@ -233,7 +233,9 @@ metadata. Consumers select fields; they do not copy strings into local modules.
 ```ts
 interface ProjectLinks {
   readonly github: AbsoluteUrl;
-  readonly live: AbsoluteUrl;
+  readonly live?: AbsoluteUrl;
+  readonly video?: AbsoluteUrl;
+  readonly paper?: AbsoluteUrl;
 }
 
 interface ProjectTimeline {
@@ -243,9 +245,9 @@ interface ProjectTimeline {
 }
 ```
 
-Published projects require both GitHub and live-demo links under the current
-requirements. If a real project cannot expose one, revise the requirement and
-schema explicitly rather than inserting a fake or empty URL.
+Published projects require a GitHub repository. Live demos, demonstration
+videos, and research papers are optional resources; unavailable destinations
+are omitted rather than replaced with fake or empty URLs.
 
 ## SEO fields
 
@@ -310,12 +312,11 @@ Rules:
 ```ts
 type ProjectStatus = "draft" | "published";
 type ProjectCategory =
-  | "full-stack"
-  | "frontend"
-  | "backend"
-  | "mobile"
-  | "ai-data"
-  | "creative-coding";
+  | "frontend-web"
+  | "backend-full-stack"
+  | "mobile-applications"
+  | "ai-data-scientific"
+  | "cs50-work";
 type GalleryLayout = "stack" | "grid" | "carousel";
 
 interface ProjectFrontmatter {
@@ -331,7 +332,7 @@ interface ProjectFrontmatter {
   readonly timeline: ProjectTimeline;
   readonly technologies: readonly SkillId[];
   readonly links: ProjectLinks;
-  readonly cover: ImageAsset;
+  readonly cover?: ImageAsset;
   readonly gallery: {
     readonly layout: GalleryLayout;
     readonly items: readonly MediaAsset[];
@@ -347,7 +348,7 @@ interface ProjectSummary {
   readonly category: ProjectCategory;
   readonly technologies: readonly Skill[];
   readonly links: ProjectLinks;
-  readonly cover: ImageAsset;
+  readonly cover?: ImageAsset;
   readonly featured: boolean;
   readonly featuredOrder?: number;
   readonly projectOrder: number;
@@ -487,7 +488,7 @@ const projectFrontmatterSchema = z.object({
   timeline: projectTimelineSchema,
   technologies: z.array(slugSchema).min(1),
   links: projectLinksSchema,
-  cover: imageAssetSchema,
+  cover: imageAssetSchema.optional(),
   gallery: projectGallerySchema,
   seo: seoFieldsSchema,
 });

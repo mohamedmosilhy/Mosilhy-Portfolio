@@ -426,10 +426,10 @@ export function collectCrossRecordIssues(
     });
 
     if (project.status === "published") {
-      for (const linkName of ["github", "live"] as const) {
+      for (const linkName of ["github", "live", "video", "paper"] as const) {
         const link = project.links[linkName];
 
-        if (isPlaceholderUrl(link)) {
+        if (link !== undefined && isPlaceholderUrl(link)) {
           issues.push(
             createIssue({
               code: "placeholder-value",

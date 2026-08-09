@@ -1,0 +1,65 @@
+---
+slug: "fighter-planes-game"
+title: "Fighter Planes"
+summary: "A compact LÖVE2D arcade shooter that turns core programming foundations into a real-time game loop with progression, collisions, and persistence."
+role: "Game developer"
+category: "cs50-work"
+status: "published"
+featured: false
+projectOrder: 14
+timeline:
+  startedAt: "2022-09-11"
+  completedAt: "2022-09-11"
+  updatedAt: "2026-08-10"
+technologies:
+  - "lua"
+  - "love2d"
+  - "game-state-architecture"
+links:
+  github: "https://github.com/mohamedmosilhy/Fighter-planes-game-with-love-2d"
+  video: "https://youtu.be/D4ClML7pg08"
+cover:
+  kind: "image"
+  src: "/images/projects/fighter-planes-game/gameplay.avif"
+  alt: "Fighter Planes gameplay showing the player aircraft, an enemy, score, and level"
+  width: 480
+  height: 360
+gallery:
+  layout: "stack"
+  items: []
+seo:
+  title: "Fighter Planes LÖVE2D Game Case Study"
+  description: "A Lua and LÖVE2D arcade shooter featuring game states, collision handling, difficulty progression, lives, scoring, and saved high scores."
+  canonicalPath: "/projects/fighter-planes-game"
+---
+
+## Overview
+
+Fighter Planes is where foundational programming became something immediate and playable. The game asks the player to clear ten-enemy waves while protecting three lives; each completed level increases enemy speed, turning a small rule set into a steadily more demanding arcade loop.
+
+<ProjectGallery />
+
+## Features
+
+- Responsive player movement and projectile firing inside a real-time update loop.
+- Collision handling between bullets, enemy aircraft, and the player.
+- Ten-enemy stages with escalating speed and level progression.
+- Score, lives, game-over, and restart flows.
+- Menu and gameplay states that keep transitions separate from active simulation.
+- A persisted best score plus custom visual and audio assets.
+
+## Architecture
+
+The LÖVE entry points drive a state-based application structure. Menu and gameplay states own their respective transitions, while reusable source modules represent game objects and supporting components. Update logic advances movement and collisions; draw logic renders the current state; and LÖVE save data preserves the high score across sessions.
+
+<ProjectTechnologies />
+
+## Challenges
+
+Real-time programs expose timing and ownership problems quickly. Projectiles must disappear at the correct moment, one collision must not count repeatedly, state transitions cannot leave stale objects behind, and increasing difficulty must remain playable. Separating game states and object responsibilities kept those rules understandable as the loop grew.
+
+## Lessons learned
+
+This project connected abstract concepts—state, iteration, events, and persistence—to visible behavior. It taught me that satisfying interactions come from many small, consistent decisions: predictable controls, clear feedback, controlled difficulty, and a restart path that feels instant.
+
+<ProjectActions />

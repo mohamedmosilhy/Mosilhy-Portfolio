@@ -1,0 +1,82 @@
+---
+slug: "blog-api"
+title: "Blog API Platform"
+summary: "A three-application publishing platform with separate author and reader clients, a role-aware REST API, moderation, pagination, and rate limits."
+role: "Full-stack developer"
+category: "backend-full-stack"
+status: "published"
+featured: true
+featuredOrder: 3
+projectOrder: 3
+timeline:
+  startedAt: "2026-04-02"
+  completedAt: "2026-04-30"
+  updatedAt: "2026-08-10"
+technologies:
+  - "react"
+  - "node-js"
+  - "express"
+  - "prisma"
+  - "postgresql"
+  - "rest-api-design"
+  - "authentication-authorization"
+  - "tailwind-css"
+links:
+  github: "https://github.com/mohamedmosilhy/Blog-API"
+  video: "https://github.com/user-attachments/assets/fba4db24-95df-4810-a551-119a83b12fb5"
+cover:
+  kind: "image"
+  src: "/images/projects/blog-api/dashboard.avif"
+  alt: "Blog API author dashboard with posts and comment moderation"
+  width: 1600
+  height: 857
+gallery:
+  layout: "stack"
+  items:
+    - kind: "image"
+      src: "/images/projects/blog-api/reader.avif"
+      alt: "Public Blog API reader application"
+      width: 1600
+      height: 862
+    - kind: "image"
+      src: "/images/projects/blog-api/editor.avif"
+      alt: "Blog API author post editor"
+      width: 1600
+      height: 862
+seo:
+  title: "Blog API Platform Case Study"
+  description: "A full-stack publishing case study with two React clients, an Express REST API, role and ownership checks, moderation, and pagination."
+  canonicalPath: "/projects/blog-api"
+---
+
+## Overview
+
+Blog API is a publishing system composed of three independently runnable applications: an Express API, an author dashboard, and a public reader experience. The separation forces the backend contract to be real—publishing, ownership, comments, and moderation cannot depend on privileged client-side assumptions.
+
+<ProjectGallery />
+
+## Features
+
+- Registration and login with differentiated `AUTHOR` and `USER` roles.
+- Author-owned post creation, editing, deletion, drafting, and publication.
+- A public paginated feed that exposes published content only.
+- Reader comments with edit and delete ownership rules.
+- Author moderation over discussion attached to owned posts.
+- Separate responsive author and reader applications consuming the same API.
+- Rate limiting around authentication and comment traffic.
+
+## Architecture
+
+The system uses a client/API boundary rather than embedding publishing logic inside one interface. Express routes and middleware delegate to controllers around Prisma, while the author and reader React applications consume the same documented REST resources. PostgreSQL relationships connect users, posts, and comments; publication state and timestamps make editorial lifecycle explicit.
+
+<ProjectTechnologies />
+
+## Challenges
+
+The main challenge was expressing authorization beyond authentication. Being logged in is not enough to edit a post, moderate a comment, or expose a draft. Each mutation needed role and ownership rules, while the public client required a deliberately smaller view of the same data. Keeping two clients synchronized with an evolving API also made documentation and stable response shapes important.
+
+## Lessons learned
+
+Separating the clients made security boundaries visible. Draft state belongs in the data model, ownership belongs in server-side checks, and pagination belongs in the API contract. Rate limits around sensitive routes added practical defense in depth, while the multi-client structure demonstrated that the backend could support more than one presentation layer.
+
+<ProjectActions />

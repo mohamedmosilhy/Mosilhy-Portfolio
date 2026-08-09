@@ -1,0 +1,78 @@
+---
+slug: "stroke-clot-classification"
+title: "Stroke Blood-Clot Origin Classification"
+summary: "A medical computer-vision research pipeline for studying clot-origin classification through histopathology preprocessing, transformer models, and ensembling."
+role: "Machine learning / computer vision developer"
+category: "ai-data-scientific"
+status: "published"
+featured: true
+featuredOrder: 9
+projectOrder: 9
+timeline:
+  startedAt: "2025-01-10"
+  completedAt: "2025-01-11"
+  updatedAt: "2026-08-10"
+technologies:
+  - "python"
+  - "pytorch"
+  - "scikit-learn"
+  - "jupyter"
+  - "computer-vision"
+links:
+  github: "https://github.com/mohamedmosilhy/Image-Classification-of-Stroke-Blood-Clot-Origin"
+cover:
+  kind: "image"
+  src: "/images/projects/stroke-clot-classification/training-curves.avif"
+  alt: "Training and validation curves from the stroke clot classification experiments"
+  width: 1600
+  height: 900
+gallery:
+  layout: "grid"
+  items:
+    - kind: "image"
+      src: "/images/projects/stroke-clot-classification/confusion-matrix.avif"
+      alt: "Confusion matrix from a stroke clot origin classification experiment"
+      width: 1594
+      height: 1600
+seo:
+  title: "Stroke Blood-Clot Origin Classification Case Study"
+  description: "A research-oriented PyTorch pipeline for histopathology preprocessing, patch classification, transfer learning, and model ensembling."
+  canonicalPath: "/projects/stroke-clot-classification"
+---
+
+## Overview
+
+This research project investigates whether histopathology images from the STRIP AI dataset contain learnable signals for distinguishing cardioembolic clots from large-artery atherosclerosis. I worked across the experimental pipeline—from cleaning tissue imagery and preparing patches to training modern image models and evaluating complementary ensemble candidates.
+
+<ProjectGallery />
+
+## Features
+
+- Background removal and Otsu-based segmentation tailored to tissue imagery.
+- Patch extraction and augmentation that transform large specimens into tractable training samples.
+- PoolFormerV3 and Compact Convolutional Transformer experiments.
+- Transfer learning, learning-rate scheduling, early stopping, and checkpoint management.
+- Reusable modules for preprocessing, datasets, model definitions, and training behavior.
+- Confusion matrices and class-level evaluation for inspecting where a model succeeds or fails.
+
+## Architecture
+
+Reusable Python modules separate image preparation, dataset construction, model definitions, loss behavior, and training utilities. Jupyter notebooks then act as transparent experiment runners rather than containers for every implementation detail. This structure made it practical to compare preprocessing choices and model families while preserving the same data contract and evaluation workflow.
+
+<ProjectTechnologies />
+
+## Challenges
+
+Whole-specimen imagery is visually sparse and too large to feed directly into a typical classifier. The pipeline therefore had to identify tissue, remove irrelevant background, divide useful regions into patches, and keep the split methodology defensible. Medical-image imbalance and limited data also made transfer learning, regularization, and per-class analysis more meaningful than optimizing a single headline number.
+
+<Callout title="Research use only" variant="note">
+  This is an exploratory machine-learning study, not a clinical diagnostic
+  system. Its results require external validation, a locked evaluation protocol,
+  and clinical oversight before any healthcare use.
+</Callout>
+
+## Lessons learned
+
+In medical computer vision, the quality of the experimental boundary matters as much as the architecture. A sophisticated model cannot compensate for leakage between related patches or poorly documented preprocessing. This work strengthened my approach to modular experiments, class-aware evaluation, and communicating uncertainty in high-stakes domains.
+
+<ProjectActions />

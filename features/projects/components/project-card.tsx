@@ -1,7 +1,8 @@
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
-import { MediaFrame } from "@/components/ui/media-frame";
+import { ProjectArtwork } from "@/features/projects/components/project-artwork";
 import { projectCategoryLabels } from "@/features/projects/project-categories";
 import type { InternalHref, ProjectSummary } from "@/types/content";
 
@@ -23,15 +24,37 @@ export function ProjectCard({ project, ordinal }: ProjectCardProps) {
       data-slot="project-card"
       className="group relative isolate h-full min-h-72 overflow-hidden rounded-xl border border-border bg-surface shadow-sm transition-[border-color,box-shadow,transform] duration-[var(--motion-base)] ease-[var(--ease-standard)] focus-within:border-accent focus-within:ring-2 focus-within:ring-accent focus-within:ring-offset-2 focus-within:ring-offset-canvas hover:border-border-strong hover:shadow-xl motion-safe:hover:-translate-y-1 motion-reduce:transition-[border-color,box-shadow]"
     >
-      <div className="absolute inset-0 -z-20">
-        <MediaFrame
-          asset={project.cover}
-          sizes="(min-width: 1024px) 66vw, (min-width: 640px) 50vw, calc(100vw - 2rem)"
-          radius="none"
-          fill
-        />
+      <div aria-hidden="true" className="absolute inset-0 -z-20">
+        {project.cover ? (
+          <div className="relative h-full overflow-hidden bg-canvas">
+            <Image
+              src={project.cover.src}
+              alt=""
+              fill
+              sizes="(min-width: 1024px) 66vw, (min-width: 640px) 50vw, calc(100vw - 2rem)"
+              className="scale-110 object-cover opacity-45 blur-2xl"
+            />
+            <div className="absolute inset-0 bg-black/15" />
+            <div className="absolute inset-space-3 sm:inset-space-5">
+              <Image
+                data-slot="project-card-cover"
+                src={project.cover.src}
+                alt={project.cover.alt}
+                fill
+                sizes="(min-width: 1024px) 60vw, (min-width: 640px) 46vw, calc(100vw - 3.5rem)"
+                className="object-contain drop-shadow-2xl transition-transform duration-[var(--motion-base)] ease-[var(--ease-standard)] motion-safe:group-hover:scale-[1.02] motion-reduce:transition-none"
+              />
+            </div>
+          </div>
+        ) : (
+          <ProjectArtwork
+            title={project.title}
+            category={project.category}
+            className="h-full"
+          />
+        )}
       </div>
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(7,10,18,0.06)_10%,rgba(7,10,18,0.32)_48%,rgba(7,10,18,0.96)_100%)] transition-opacity duration-[var(--motion-base)] group-hover:opacity-90 motion-reduce:transition-none" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(7,10,18,0.08)_8%,rgba(7,10,18,0.22)_48%,rgba(7,10,18,0.96)_100%)] transition-opacity duration-[var(--motion-base)] group-hover:opacity-90 motion-reduce:transition-none" />
       <Link
         href={projectPath(project.slug)}
         aria-label={`View ${project.title} case study`}

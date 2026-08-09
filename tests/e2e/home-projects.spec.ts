@@ -1,9 +1,8 @@
 import { expect, test } from "@playwright/test";
 
 const projectTitles = [
-  "Nova E-commerce Platform",
-  "Where’s Waldo",
   "Blacktape Website",
+  "TEO Architecture Portfolio",
   "iPhone 15 Pro Website Recreation",
 ] as const;
 
@@ -17,22 +16,25 @@ test("renders an ordered, minimal project gallery", async ({ page }) => {
   await expect(
     cards.getByRole("heading", { level: 3 }).allTextContents(),
   ).resolves.toEqual(projectTitles);
-  await expect(section.getByText("Showing 4 of 4 projects")).toBeVisible();
-
-  const nova = cards.first();
-
   await expect(
-    nova.getByRole("img", {
-      name: "Arabic Nova storefront home page with product collections",
-    }),
+    section.getByText("Showing 3 Frontend Web projects"),
   ).toBeVisible();
-  await expect(nova.getByRole("link")).toHaveCount(1);
+  await expect(section.getByRole("button", { name: "All" })).toHaveCount(0);
+
+  const blacktape = cards.first();
+
   await expect(
-    nova.getByRole("link", {
-      name: "View Nova E-commerce Platform case study",
+    blacktape.locator(
+      'img[alt="Blacktape website hero with the brand wordmark and dark visual treatment"]',
+    ),
+  ).toBeVisible();
+  await expect(blacktape.getByRole("link")).toHaveCount(1);
+  await expect(
+    blacktape.getByRole("link", {
+      name: "View Blacktape Website case study",
     }),
-  ).toHaveAttribute("href", "/projects/nova-ecommerce");
-  await expect(nova).not.toContainText("Next.js");
+  ).toHaveAttribute("href", "/projects/blacktape");
+  await expect(blacktape).not.toContainText("React");
 });
 
 test("filters by discipline and searches across project tools", async ({
@@ -42,22 +44,25 @@ test("filters by discipline and searches across project tools", async ({
 
   const section = page.getByRole("region", { name: "Project gallery" });
 
-  await section.getByRole("button", { name: "Frontend" }).click();
-  await expect(section.getByRole("article")).toHaveCount(2);
+  await section.getByRole("button", { name: "Frontend Web" }).click();
+  await expect(section.getByRole("article")).toHaveCount(3);
   await expect(section.getByText("Blacktape Website")).toBeVisible();
   await expect(
     section.getByText("iPhone 15 Pro Website Recreation"),
   ).toBeVisible();
+  await expect(section.getByText("TEO Architecture Portfolio")).toBeVisible();
 
-  await section.getByRole("button", { name: "All", exact: true }).click();
+  await section.getByRole("button", { name: "Backend & Full-stack" }).click();
   await section
     .getByRole("searchbox", { name: "Search projects" })
     .fill("Waldo");
   await expect(section.getByRole("article")).toHaveCount(1);
   await expect(section.getByText("Where’s Waldo")).toBeVisible();
-  await expect(section.getByText("Showing 1 of 4 projects")).toBeVisible();
+  await expect(
+    section.getByText("Showing 1 Backend & Full-stack project"),
+  ).toBeVisible();
 
-  await section.getByRole("button", { name: "Reset filters" }).click();
+  await section.getByRole("button", { name: "Clear search" }).click();
   await expect(section.getByRole("article")).toHaveCount(4);
 });
 
@@ -75,7 +80,7 @@ test("keeps every project available without JavaScript or hover", async ({
   const section = page.getByRole("region", { name: "Project gallery" });
   const cards = section.getByRole("article");
 
-  await expect(cards).toHaveCount(projectTitles.length);
+  await expect(cards).toHaveCount(3);
   await expect(
     cards.first().getByRole("heading", {
       level: 3,

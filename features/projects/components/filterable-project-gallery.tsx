@@ -12,15 +12,6 @@ import {
 import { cn } from "@/lib/utils/cn";
 import type { ProjectCategory, ProjectSummary } from "@/types/content";
 
-type CategoryFilter = "all" | ProjectCategory;
-
-const tilePattern = [
-  "lg:col-span-4 lg:row-span-2",
-  "lg:col-span-2",
-  "lg:col-span-2",
-  "lg:col-span-6",
-] as const;
-
 export interface FilterableProjectGalleryProps {
   readonly projects: readonly ProjectSummary[];
 }
@@ -28,17 +19,18 @@ export interface FilterableProjectGalleryProps {
 export function FilterableProjectGallery({
   projects,
 }: FilterableProjectGalleryProps) {
-  const [category, setCategory] = useState<CategoryFilter>("all");
-  const [query, setQuery] = useState("");
   const availableCategories = projectCategoryOrder.filter((candidate) =>
     projects.some((project) => project.category === candidate),
   );
+  const [category, setCategory] = useState<ProjectCategory>(
+    availableCategories[0] ?? projectCategoryOrder[0],
+  );
+  const [query, setQuery] = useState("");
   const normalizedQuery = query.trim().toLocaleLowerCase();
   const visibleProjects = useMemo(
     () =>
       projects.filter((project) => {
-        const matchesCategory =
-          category === "all" || project.category === category;
+        const matchesCategory = project.category === category;
         const searchableText = [
           project.title,
           project.role,
@@ -52,10 +44,9 @@ export function FilterableProjectGallery({
       }),
     [category, normalizedQuery, projects],
   );
-  const hasActiveFilters = category !== "all" || normalizedQuery.length > 0;
+  const hasActiveSearch = normalizedQuery.length > 0;
 
-  function clearFilters() {
-    setCategory("all");
+  function clearSearch() {
     setQuery("");
   }
 
@@ -67,12 +58,6 @@ export function FilterableProjectGallery({
           aria-label="Filter projects by category"
           className="flex gap-space-2 overflow-x-auto pb-space-1 lg:flex-wrap lg:overflow-visible lg:pb-0"
         >
-          <FilterButton
-            active={category === "all"}
-            onClick={() => setCategory("all")}
-          >
-            All
-          </FilterButton>
           {availableCategories.map((candidate) => (
             <FilterButton
               key={candidate}
@@ -112,29 +97,27 @@ export function FilterableProjectGallery({
 
       <div className="mt-space-5 flex items-center justify-between gap-space-4">
         <p aria-live="polite" className="text-body-sm text-text-muted">
-          Showing {visibleProjects.length} of {projects.length} projects
+          Showing {visibleProjects.length} {projectCategoryLabels[category]}{" "}
+          {visibleProjects.length === 1 ? "project" : "projects"}
         </p>
-        {hasActiveFilters ? (
+        {hasActiveSearch ? (
           <button
             type="button"
-            onClick={clearFilters}
+            onClick={clearSearch}
             className="rounded-sm text-body-sm font-medium text-accent underline-offset-4 outline-none hover:text-accent-hover hover:underline focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
           >
-            Reset filters
+            Clear search
           </button>
         ) : null}
       </div>
 
       {visibleProjects.length > 0 ? (
-        <BentoGrid as="ul" className="mt-space-6">
+        <BentoGrid
+          as="ul"
+          className="mt-space-6 sm:grid-cols-2 lg:auto-rows-[22rem] lg:grid-cols-3"
+        >
           {visibleProjects.map((project, index) => (
-            <li
-              key={project.slug}
-              className={cn(
-                "min-h-72 sm:col-span-1 lg:min-h-0",
-                tilePattern[index % tilePattern.length],
-              )}
-            >
+            <li key={project.slug} className="min-h-80 lg:min-h-0">
               <ProjectCard project={project} ordinal={index + 1} />
             </li>
           ))}
@@ -149,10 +132,10 @@ export function FilterableProjectGallery({
           </p>
           <button
             type="button"
-            onClick={clearFilters}
+            onClick={clearSearch}
             className="mt-space-5 rounded-full border border-border-strong px-space-5 py-space-2 text-body-sm font-semibold text-text outline-none hover:border-accent hover:text-accent focus-visible:ring-2 focus-visible:ring-accent"
           >
-            Show all projects
+            Clear search
           </button>
         </div>
       )}

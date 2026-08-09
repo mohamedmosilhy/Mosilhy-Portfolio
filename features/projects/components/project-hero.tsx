@@ -5,6 +5,7 @@ import { Container } from "@/components/layout/container";
 import { MediaFrame } from "@/components/ui/media-frame";
 import { Spotlight } from "@/components/ui/spotlight";
 import { ProjectActions } from "@/features/projects/components/project-actions";
+import { ProjectArtwork } from "@/features/projects/components/project-artwork";
 import { projectCategoryLabels } from "@/features/projects/project-categories";
 import type { ISODate, ProjectDetail } from "@/types/content";
 
@@ -64,7 +65,7 @@ export function ProjectHero({
               Case study&nbsp; / &nbsp;
               {projectCategoryLabels[project.category]}
             </p>
-            <h1 className="mt-space-4 max-w-content font-display text-display-lg font-medium text-balance text-text">
+            <h1 className="mt-space-4 max-w-content font-display text-heading-xl font-medium text-balance text-text sm:text-display-lg">
               {project.title}
             </h1>
             <p className="mt-space-6 max-w-prose text-body-lg text-pretty text-text-secondary">
@@ -93,9 +94,11 @@ export function ProjectHero({
               </dt>
               <dd className="mt-space-2 text-body-sm text-text-secondary">
                 {formatProjectDate(project.timeline.startedAt)}
-                {project.timeline.completedAt
-                  ? ` — ${formatProjectDate(project.timeline.completedAt)}`
-                  : " — Ongoing"}
+                {project.timeline.completedAt === project.timeline.startedAt
+                  ? null
+                  : project.timeline.completedAt
+                    ? ` — ${formatProjectDate(project.timeline.completedAt)}`
+                    : " — Ongoing"}
               </dd>
             </div>
             <div>
@@ -122,13 +125,21 @@ export function ProjectHero({
             aria-hidden="true"
             className="absolute -inset-space-4 -z-10 rounded-xl bg-accent opacity-[0.06] blur-3xl"
           />
-          <MediaFrame
-            asset={project.cover}
-            highPriority={highPriority}
-            sizes="(min-width: 1280px) 76rem, (min-width: 640px) calc(100vw - 3rem), calc(100vw - 2rem)"
-            variant="browser"
-            radius="xl"
-          />
+          {project.cover ? (
+            <MediaFrame
+              asset={project.cover}
+              highPriority={highPriority}
+              sizes="(min-width: 1280px) 76rem, (min-width: 640px) calc(100vw - 3rem), calc(100vw - 2rem)"
+              variant="browser"
+              radius="xl"
+            />
+          ) : (
+            <ProjectArtwork
+              title={project.title}
+              category={project.category}
+              framed
+            />
+          )}
         </div>
       </Container>
     </header>

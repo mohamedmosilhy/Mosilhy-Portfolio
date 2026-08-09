@@ -14,6 +14,10 @@ export function ProjectGallery({
   projectTitle,
   variant = "stack",
 }: ProjectGalleryProps) {
+  if (items.length === 0) {
+    return null;
+  }
+
   if (variant === "carousel") {
     return <ProjectCarousel items={items} projectTitle={projectTitle} />;
   }

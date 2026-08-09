@@ -20,7 +20,9 @@ const positiveOrderSchema = z.number().int().positive();
 export const projectLinksSchema: z.ZodType<ProjectLinks> = z
   .strictObject({
     github: absoluteUrlSchema,
-    live: absoluteUrlSchema,
+    live: absoluteUrlSchema.optional(),
+    video: absoluteUrlSchema.optional(),
+    paper: absoluteUrlSchema.optional(),
   })
   .readonly();
 
@@ -78,12 +80,11 @@ export const projectFrontmatterSchema: z.ZodType<ProjectFrontmatter> = z
     summary: z.string().trim().min(40).max(180),
     role: z.string().trim().min(2).max(80),
     category: z.enum([
-      "full-stack",
-      "frontend",
-      "backend",
-      "mobile",
-      "ai-data",
-      "creative-coding",
+      "frontend-web",
+      "backend-full-stack",
+      "mobile-applications",
+      "ai-data-scientific",
+      "cs50-work",
     ]),
     status: z.enum(["draft", "published"]),
     featured: z.boolean(),
@@ -113,7 +114,7 @@ export const projectFrontmatterSchema: z.ZodType<ProjectFrontmatter> = z
       })
       .readonly(),
     links: projectLinksSchema,
-    cover: imageAssetSchema,
+    cover: imageAssetSchema.optional(),
     gallery: projectGallerySchema,
     seo: seoFieldsSchema,
   })
@@ -163,7 +164,7 @@ export const projectFrontmatterSchema: z.ZodType<ProjectFrontmatter> = z
       });
     }
 
-    if (project.cover.decorative === true) {
+    if (project.cover?.decorative === true) {
       context.addIssue({
         code: "custom",
         path: ["cover", "decorative"],

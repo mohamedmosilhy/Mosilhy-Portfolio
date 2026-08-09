@@ -8,16 +8,13 @@ assets, metadata, accessibility, performance, and deployment readiness.
 
 ## Route accounting
 
-| Route                      | Source                     | Content source              | Status   |
-| -------------------------- | -------------------------- | --------------------------- | -------- |
-| `/`                        | `app/(site)/page.tsx`      | Home page model             | Included |
-| `/projects/nova-ecommerce` | Generated project route    | Nova MDX                    | Included |
-| `/projects/wheres-waldo`   | Generated project route    | Where’s Waldo MDX           | Included |
-| `/projects/blacktape`      | Generated project route    | Blacktape MDX               | Included |
-| `/projects/iphone-15-pro`  | Generated project route    | iPhone MDX                  | Included |
-| `/projects/[unknown]`      | Project not-found boundary | Shared not-found copy       | Included |
-| `/robots.txt`              | `app/robots.ts`            | Site metadata               | Included |
-| `/sitemap.xml`             | `app/sitemap.ts`           | Published project selectors | Included |
+| Route                 | Source                     | Content source                | Status   |
+| --------------------- | -------------------------- | ----------------------------- | -------- |
+| `/`                   | `app/(site)/page.tsx`      | Home page model               | Included |
+| `/projects/<slug>`    | Generated project route    | 14 validated MDX case studies | Included |
+| `/projects/[unknown]` | Project not-found boundary | Shared not-found copy         | Included |
+| `/robots.txt`         | `app/robots.ts`            | Site metadata                 | Included |
+| `/sitemap.xml`        | `app/sitemap.ts`           | Published project selectors   | Included |
 
 Project detail routes are generated only for published records. The dedicated
 `/projects/not-found` route exists solely as the fallback destination required
@@ -38,7 +35,8 @@ from `lib/content`, and feature components receive those models through props.
 
 ## Content and copy review
 
-- Four audited projects are published and use one shared case-study template.
+- Fourteen audited projects are published across five recruiter-facing
+  collections and use one shared case-study template.
 - Project claims, technologies, links, and engineering details remain limited
   to evidence from the completed repository audit.
 - Sections without audit evidence state that limitation instead of inventing a

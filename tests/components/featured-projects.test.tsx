@@ -33,17 +33,13 @@ describe("ProjectCard", () => {
     render(<ProjectCard project={projectSummary} ordinal={1} />);
 
     const card = screen.getByRole("article", { name: projectSummary.title });
-    const media = within(card).getByRole("img", {
-      name: projectSummary.cover.alt,
-    });
+    const media = card.querySelector(`img[alt="${projectSummary.cover.alt}"]`);
     const links = within(card).getAllByRole("link");
 
-    expect(media).toHaveAttribute("width", String(projectSummary.cover.width));
-    expect(media).toHaveAttribute(
-      "height",
-      String(projectSummary.cover.height),
-    );
-    expect(card).toHaveTextContent("Full-stack");
+    expect(media).toBeInTheDocument();
+    expect(media).toHaveAttribute("data-nimg", "fill");
+    expect(media).toHaveClass("object-contain");
+    expect(card).toHaveTextContent("Backend & Full-stack");
     expect(card).toHaveTextContent(projectSummary.role);
     expect(card).toHaveTextContent("01");
     expect(card).not.toHaveTextContent(projectSummary.summary);
@@ -83,12 +79,17 @@ describe("ProjectsSection", () => {
       "project-second-project-heading",
       `project-${projectSummary.slug}-heading`,
     ]);
-    expect(within(section).getByText("Showing 2 of 2 projects")).toBeVisible();
     expect(
-      within(section).getByRole("button", { name: "All" }),
+      within(section).getByText("Showing 2 Backend & Full-stack projects"),
+    ).toBeVisible();
+    expect(
+      within(section).getByRole("button", { name: "Backend & Full-stack" }),
     ).toHaveAttribute("aria-pressed", "true");
+    expect(
+      within(section).queryByRole("button", { name: "All" }),
+    ).not.toBeInTheDocument();
     expect(section.querySelector('[data-slot="bento-grid"]')).toHaveClass(
-      "lg:grid-cols-6",
+      "lg:grid-cols-3",
     );
   });
 });

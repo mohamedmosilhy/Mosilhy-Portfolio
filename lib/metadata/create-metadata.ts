@@ -103,7 +103,7 @@ export function createProjectMetadata(
   const canonicalUrl = absoluteUrl(site.siteUrl, canonicalPath);
   const projectImage = socialImage(
     site,
-    project.seo.socialImage ?? project.cover,
+    project.seo.socialImage ?? project.cover ?? site.defaultSocialImage,
   );
 
   return {

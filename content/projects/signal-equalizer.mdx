@@ -1,0 +1,69 @@
+---
+slug: "signal-equalizer"
+title: "Multi-Mode Signal Equalizer"
+summary: "A scientific desktop workspace for reshaping audio and biomedical signals while comparing synchronized waveforms and live spectrograms."
+role: "Scientific software developer"
+category: "ai-data-scientific"
+status: "published"
+featured: false
+projectOrder: 10
+timeline:
+  startedAt: "2023-11-04"
+  completedAt: "2024-03-15"
+  updatedAt: "2026-08-10"
+technologies:
+  - "python"
+  - "pyqt"
+  - "numpy"
+  - "scipy"
+  - "pandas"
+  - "matplotlib"
+  - "digital-signal-processing"
+links:
+  github: "https://github.com/mohamedmosilhy/Signal-Equalizer"
+  video: "https://github.com/mohamedmosilhy/Signal-Equalizer/assets/115044826/88899ce1-07e8-4ca5-8ba8-6172c09e0294"
+cover:
+  kind: "image"
+  src: "/images/projects/signal-equalizer/equalizer-workspace.avif"
+  alt: "Signal Equalizer workspace comparing waveforms, spectrograms, playback, and frequency sliders"
+  width: 1600
+  height: 900
+gallery:
+  layout: "stack"
+  items: []
+seo:
+  title: "Multi-Mode Signal Equalizer Case Study"
+  description: "A Python and PyQt scientific-computing project for interactive signal equalization, synchronized playback, and spectrogram analysis."
+  canonicalPath: "/projects/signal-equalizer"
+---
+
+## Overview
+
+This project turns signal processing from a collection of offline calculations into an interactive visual instrument. Users can load audio or biomedical data, adjust frequency bands, and immediately compare the original and reconstructed signals in both the time and frequency domains.
+
+<ProjectGallery />
+
+## Features
+
+- Four domain-aware modes for uniform signals, musical instruments, animal sounds, and ECG recordings.
+- Rectangle, Hamming, Hanning, and Gaussian frequency windows for comparing smoothing behavior.
+- Linked input and output viewers with playback, speed, zoom, pan, and reset controls.
+- Live spectrograms that expose how slider changes affect frequency content—not only waveform shape.
+- CSV, WAV, and MP3 ingestion plus reusable custom signal configurations.
+- Synchronized audio playback for direct before-and-after evaluation.
+
+## Architecture
+
+The PyQt controller coordinates a signal model, equalization calculations, graph playback, audio output, and spectrogram rendering. Domain-specific band definitions sit above the numerical layer, allowing the same processing pipeline to behave as a general equalizer, an instrument isolator, or an ECG analysis aid. NumPy and SciPy handle the transforms while PyQtGraph and Matplotlib keep the interface responsive and analytically useful.
+
+<ProjectTechnologies />
+
+## Challenges
+
+The difficult part was maintaining one source of truth across several representations of the same signal. Playback position, waveform cursors, transformed output, and spectrograms all had to remain synchronized while users changed frequency gains or playback speed. Window selection added another engineering tradeoff: sharp boundaries offer precise control but introduce different artifacts from smoother windows.
+
+## Lessons learned
+
+Building the same interaction around music, animal sounds, and ECG recordings made the shared mathematics—and the limits of a one-size-fits-all interface—much clearer. I learned to treat scientific visualization as part of the product rather than an afterthought: the paired plots explain the result, reveal mistakes quickly, and help users form intuition about frequency-domain processing.
+
+<ProjectActions />

@@ -1,0 +1,80 @@
+---
+slug: "flutter-blog-app"
+title: "Flutter Blog App"
+summary: "A cross-platform publishing application with Clean Architecture, Supabase authentication and storage, Bloc state, and connectivity-aware offline reading."
+role: "Flutter developer"
+category: "mobile-applications"
+status: "published"
+featured: true
+featuredOrder: 10
+projectOrder: 11
+timeline:
+  startedAt: "2024-07-01"
+  completedAt: "2024-07-05"
+  updatedAt: "2026-08-10"
+technologies:
+  - "flutter"
+  - "dart"
+  - "clean-architecture"
+  - "bloc"
+  - "supabase"
+  - "hive"
+  - "dependency-injection"
+  - "offline-first"
+links:
+  github: "https://github.com/mohamedmosilhy/Blog-App"
+cover:
+  kind: "image"
+  src: "/images/projects/flutter-blog/feed.avif"
+  alt: "Flutter Blog App feed with topic tags and reading times"
+  width: 720
+  height: 1600
+gallery:
+  layout: "grid"
+  items:
+    - kind: "image"
+      src: "/images/projects/flutter-blog/detail.avif"
+      alt: "Flutter Blog App article detail screen"
+      width: 720
+      height: 1600
+    - kind: "image"
+      src: "/images/projects/flutter-blog/create.avif"
+      alt: "Flutter Blog App article creation screen"
+      width: 720
+      height: 1600
+seo:
+  title: "Flutter Blog App Clean Architecture Case Study"
+  description: "A Flutter case study covering Clean Architecture, Supabase, Bloc, dependency injection, cloud image uploads, and Hive-backed offline reading."
+  canonicalPath: "/projects/flutter-blog-app"
+---
+
+## Overview
+
+This Flutter Blog App is a cross-platform publishing product built to keep infrastructure replaceable and failure states explicit. Users can create accounts, publish image-led articles, browse topics and reading times, and retain access to a cached feed when the network is unavailable.
+
+<ProjectGallery />
+
+## Features
+
+- Email registration, login, profile handling, and persistent Supabase sessions.
+- Article creation with cover upload, title, content, topics, and validation.
+- Feed and article-detail experiences with authorship and estimated reading time.
+- Supabase PostgreSQL records and object storage for article covers.
+- Hive-backed local caching for offline reading.
+- Connectivity-aware repositories that choose remote or cached data deliberately.
+
+## Architecture
+
+Authentication and blogging are organized into data, domain, and presentation layers. Domain use cases depend on repository contracts rather than Supabase directly. Data sources implement those contracts, `get_it` supplies dependencies, functional result types carry failures, and Bloc/Cubit coordinates UI state. Shared errors, connectivity, themes, and utilities live under `core`.
+
+<ProjectTechnologies />
+
+## Challenges
+
+Offline support is more than storing the last response. The application needed a clear policy for when cached data was trustworthy, how remote failures moved through layers, and how UI state represented loading, success, and failure without coupling pages to Supabase exceptions. Image upload also crossed authentication, storage, and database boundaries.
+
+## Lessons learned
+
+Clean Architecture became useful when it made infrastructure decisions reversible. The domain does not need to know whether an article came from Supabase or Hive, and the presentation layer receives typed outcomes instead of raw platform errors. That separation made connectivity-aware reading a repository concern rather than a collection of checks scattered through widgets.
+
+<ProjectActions />

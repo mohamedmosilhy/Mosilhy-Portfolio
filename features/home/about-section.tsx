@@ -47,6 +47,7 @@ export function AboutSection({ profile }: AboutSectionProps) {
                 <div className="relative">
                   <MediaFrame
                     asset={profile.portrait}
+                    highPriority
                     sizes="(min-width: 1280px) 23rem, (min-width: 1024px) 30vw, (min-width: 640px) 36rem, calc(100vw - 2rem)"
                     variant="surface"
                     radius="xl"
@@ -74,7 +75,7 @@ export function AboutSection({ profile }: AboutSectionProps) {
                     <div className="md:sticky md:top-space-24 md:self-start">
                       <span
                         aria-hidden="true"
-                        className="block font-display text-heading-lg font-medium text-border-strong"
+                        className="block font-display text-heading-lg font-medium text-text-muted"
                       >
                         {String(index + 1).padStart(2, "0")}
                       </span>

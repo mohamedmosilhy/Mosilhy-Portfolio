@@ -1,0 +1,80 @@
+---
+slug: "messaging-app"
+title: "Relay Messaging App"
+summary: "A secure direct-messaging system with participant-aware authorization, cursor history, indexed inbox ordering, and a polished responsive workspace."
+role: "Full-stack developer"
+category: "backend-full-stack"
+status: "published"
+featured: true
+featuredOrder: 2
+projectOrder: 2
+timeline:
+  startedAt: "2026-06-26"
+  updatedAt: "2026-08-10"
+technologies:
+  - "next-js"
+  - "react"
+  - "typescript"
+  - "tanstack-query"
+  - "prisma"
+  - "auth-js"
+  - "postgresql"
+  - "zod"
+links:
+  github: "https://github.com/mohamedmosilhy/messaging_app"
+  live: "https://relay-messaging-app.vercel.app"
+cover:
+  kind: "image"
+  src: "/images/projects/messaging-app/landing.avif"
+  alt: "Relay messaging application landing page"
+  width: 1440
+  height: 960
+gallery:
+  layout: "stack"
+  items:
+    - kind: "image"
+      src: "/images/projects/messaging-app/inbox.avif"
+      alt: "Relay inbox with indexed conversations and unread counts"
+      width: 1440
+      height: 976
+    - kind: "image"
+      src: "/images/projects/messaging-app/conversation.avif"
+      alt: "Relay direct conversation workspace"
+      width: 1440
+      height: 976
+seo:
+  title: "Relay Messaging App Engineering Case Study"
+  description: "A Next.js messaging case study covering participant authorization, cursor pagination, deterministic direct chats, and PostgreSQL indexing."
+  canonicalPath: "/projects/messaging-app"
+---
+
+## Overview
+
+Relay is a full-stack direct-messaging application designed around a simple promise: conversations should feel calm while the system underneath remains strict about identity, ownership, and data access. Registered users can discover people, start a unique direct conversation, exchange persisted messages, and manage their profile from one responsive workspace.
+
+<ProjectGallery />
+
+## Features
+
+- Credentials authentication with registration, login, persistent sessions, and protected routes.
+- User search and first-message conversation creation in one workflow.
+- Cursor-paginated message history that remains stable as new records arrive.
+- Polling-based inbox and conversation refresh without pretending the MVP is fully realtime.
+- Profile settings, unread indicators, seeded demonstration data, and responsive conversation layouts.
+- Server-side participant checks before every protected conversation read or write.
+
+## Architecture
+
+Relay is organized as a feature-based modular monolith. Authentication, users, and messaging each own their components, schemas, services, server actions, hooks, and types. Prisma models users, conversations, participants, messages, and block relationships in PostgreSQL. TanStack Query manages remote state while route handlers and services enforce authorization at the server boundary.
+
+<ProjectTechnologies />
+
+## Challenges
+
+A messaging interface can appear correct while leaking data through an unprotected endpoint. Every conversation query therefore needed participant verification, not only hidden UI controls. Direct chats also needed a database-level uniqueness strategy, and long histories required pagination that would not drift when new messages arrived.
+
+## Lessons learned
+
+The strongest decision was treating conversation identity as data, not presentation. A deterministic participant key prevents duplicate direct threads; composite participation records make authorization explicit; and last-message timestamps support efficient inbox ordering. Cursor pagination and honest polling produced a dependable MVP without introducing premature realtime infrastructure.
+
+<ProjectActions />

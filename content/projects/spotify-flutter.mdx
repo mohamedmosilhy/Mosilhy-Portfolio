@@ -1,0 +1,77 @@
+---
+slug: "spotify-flutter"
+title: "Spotify-inspired Flutter App"
+summary: "A layered Flutter music application with Firebase accounts, streaming playback, per-user favorites, profiles, and persisted light and dark themes."
+role: "Flutter developer"
+category: "mobile-applications"
+status: "published"
+featured: false
+projectOrder: 12
+timeline:
+  startedAt: "2024-07-11"
+  completedAt: "2024-08-17"
+  updatedAt: "2026-08-10"
+technologies:
+  - "flutter"
+  - "dart"
+  - "clean-architecture"
+  - "bloc"
+  - "firebase"
+  - "dependency-injection"
+links:
+  github: "https://github.com/mohamedmosilhy/Spotify"
+cover:
+  kind: "image"
+  src: "/images/projects/spotify-flutter/home.avif"
+  alt: "Spotify-inspired Flutter home screen in dark mode"
+  width: 540
+  height: 1170
+gallery:
+  layout: "grid"
+  items:
+    - kind: "image"
+      src: "/images/projects/spotify-flutter/player.avif"
+      alt: "Spotify-inspired Flutter audio player"
+      width: 540
+      height: 1170
+    - kind: "image"
+      src: "/images/projects/spotify-flutter/profile.avif"
+      alt: "Spotify-inspired Flutter profile and favorites screen"
+      width: 540
+      height: 1170
+seo:
+  title: "Spotify-inspired Flutter App Case Study"
+  description: "A Flutter music-app case study covering layered architecture, Firebase authentication, Firestore favorites, audio playback, and persisted themes."
+  canonicalPath: "/projects/spotify-flutter"
+---
+
+## Overview
+
+This Spotify-inspired mobile application explores the engineering behind a personalized media experience: account state, remote catalog data, playback, per-user favorites, profiles, and theme persistence. The goal was to keep those concerns separated instead of placing Firebase and audio logic directly inside widgets.
+
+<ProjectGallery />
+
+## Features
+
+- Onboarding, mode selection, registration, login, and account-aware navigation.
+- Firebase Authentication with user profiles stored in Cloud Firestore.
+- New releases, playlist content, and structured song metadata.
+- Audio play, pause, seek, progress, and duration through `just_audio`.
+- Favorites stored beneath each user rather than in a shared client list.
+- Profile and favorites views plus persistent light/dark mode using Hydrated Bloc.
+
+## Architecture
+
+Feature modules follow data, domain, and presentation layers. Repository implementations isolate Firebase from domain use cases, `get_it` resolves services, and Bloc owns observable application state. Firestore separates the shared song catalog from user-scoped favorite records, while the player consumes remote media references through a dedicated audio package.
+
+<ProjectTechnologies />
+
+## Challenges
+
+Media products combine several lifecycles: authentication, asynchronous catalog loading, playback progress, favorites, and persisted appearance. Keeping these states independent was essential so a theme change or profile refresh did not disturb playback, and user-specific favorites could not bleed across accounts.
+
+## Lessons learned
+
+Repository boundaries made Firebase a replaceable implementation detail rather than the architecture itself. User-scoped Firestore collections provided a clear ownership model, and Hydrated Bloc demonstrated how small pieces of state can persist without making the entire application offline-dependent. The project also strengthened my understanding of playback state and long-lived mobile services.
+
+<ProjectActions />

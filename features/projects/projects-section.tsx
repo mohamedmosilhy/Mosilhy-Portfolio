@@ -26,7 +26,7 @@ export function ProjectsSection({ projects, heading }: ProjectsSectionProps) {
             id={projectsHeadingId}
             title={heading}
             eyebrow="01 / Project archive"
-            description="Browse the work by discipline or search by technology. Each tile opens a focused case study with the decisions, process, and result."
+            description="Explore five collections: frontend web, backend and full-stack systems, mobile applications, AI and scientific computing, and the CS50 work that started the journey."
           />
         </Reveal>
 
